@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function() {
     // Logout Button Event Listener
     document.getElementById("logoutButton").addEventListener("click", function(event) {
@@ -86,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
     toggleCustomerForm();
 } );
 
+
 document.addEventListener("DOMContentLoaded", function () {
     const clothingTypeSelect = document.getElementById("clothingType");
     const priceInput = document.getElementById("price");
@@ -93,6 +93,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const storeFabricPriceInput = document.getElementById("storeFabricPrice");
     const payetPriceInput = document.getElementById("payetPrice");
     const totalPriceInput = document.getElementById("totalPrice");
+    const fabricPriceInput = document.getElementById("fabricPrice");
+    const fabricLengthInput = document.getElementById("fabricLength");
+    const totalFabricPriceInput = document.getElementById("totalFabricPrice");
 
     // Daftar harga pakaian
     const clothingPrices = {
@@ -128,10 +131,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // Fungsi untuk menghitung total harga
     function calculateTotalPrice() {
         const clothingPrice = parseInt(priceInput.value.replace(/[^\d]/g, "")) || 0;
-        const fabricPrice = parseInt(storeFabricPriceInput.value.replace(/[^\d]/g, "")) || 0;
+        const fabricPricePerMeter = parseInt(storeFabricPriceInput.value.replace(/[^\d]/g, "")) || 0;
+        const fabricLength = parseFloat(fabricLengthInput.value) || 0;
         const payetPrice = parseInt(payetPriceInput.value.replace(/[^\d]/g, "")) || 0;
 
-        const totalPrice = clothingPrice + fabricPrice + payetPrice;
+        const totalFabricPrice = fabricPricePerMeter * fabricLength;
+        const totalPrice = clothingPrice + totalFabricPrice + payetPrice;
+        
         totalPriceInput.value = `Rp ${totalPrice.toLocaleString()}`;
     }
 
@@ -147,19 +153,35 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Event listener untuk memilih kain
+    function calculateTotalFabricPrice() {
+        const selectedFabric = storeFabricSelect.value;
+        const fabricLength = parseFloat(fabricLengthInput.value) || 0;
+        const fabricPrice = fabricPrices[selectedFabric] || 0;
+
+        const totalFabricPrice = fabricLength * fabricPrice;
+
+        if (totalFabricPrice > 0) {
+            totalFabricPriceInput.value = `Rp ${totalFabricPrice.toLocaleString()}`;
+        } else {
+            totalFabricPriceInput.value = "";
+        }
+        calculateTotalPrice();
+    }
+
+    // Event listener untuk memilih kain
     storeFabricSelect.addEventListener("change", function () {
         const selectedFabric = storeFabricSelect.value;
         if (fabricPrices[selectedFabric]) {
-            storeFabricPriceInput.value = `Rp ${fabricPrices[selectedFabric].toLocaleString()}`;
+            fabricPriceInput.value = `Rp ${fabricPrices[selectedFabric].toLocaleString()}`;
         } else {
-            storeFabricPriceInput.value = "";
+            fabricPriceInput.value = "";
         }
-        calculateTotalPrice();
+        calculateTotalFabricPrice(); // Hitung total harga kain setelah kain dipilih
     });
 
-    // Event listener untuk input harga payet
-    payetPriceInput.addEventListener("input", calculateTotalPrice);
-    // const payetPriceInput = document.getElementById("payetPrice");
+    // Event listener untuk menginput ukuran kain
+    fabricLengthInput.addEventListener("input", calculateTotalFabricPrice);
+
 
     payetPriceInput.addEventListener("input", function () {
         // Ambil nilai input dan hapus karakter yang bukan angka
@@ -170,5 +192,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Perbarui nilai input
         payetPriceInput.value = value ? "Rp " + value : "";
+        calculateTotalPrice();
     });
+    calculateTotalPrice();
+
 });
