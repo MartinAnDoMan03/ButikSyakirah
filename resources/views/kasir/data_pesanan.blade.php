@@ -3,7 +3,7 @@
 @section('title', 'Data Pesanan')
 
 @section('content')
-<main class="main-content">
+
     <h1>Daftar Pesanan</h1>
 
     <!-- Tabel Pesanan -->
@@ -27,16 +27,5 @@
             </tbody>
         </table>
     </div>
-</main>
-</div>
-
-<div id="logoutModal" class="modal">
-<div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>Apakah Anda yakin ingin logout?</h2>
-    <button id="confirmLogout">Logout</button>
-    <button id="cancelLogout">Batal</button>
-</div>
-</div>
 
 @endsection

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Admin Butik')</title>
-    <link rel="stylesheet" href="{{ asset('css/kasirpage.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/adminpage.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/material-design-iconic-font/css/material-design-iconic-font.min.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
@@ -22,20 +22,23 @@
         </div>
     </div>
     
-
     <!-- Container -->
     <div class="container">
         <!-- Sidebar -->
         <aside class="sidebar">
             <h2></h2>
             <ul>
-                <li><a href="{{ url('/kasir/add_pesanan') }}"><i class="zmdi zmdi-shopping-cart"></i>Pesanan Baru</a></li>
-                <li><a href="{{ url('/kasir/data_pesanan') }}"><i class="zmdi zmdi-shopping-cart"></i> Data Pesanan</a></li>
-                <li><a href="{{ url('/kasir/data_customer') }}"><i class="zmdi zmdi-accounts"></i> Data Customer</a></li>
-                <li><a href="{{ url('/kasir/detail_ukuran') }}"><i class="zmdi zmdi-shopping-cart"></i> Detail Ukuran</a></li>
-                <li><a href="{{ url('/kasir/faktur') }}"><i class="zmdi zmdi-store"></i> Faktur</a></li>
-                <li><a href="{{ url('/kasir/stok_barang') }}"><i class="zmdi zmdi-store"></i> Stok Barang</a></li>
-                <li><a href="{{ url('/kasir/riwayat_pesanan') }}"><i class="zmdi zmdi-file-text"></i> Riwayat Pesanan</a></li>                
+
+                <li><a href="{{ url('/admin/pengguna') }}"><i class="zmdi zmdi-store"></i> Kelola Pengguna</a></li>
+                <li><a href="{{ url('/admin/stokBarang') }}"><i class="zmdi zmdi-store"></i> Stok Barang</a></li>
+                <li><a href="{{ url('/admin/riwayatPesanan') }}"><i class="zmdi zmdi-file-text"></i> Riwayat Pesanan</a></li> 
+                <li class="dropdown">
+                    <a href="#"><i class="zmdi zmdi zmdi-account"></i> Akun</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="pekerja.php">Pekerja</a></li>
+                        <li><a href="kasir.php">Kasir</a></li>
+                    </ul>
+                </li>              
             </ul>
         </aside>
         <!-- Main Content -->
@@ -43,7 +46,6 @@
             @yield('content')
         </main>
     </div>
-
 
 
     <script src="{{ asset('js/kasir.js') }}"></script>

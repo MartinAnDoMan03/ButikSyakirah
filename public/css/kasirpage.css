@@ -237,52 +237,25 @@ body {
 }
 
 /* Dropdown */
-/* Dropdown container */
-.dropdown {
-    position: relative;
+.sidebar ul li a .dropdown-arrow {
+    margin-left: auto;
+    font-size: 14px;
+    transition: transform 0.3s;
 }
 
-.dropdown a {
-    display: block;
-    color: #555;
-    text-decoration: none;
-    padding: 10px 15px; /* Sesuaikan padding utama */
+.sidebar ul li a.active .dropdown-arrow {
+    transform: rotate(180deg);
 }
 
-/* Dropdown menu */
-.dropdown-menu {
-    display: none; /* Hidden by default */
-    position: absolute;
-    top: 100%; /* Position below the parent item */
-    left: 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    list-style: none;
-    padding: 0; /* Hapus padding default */
-    z-index: 1;
-    margin: 0; /* Hapus jarak antara menu */
+.sidebar ul .dropdown-content {
+    display: none;
+    list-style-type: none;
+    padding-left: 20px;
 }
 
-.dropdown-menu li {
-    margin: 0; /* Hapus jarak antar item */
-}
-
-.dropdown-menu li a {
-    display: block;
-    color: #333;
-    text-decoration: none;
-    padding: 8px 10px; /* Kurangi padding untuk mengecilkan jarak antar item */
-}
-
-.dropdown-menu li a:hover {
-    background-color: #0f0f0f;
-    color: white; /* Agar teks terlihat jelas */
-}
-
-/* Show dropdown menu on hover */
-.dropdown:hover .dropdown-menu {
+.sidebar ul li.active .dropdown-content {
     display: block;
 }
-
 
 /* Main Content */
 .main-content {
@@ -359,6 +332,29 @@ table th, table td {
     padding: 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+}
+th:first-child, td:first-child { /* Kolom pertama (Customer ID) */
+    width: 15%; /* Anda bisa menyesuaikan nilainya */
+}
+
+th:nth-child(2), td:nth-child(2) { /* Kolom kedua (Nama Customer) */
+    width: 25%; /* Anda bisa menyesuaikan nilainya */
+}
+
+th:nth-child(3), td:nth-child(3) { /* Kolom ketiga (Alamat) */
+    width: 30%;
+}
+
+th:nth-child(4), td:nth-child(4) { /* Kolom keempat (No Hp) */
+    width: 15%;
+}
+
+th:nth-child(5), td:nth-child(5) { /* Kolom kelima (Email) */
+    width: 20%;
+}
+
+table tbody tr:hover {
+    background-color: #f1f5fa;
 }
 
 

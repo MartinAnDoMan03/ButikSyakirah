@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layoutadmin')
 
 @section('title', 'Stok Barang')
 
