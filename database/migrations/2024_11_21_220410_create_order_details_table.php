@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+//changed
+
 return new class extends Migration
 {
     /**
@@ -13,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
+            $table->integer('order_id');
+            $table->integer('customer_cloth');
+            $table->integer('shop_cloth');
+            $table->string('sequin');
+            $table->integer('price');
+            $table->integer('stock');
             $table->timestamps();
         });
     }

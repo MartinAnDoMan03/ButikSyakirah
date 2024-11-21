@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+//changed
+
 return new class extends Migration
 {
     /**
@@ -13,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('size_details', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('order_id');
+            $table->integer('waist_circumference');
+            $table->integer('arm_circumference');
+            $table->integer('body_height');
+            $table->integer('shoulder_width');
+            $table->integer('chest_circumference');
+            $table->integer('arm_length');
         });
     }
 

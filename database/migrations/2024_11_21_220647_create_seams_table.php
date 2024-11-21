@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+//changed
+
 return new class extends Migration
 {
     /**
@@ -13,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('seams', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('order_id');
+            $table->string('seam_name');
+            $table->string('cloth_type');
+            $table->integer('seam_size');
+            $table->integer('seam_price');
         });
     }
 

@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+//changed : address to text from string(varchar)
+
 return new class extends Migration
 {
     /**
@@ -13,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('supplier_name');
+            $table->string('contact_info');
+            $table->text('address');
         });
     }
 

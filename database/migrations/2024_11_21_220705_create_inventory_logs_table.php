@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+//changed
+
 return new class extends Migration
 {
     /**
@@ -13,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('inventory_logs', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('stock_id');
+            $table->string('reference_type');
+            $table->integer('reference_id');
+            $table->string('transaction_type');
+            $table->integer('quantity');
+            $table->date('transaction_date');
+            $table->string('arm_length');
         });
     }
 
