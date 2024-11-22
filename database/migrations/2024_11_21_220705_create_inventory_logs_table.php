@@ -14,14 +14,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('inventory_logs', function (Blueprint $table) {
-            $table->id();
+            $table->integer('transaction_id')->primary();
             $table->integer('stock_id');
             $table->string('reference_type');
             $table->integer('reference_id');
             $table->string('transaction_type');
             $table->integer('quantity');
             $table->date('transaction_date');
-            $table->string('arm_length');
         });
     }
 

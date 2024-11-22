@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payment_logs', function (Blueprint $table) {
-            $table->id();
+            $table->integer('payment_id')->primary();
             $table->integer('order_id');
             $table->integer('payment_amount');
             $table->date('payment_date');

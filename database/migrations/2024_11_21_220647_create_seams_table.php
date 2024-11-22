@@ -14,10 +14,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('seams', function (Blueprint $table) {
-            $table->id();
+            $table->integer('seam_id')->primary();
             $table->integer('order_id');
             $table->string('seam_name');
             $table->string('cloth_type');
+            $table->string('seamer_name');
             $table->integer('seam_size');
             $table->integer('seam_price');
         });
