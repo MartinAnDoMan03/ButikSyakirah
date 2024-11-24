@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('payment_amount');
             $table->date('payment_date');
             $table->string('payment_method');
+            $table->foreign('order_id')->references('order_id')->on('orders')->onDelete('restrict');
+
         });
     }
 

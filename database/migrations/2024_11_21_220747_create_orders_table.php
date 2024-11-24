@@ -20,6 +20,8 @@ return new class extends Migration
             $table->date('completion_date');
             $table->integer('total_price');
             $table->string('status');
+            $table->foreign('customer_id')->references('customer_id')->on('customers')->onDelete('restrict');
+
         });
     }
 

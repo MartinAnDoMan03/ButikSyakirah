@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('stock');
             $table->timestamps();
+            $table->foreign('order_id')->references('order_id')->on('orders')->onDelete('restrict');
         });
     }
 

@@ -21,6 +21,10 @@ return new class extends Migration
             $table->string('transaction_type');
             $table->integer('quantity');
             $table->date('transaction_date');
+            $table->foreign('stock_id')->references('stock_id')->on('stocks')->onDelete('restrict');
+            $table->foreign('reference_id')->references('order_id')->on('orders')->onDelete('restrict');
+            $table->foreign('reference_id')->references('supplier_id')->on('supplier')->onDelete('restrict');
+
         });
     }
 
