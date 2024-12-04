@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('customer_id');
             $table->date('order_date');
             $table->date('completion_date');
-            $table->integer('total_price');
+            $table->integer('total_price')->nullable();
             $table->string('status');
             $table->foreign('customer_id')->references('customer_id')->on('customers')->onDelete('restrict');
 

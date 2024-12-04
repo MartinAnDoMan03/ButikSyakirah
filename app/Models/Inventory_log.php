@@ -12,5 +12,5 @@ class Inventory_log extends Model
 
     protected $keyType = 'int';
 
-    protected $fillable = ['stock_id', 'reference_type', 'transaction_type', 'quanitity', 'transaction_date'];
+    protected $fillable = ['stock_id', 'reference_type', 'order_reference_id', 'supplier_reference_id', 'transaction_type', 'quanitity', 'transaction_date'];
 }

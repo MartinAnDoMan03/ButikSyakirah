@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('order_detail_id')->primary();
             $table->integer('order_id');
             $table->integer('customer_cloth');
-            $table->integer('shop_cloth');
+            $table->integer('store_cloth');
             $table->string('sequin');
             $table->integer('price');
             $table->integer('stock');
