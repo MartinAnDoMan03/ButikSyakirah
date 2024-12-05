@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Invoice_detail;
-use App\Http\Requests\StoreInvoice_detailRequest;
-use App\Http\Requests\UpdateInvoice_detailRequest;
+use App\Models\Customer;
+use Illuminate\Http\Request;
 
-class InvoiceDetailController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,23 +26,28 @@ class InvoiceDetailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreInvoice_detailRequest $request)
+    public function store(Request $request)
     {
-        //
+        Customer::create([
+            'customer_name' => $request->input('customerName'),
+            'address' => $request->input('customerAddress'),
+            'phone' => $request->input('customerPhone'),
+            'email' => $request->input('customerEmail')
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Invoice_detail $invoice_detail)
+    public function show(Customer $customer)
     {
-        //
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Invoice_detail $invoice_detail)
+    public function edit(Customer $customer)
     {
         //
     }
@@ -51,7 +55,7 @@ class InvoiceDetailController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateInvoice_detailRequest $request, Invoice_detail $invoice_detail)
+    public function update(Request $request, Customer $customer)
     {
         //
     }
@@ -59,7 +63,7 @@ class InvoiceDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Invoice_detail $invoice_detail)
+    public function destroy(Customer $customer)
     {
         //
     }
