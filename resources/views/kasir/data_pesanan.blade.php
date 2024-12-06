@@ -16,14 +16,36 @@
             <thead>
                 <tr>
                     <th>No. Pesanan</th>
+                    <th>Nama Pelanggan</th>
                     <th>Tanggal Order</th>
                     <th>Tanggal Selesai</th>
                     <th>Total Biaya</th>
+                    <th>Menu</th>
                     <th>Status</th>
                 </tr>
             </thead>
             <tbody id="orderTableBody">
-                <!-- Baris pesanan akan ditambahkan di sini -->
+                @forelse ($orders as $order)
+                <tr>
+                    <td>{{ $order->id }}</td>
+                    <td>{{ $order->customer_name }}</td>
+                    <td>{{ $order->order_date }}</td>
+                    <td>{{ $order->completion_date }}</td>
+                    <td>{{ number_format($order->total_cost, 0, ',', '.') }}</td>
+                    <td>
+                        <div class="menu-buttons">
+                            <a href="{{ url('edit-pesanan/'.$order->id) }}" class="btn btn-edit">Edit</a>
+                            <a href="{{ url('add-detail-pesanan/'.$order->id) }}" class="btn btn-add-detail">Add Detail Pesanan</a>
+                            <a href="{{ url('detail-ukuran/'.$order->id) }}" class="btn btn-detail-ukuran">Detail Ukuran</a>
+                        </div>
+                    </td>
+                    <td>{{ $order->status }}</td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="7">Tidak ada data pesanan.</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

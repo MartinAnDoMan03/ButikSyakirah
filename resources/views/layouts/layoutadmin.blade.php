@@ -35,8 +35,8 @@
                 <li class="dropdown">
                     <a href="#"><i class="zmdi zmdi zmdi-account"></i> Akun</a>
                     <ul class="dropdown-menu">
-                        <li><a href="pekerja.php">Pekerja</a></li>
-                        <li><a href="kasir.php">Kasir</a></li>
+                        <li><a href="{{ url('/kasir/data_pesanan') }}">Kasir</a></li>
+                        <li><a href="{{ url('//data_pesanan') }}">Pekerja</a></li>
                     </ul>
                 </li>              
             </ul>

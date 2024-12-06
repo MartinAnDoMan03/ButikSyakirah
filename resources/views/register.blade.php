@@ -23,15 +23,6 @@
 						<input type="text" placeholder="No HP" class="form-control">
 						<i class="zmdi zmdi-phone"></i>
 					</div>
-					<!-- <div class="form-wrapper">
-						<select name="" id="" class="form-control">
-							<option value="" disabled selected>Gender</option>
-							<option value="male">Male</option>
-							<option value="femal">Female</option>
-							<option value="other">Other</option>
-						</select>
-						<i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
-					</div> -->
 					<div class="form-wrapper">
 						<input type="password" placeholder="Password" class="form-control">
 						<i class="zmdi zmdi-lock"></i>
@@ -40,15 +31,6 @@
 						<input type="password" placeholder="Confirm Password" class="form-control">
 						<i class="zmdi zmdi-lock"></i>
 					</div>
-					<!-- <div class="form-wrapper">
-						<select name="" id="" class="form-control">
-							<option value="" disabled selected>Position</option>
-							<option value="male">Owner</option>
-							<option value="femal">Kasir</option>
-							<option value="other">Pekerja</option>
-						</select>
-						<i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
-					</div> -->
 					<button> <a href="login.html">Register</a>
 						<i class="zmdi zmdi-arrow-right"></i>
 					</button>
