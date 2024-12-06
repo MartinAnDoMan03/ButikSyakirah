@@ -29,7 +29,14 @@ class OrderDetailController extends Controller
      */
     public function store(StoreOrder_detailRequest $request)
     {
-        //
+        Order_detail::create([
+            'order_id' => $request->input('form_name'),
+            'customer_cloth' => $request->input('form_name'),
+            'store_cloth' => $request->input('form_name'),
+            'sequin' => $request->input('form_name'),
+            'price' => $request->input('form_name'),
+            'stock' => $request->input('form_name')
+        ]);
     }
 
     /**

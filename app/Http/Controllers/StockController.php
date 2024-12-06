@@ -29,7 +29,10 @@ class StockController extends Controller
      */
     public function store(StoreStockRequest $request)
     {
-        //
+        Stock::create([
+            'stock_name' => $request->input('form_name'),
+            'quantity' => $request->input('form_name')
+        ]);
     }
 
     /**

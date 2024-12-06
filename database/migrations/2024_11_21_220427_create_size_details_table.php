@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('size_details', function (Blueprint $table) {
-            $table->id();
+            $table->integer('size_detail_id')->primary();
             $table->integer('order_id');
             $table->integer('waist_circumference');
             $table->integer('arm_circumference');
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('shoulder_width');
             $table->integer('chest_circumference');
             $table->integer('arm_length');
+            $table->foreign('order_id')->references('order_id')->on('orders')->onDelete('restrict');
         });
     }
 

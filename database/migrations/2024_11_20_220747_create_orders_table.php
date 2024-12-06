@@ -15,13 +15,14 @@ return new class extends Migration
     {
 
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
+            $table->integer('order_id')->primary();
             $table->string('customer_name');
+            $table->integer('customer_id');
             $table->date('order_date');
-            $table->date('completion_date')->nullable();
-            $table->integer('total_cost');
+            $table->date('completion_date');
+            $table->integer('total_price')->nullable();
             $table->string('status');
-            $table->timestamps();
+            $table->foreign('customer_id')->references('customer_id')->on('customers')->onDelete('restrict');
         });
         
     }

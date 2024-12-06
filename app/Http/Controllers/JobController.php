@@ -29,7 +29,11 @@ class JobController extends Controller
      */
     public function store(StoreJobRequest $request)
     {
-        //
+        Job::create([
+            'user_id' => $request->input('form_name'),
+            'job_type' => $request->input('form_name'),
+            'start_date' => $request->input('form_name')
+        ]);
     }
 
     /**

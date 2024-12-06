@@ -14,10 +14,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('jobs', function (Blueprint $table) {
-            $table->id();
+            $table->integer('job_id')->primary();
             $table->integer('user_id');
             $table->string('job_type');
             $table->date('start_date');
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('restrict');
         });
     }
 

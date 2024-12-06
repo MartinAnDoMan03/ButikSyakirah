@@ -20,14 +20,14 @@
                     <div id="newCustomerForm" style="display:none;">
                     <h3>Form Customer Baru</h3>
                     <label for="customerName">Nama:</label>
-                    <input type="text" id="customerName" required><br><br>
+                    <input type="text" id="customerName" name="customerName" required><br><br>
                     <label for="customerAddress">Alamat:</label>
-                    <input type="text" id="customerAddress" required><br><br>
+                    <input type="text" id="customerAddress" name="customerAddress" required><br><br>
                     <label for="customerPhone">Telepon:</label>
-                    <input type="text" id="customerPhone" required><br><br>
+                    <input type="text" id="customerPhone" name="customerPhone" required><br><br>
                     <label for="customerEmail">Email:</label>
-                    <input type="email" id="customerEmail" required><br><br>
-                    <button type="submit" id="submitNewCustomer">Tambah Customer</button>
+                    <input type="email" id="customerEmail" name="customerEmail" required><br><br>
+                    <button type="submit" id="submitNewCustomer" name="submitNewCustomer">Tambah Customer</button>
                     </div>
 
                     <!-- Form untuk customer lama -->

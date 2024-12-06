@@ -29,7 +29,14 @@ class SeamController extends Controller
      */
     public function store(StoreSeamRequest $request)
     {
-        //
+        Seam::create([
+            'order_id' => $request->input('form_name'),
+            'seam_name' => $request->input('form_name'),
+            'cloth_type' => $request->input('form_name'),
+            'seamer_name' => $request->input('form_name'),
+            'seam_size' => $request->input('form_name'),
+            'seam_price' => $request->input('form_name')
+        ]);
     }
 
     /**

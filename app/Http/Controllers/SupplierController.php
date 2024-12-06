@@ -29,7 +29,13 @@ class SupplierController extends Controller
      */
     public function store(StoreSupplierRequest $request)
     {
-        //
+        Supplier::create([
+            'supplier_name' => $request->input('form_name'),
+            'contact_info' => $request->input('form_name'),
+            'address' => $request->input('form_name')
+        ]);
+
+        return redirect()->back()->with('success', 'Data Supplier Berhasil Dimasukkan');
     }
 
     /**

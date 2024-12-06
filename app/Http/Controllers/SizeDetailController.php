@@ -29,7 +29,15 @@ class SizeDetailController extends Controller
      */
     public function store(StoreSize_detailRequest $request)
     {
-        //
+        Size_detail::create([
+            'order_id' => $request->input('form_name'),
+            'waist_circumference' => $request->input('form_name'),
+            'arm_circumference' => $request->input('form_name'),
+            'body_height' => $request->input('form_name'),
+            'shoulder_width' => $request->input('form_name'),
+            'chest_circumference' => $request->input('form_name'),
+            'arm_length' => $request->input('form_name')
+        ]);
     }
 
     /**
