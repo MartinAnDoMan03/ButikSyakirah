@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Order;
 
 class KasirController extends Controller
 {
@@ -18,8 +19,9 @@ class KasirController extends Controller
 
     public function showDataPesanan()
     {
-        // $orders = Orders::all();
-        return view('kasir.data_pesanan');
+        $orders = Order::all();
+        return view('kasir.data_pesanan', ['orders' => $orders]);
+
     }
 
     public function showStockBarang()

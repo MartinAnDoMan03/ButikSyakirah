@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up(): void
     {
+
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('customer_id');
+            $table->string('customer_name');
             $table->date('order_date');
-            $table->date('completion_date');
-            $table->integer('total_price');
+            $table->date('completion_date')->nullable();
+            $table->integer('total_cost');
             $table->string('status');
+            $table->timestamps();
         });
+        
     }
 
     /**
