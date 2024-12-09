@@ -4,14 +4,18 @@
 
 @section('content')
             <h1>Riwayat Pesanan</h1>
+            <div class="search-container">
+            <input type="text" placeholder="Search..." class="search-input">
+            <button class="search-icon"><i class="zmdi zmdi-search"></i></button>
+        </div>    
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
                             <th>Id</th>
                             <th>Nama Costumer</th>
+                            <th>Detail Pesanan</th>
                             <th>Faktur</th>
-                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
