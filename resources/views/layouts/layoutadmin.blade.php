@@ -35,8 +35,9 @@
                 <li class="dropdown">
                     <a href="#"><i class="zmdi zmdi zmdi-account"></i> Akun</a>
                     <ul class="dropdown-menu">
-                        <li><a href="pekerja.php">Pekerja</a></li>
-                        <li><a href="kasir.php">Kasir</a></li>
+                        <li><a href="pekerja.php">Kasir</a></li>
+                        <li><a href="pekerja.php">Penjahit</a></li>
+                        <li><a href="kasir.php">Penggunting</a></li>
                     </ul>
                 </li>              
             </ul>
