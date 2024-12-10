@@ -45,6 +45,8 @@
                 <tr>
                     <td colspan="7">Tidak ada data pesanan.</td>
                 </tr>
+
+                
                 @endforelse
             </tbody>
         </table>

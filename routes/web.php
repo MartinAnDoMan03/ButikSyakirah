@@ -34,4 +34,6 @@ Route::get('/kasir/data_pesanan', [KasirController::class, 'showDataPesanan'])->
 Route::get('/kasir/stok_barang', [KasirController::class, 'showStockBarang'])->name('kasir.stok_barang');
 Route::get('/kasir/add_pesanan', [KasirController::class, 'addPesanan'])->name('kasir.add_pesanan');
 
+Route::get('/penggunting/home', function () {return view('penggunting.home');});
+
 
