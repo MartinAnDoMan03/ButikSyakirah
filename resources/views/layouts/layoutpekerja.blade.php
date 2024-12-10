@@ -10,8 +10,7 @@
   <header>
     <nav>
       <ul class="nav-links">
-        <li><a href="#about">ABOUT</a></li>
-        <li><a href="#menu">MENU</a></li>
+        <li><a href="#about">Home</a></li>
       </ul>
     </nav>
   </header>

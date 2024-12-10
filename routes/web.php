@@ -35,5 +35,7 @@ Route::get('/kasir/stok_barang', [KasirController::class, 'showStockBarang'])->n
 Route::get('/kasir/add_pesanan', [KasirController::class, 'addPesanan'])->name('kasir.add_pesanan');
 
 Route::get('/penggunting/home', function () {return view('penggunting.home');});
+Route::get('/penggunting/detail_ukuran', function () {return view('penggunting.detail_ukuran');});
+Route::get('/penggunting/data_pesanan', function () {return view('penggunting.data_pesanan');});
 
 

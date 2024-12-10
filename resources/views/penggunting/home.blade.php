@@ -16,11 +16,11 @@
   </section>
 
   <section class="cards">
+    <div class="card" id="menu">
+      <h3>Tambahkan Detail Ukuran</h3>
+    </div>
     <div class="card" id="system">
       <h3>Data Pesanan</h3>
-    </div>
-    <div class="card" id="menu">
-      <h3>Detail Ukuran</h3>
     </div>
   </section>
 @endsection
