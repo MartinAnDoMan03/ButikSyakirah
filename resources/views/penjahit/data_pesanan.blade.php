@@ -3,7 +3,6 @@
 @section('title', 'Data Pesanan')
 
 @section('content')
-
     <h1>Data Pesanan</h1>
 
     <!-- Tabel Data Customer -->
@@ -27,6 +26,5 @@
                 <!-- Baris customer akan ditambahkan di sini -->
             </tbody>
         </table>
-        
     </div>
 @endsection
