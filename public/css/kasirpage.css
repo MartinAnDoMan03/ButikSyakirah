@@ -185,7 +185,7 @@ body {
 
 /* Sidebar */
 .sidebar {
-    background-color: #333;
+    background-color: #2b4053;
     color: white;
     width: 250px;
     min-height: 100vh;
@@ -300,7 +300,7 @@ body {
 }
 
 .order-form button, .customer-form button {
-    background-color: #333;
+    background-color: #2b4053;
     color: white;
     border: none;
     cursor: pointer;
