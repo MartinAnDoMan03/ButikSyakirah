@@ -31,9 +31,8 @@
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                     <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
                         <div class="flex lg:justify-center lg:col-start-2">
-                            <div class="flex lg:justify-center lg:col-start-2">
-                                <span class="text-black text-2xl lg:text-4xl font-bold flex items-center justify-center">Butik Syakirah</span>
-                            </div>
+                            <span class="text-black font-bold flex items-center justify-center" style="font-size: 40px; display: flex; align-items: center; justify-content: center;">Butik Syakirah</span>
+
                         </div>
                         @if (Route::has('login'))
                             <nav class="-mx-3 flex flex-1 justify-end">
@@ -74,7 +73,7 @@
                                 <div id="screenshot-container" class="relative flex w-full flex-1 items-stretch">
                                     <img
                                         src="{{ asset('images/dalamButik.jpg') }}"                                         alt="Laravel documentation screenshot"
-                                        class="hidden aspect-video h-full w-full flex-1 rounded-[10px] object-top object-cover drop-shadow-[0px_4px_34px_rgba(0,0,0,0.25)] dark:block"
+                                        class="hidden aspect-video h-full w-full flex-1 rounded-[10px] object-top  drop-shadow-[0px_4px_34px_rgba(0,0,0,0.25)] dark:block"
                                     />
                                     <div
                                         class="absolute -bottom-16 -left-16 h-40 w-[calc(100%+8rem)] bg-gradient-to-b from-transparent via-white to-white dark:via-zinc-900 dark:to-zinc-900"
