@@ -14,7 +14,7 @@
     <div class="table-container">
         <table>
             <thead>
-                <tr>
+                <tr class="customer">
                     <th>Customer ID</th>
                     <th>Nama Customer</th>
                     <th>Alamat</th>
@@ -24,6 +24,11 @@
             </thead>
             <tbody id="customerTableBody">
                 <!-- Baris customer akan ditambahkan di sini -->
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tbody>
         </table>
     </div>

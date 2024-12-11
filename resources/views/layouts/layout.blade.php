@@ -29,12 +29,10 @@
         <aside class="sidebar">
             <h2></h2>
             <ul>
-                <li><a href="{{ url('/kasir/data_pesanan') }}"><i class="zmdi zmdi-shopping-cart"></i> Data Pesanan</a></li>
                 <li><a href="{{ url('/kasir/add_pesanan') }}"><i class="zmdi zmdi-shopping-cart"></i>Pesanan Baru</a></li>
+                <li><a href="{{ url('/kasir/data_pesanan') }}"><i class="zmdi zmdi-shopping-cart"></i> Data Pesanan</a></li>
                 <li><a href="{{ url('/kasir/data_customer') }}"><i class="zmdi zmdi-accounts"></i> Data Customer</a></li>
                 <li><a href="{{ url('/kasir/detail_ukuran') }}"><i class="zmdi zmdi-shopping-cart"></i> Detail Ukuran</a></li>
-                <li><a href="{{ url('/kasir/faktur') }}"><i class="zmdi zmdi-store"></i> Faktur</a></li>
-                <li><a href="{{ url('/kasir/stok_barang') }}"><i class="zmdi zmdi-store"></i> Stok Barang</a></li>
                 <li><a href="{{ url('/kasir/riwayat_pesanan') }}"><i class="zmdi zmdi-file-text"></i> Riwayat Pesanan</a></li>                
             </ul>
         </aside>

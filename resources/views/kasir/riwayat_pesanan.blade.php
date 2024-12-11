@@ -16,6 +16,10 @@
                     </thead>
                     <tbody>
                         <!-- Data akan dimasukkan di sini -->
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tbody>
                 </table>
             </div>

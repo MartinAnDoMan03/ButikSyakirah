@@ -1,34 +1,32 @@
-@extends('layouts.layout')
+@extends('layouts.layoutlogin')
 
-@section('title', 'login')
+@section('title', 'Login')
 
 @section('content')
-
-		<div class="wrapper" style="background-image: url('images/back1.jpg');">
-			<div class="inner">
-				<div class="image-holder">
-					<img src="images/loginregist.jpg" alt="">
-				</div>
-				<form action="">
-					<h3>Login</h3>
-					<div class="form-wrapper">
-						<input type="text" placeholder="Username" class="form-control">
-						<i class="zmdi zmdi-account"></i>
-					</div>
-					<div class="form-wrapper">
-						<input type="password" placeholder="Password" class="form-control">
-						<i class="zmdi zmdi-lock"></i>
-					</div>
-					<div class="button-container">
-						<button> 
-							<a href="adminpage.html">Login</a>
-							<i class="zmdi zmdi-arrow-right"></i>
-						</button>
-						<p class="signup-text">
-							Belum punya akun? <a href="register.html">Sign Up</a>
-						</p>	
-					</div>			  
-				</form>
-			</div>
-		</div>
+<div class="inner">
+    <div class="image-holder">
+        <img src="images/foto1.jpg" alt="">
+    </div>
+    <form action="{{ route('login') }}" method="POST">
+        @csrf
+        <h3>Login</h3>
+        <div class="form-wrapper">
+            <input type="text" name="username" placeholder="Username" class="form-control" required>
+            <i class="zmdi zmdi-account"></i>
+        </div>
+        <div class="form-wrapper">
+            <input type="password" name="password" placeholder="Password" class="form-control" required>
+            <i class="zmdi zmdi-lock"></i>
+        </div>
+        <div class="button-container">
+            <button type="submit">
+                Login
+                <i class="zmdi zmdi-arrow-right"></i>
+            </button>
+            <p class="signup-text">
+                Belum punya akun? <a href="{{ route('register') }}">Sign Up</a>
+            </p>  
+        </div>        
+    </form>
+</div>
 @endsection

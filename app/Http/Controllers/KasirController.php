@@ -35,5 +35,11 @@ class KasirController extends Controller
         // Logika untuk menampilkan stok barang
         return view('kasir.add_pesanan');
     }
+
+    public function showRiwayat()
+    {
+        // Logika untuk menampilkan riwayat pesanan
+        return view('kasir.riwayat_pesanan');
+    }
     
 }

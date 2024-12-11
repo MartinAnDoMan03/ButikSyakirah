@@ -99,7 +99,7 @@ body {
 }
 
 #confirmLogout:hover {
-    background-color: #555; /* Mengubah sedikit warna saat hover */
+    background-color: #456685; /* Mengubah sedikit warna saat hover */
 }
 
 /* Tombol Batal Logout */
@@ -146,7 +146,7 @@ body {
 }
 
 .navbar ul li a:hover {
-    background-color: #6a6a6a;
+    background-color: #456685;
 }
 
 /* Responsive Navbar */
@@ -170,7 +170,7 @@ body {
         position: absolute;
         top: 100%;
         left: 0;
-        background-color: #333;
+        background-color: #456685;
         width: 100%;
         padding: 20px;
     }
@@ -226,7 +226,7 @@ body {
 }
 
 .sidebar ul li a:hover {
-    background-color: #6a6a6a;
+    background-color: #456685;
     color: white;
 }
 
@@ -236,8 +236,6 @@ body {
     font-size: 18px;
 }
 
-/* Dropdown */
-/* Dropdown container */
 .dropdown {
     position: relative;
 }
@@ -331,10 +329,13 @@ body {
     color: white;
     border: none;
     cursor: pointer;
+    width: 150px;
+    height: 50px;
+    padding: 10px;
 }
 
 .order-form button:hover, .customer-form button:hover {
-    background-color: #6a6a6a;
+    background-color: #456685;
 }
 
 /* Table Styling */

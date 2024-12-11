@@ -226,7 +226,7 @@ body {
 }
 
 .sidebar ul li a:hover {
-    background-color: #6a6a6a;
+    background-color: #456685;
     color: white;
 }
 
@@ -256,6 +256,29 @@ body {
 .sidebar ul li.active .dropdown-content {
     display: block;
 }
+
+.sidebar ul li:nth-child(1) {
+    background-color: #2b4053;; /* Memberikan latar belakang hijau terang */
+    color: white; /* Mengubah warna teks menjadi putih */
+    font-weight: bold; /* Membuat teks menjadi lebih tebal */
+    border-radius: 5px; /* Menambahkan sudut melengkung */
+    transition: all 0.3s ease;   /* Memberikan efek transisi halus */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Menambahkan bayangan halus */
+}
+
+.sidebar ul li:nth-child(1):hover {
+    background-color: #456685;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Membuat bayangan lebih besar saat hover */
+    transform: scale(1.05); /* Sedikit memperbesar elemen saat hover */
+}
+
+.sidebar ul li:nth-child(1) a {
+    color: white; /* Warna teks link menjadi putih */
+    text-decoration: none; /* Menghilangkan garis bawah pada link */
+    display: block; /* Agar link memenuhi seluruh area <li> */
+}
+
+
 
 /* Main Content */
 .main-content {
@@ -304,10 +327,13 @@ body {
     color: white;
     border: none;
     cursor: pointer;
+    width: 150px;
+    height: 50px;
+    padding: 10px;
 }
 
 .order-form button:hover, .customer-form button:hover {
-    background-color: #6a6a6a;
+    background-color: #456685;
 }
 
 /* Table Styling */
@@ -333,23 +359,23 @@ table th, table td {
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
-th:first-child, td:first-child { /* Kolom pertama (Customer ID) */
+tr.customer th:nth-child(1) { /* Kolom pertama (Customer ID) */
     width: 15%; /* Anda bisa menyesuaikan nilainya */
 }
 
-th:nth-child(2), td:nth-child(2) { /* Kolom kedua (Nama Customer) */
+tr.customer th:nth-child(2) { /* Kolom kedua (Nama Customer) */
     width: 25%; /* Anda bisa menyesuaikan nilainya */
 }
 
-th:nth-child(3), td:nth-child(3) { /* Kolom ketiga (Alamat) */
+tr.customer th:nth-child(3){ /* Kolom ketiga (Alamat) */
     width: 30%;
 }
 
-th:nth-child(4), td:nth-child(4) { /* Kolom keempat (No Hp) */
+tr.customer th:nth-child(4) { /* Kolom keempat (No Hp) */
     width: 15%;
 }
 
-th:nth-child(5), td:nth-child(5) { /* Kolom kelima (Email) */
+tr.customer th:nth-child(5) { /* Kolom kelima (Email) */
     width: 20%;
 }
 
@@ -357,6 +383,39 @@ table tbody tr:hover {
     background-color: #f1f5fa;
 }
 
+
+/* tabel untuk addpesanan */
+tr.addpesanan th:nth-child(1) {
+    width: 5%; /* Kolom "No" */
+    text-align: center;
+}
+
+tr.addpesanan th:nth-child(2) {
+    width: 25%; /* Kolom "Nama Pelanggan" */
+}
+
+tr.addpesanan th:nth-child(3) {
+    width: 15%; /* Kolom "Tanggal Order" */
+}
+
+tr.addpesanan th:nth-child(4) {
+    width: 15%; /* Kolom "Tanggal Selesai" */
+}
+
+tr.addpesanan th:nth-child(5) {
+    width: 20%; /* Kolom "Total Biaya" */
+    text-align: right;
+}
+
+tr.addpesanan th:nth-child(6) {
+    width: 15%; /* Kolom "Menu" */
+    text-align: center;
+}
+
+tr.addpesanan th:nth-child(7) {
+    width: 5%; /* Kolom "Status" */
+    text-align: center;
+}
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {

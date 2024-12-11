@@ -38,6 +38,7 @@
                         <li><a href="pekerja.php">Kasir</a></li>
                         <li><a href="pekerja.php">Penjahit</a></li>
                         <li><a href="kasir.php">Penggunting</a></li>
+                        <li><a href="kasir.php">Pemayet</a></li>
                     </ul>
                 </li>              
             </ul>

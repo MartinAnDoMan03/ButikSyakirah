@@ -14,8 +14,8 @@
     <div class="table-container">
         <table>
             <thead>
-                <tr>
-                    <th>No. Pesanan</th>
+                <tr class ="addpesanan">
+                    <th>No </th>
                     <th>Nama Pelanggan</th>
                     <th>Tanggal Order</th>
                     <th>Tanggal Selesai</th>
@@ -33,17 +33,25 @@
                     <td>{{ $order->completion_date }}</td>
                     <td>{{ number_format($order->total_cost, 0, ',', '.') }}</td>
                     <td>
-                        <div class="menu-buttons">
-                            <a href="{{ url('edit-pesanan/'.$order->id) }}" class="btn btn-edit">Edit</a>
-                            <a href="{{ url('add-detail-pesanan/'.$order->id) }}" class="btn btn-add-detail">Add Detail Pesanan</a>
-                            <a href="{{ url('detail-ukuran/'.$order->id) }}" class="btn btn-detail-ukuran">Detail Ukuran</a>
-                        </div>
+                        <td>
+                            <div class="menu-buttons">
+                                <a href="{{ url('edit-pesanan/'.$order->id) }}" class="btn btn-edit">Edit</a>
+                                <a href="{{ url('add-detail-pesanan/'.$order->id) }}" class="btn btn-add-detail">Add Detail Pesanan</a>
+                                <a href="{{ url('detail-ukuran/'.$order->id) }}" class="btn btn-detail-ukuran">Detail Ukuran</a>
+                                <a href="{{ route('faktur', $order->id) }}" class="btn btn-faktur">Lihat Faktur</a>
+                            </div>
+                        </td>                        
                     </td>
                     <td>{{ $order->status }}</td>
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="7">Tidak ada data pesanan.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
 
                 

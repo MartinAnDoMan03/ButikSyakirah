@@ -25,6 +25,11 @@
             </thead>
             <tbody id="customerTableBody">
                 <!-- Baris customer akan ditambahkan di sini -->
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tbody>
         </table>
         

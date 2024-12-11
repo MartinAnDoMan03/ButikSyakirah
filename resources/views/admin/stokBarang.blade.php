@@ -40,6 +40,10 @@
             </thead>
             <tbody id="stockTableBody">
                 <!-- Baris stok barang akan ditambahkan di sini -->
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tbody>
         </table>
     </div>
