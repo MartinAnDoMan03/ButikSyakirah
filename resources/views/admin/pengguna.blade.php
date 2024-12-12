@@ -13,15 +13,19 @@
                             <th>Email</th>
                             <th>Status</th>
                             <th>Aksi</th>
+                            <th>Password</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="userTableBody">
+                        @foreach ($users as $user)
                         <!-- Data akan dimasukkan di sini -->
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$user->user_id}}</td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->phone_number}}</td>
+                        <td>{{$user->role}}</td>
+                        <td>{{$user->Password}}</td>
+                        @endforeach
                     </tbody>
                 </table>
 @endsection

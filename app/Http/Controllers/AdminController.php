@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Customer;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
@@ -10,7 +11,8 @@ class AdminController extends Controller
     // Menampilkan halaman Data Pengguna
     public function pengguna()
     {
-        return view('admin.pengguna');
+        $users = User::all();
+        return view('admin.pengguna', ['users'->$users]);
     }
 
     // Menampilkan halaman Riwayat Pesanan
