@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('size_details', function (Blueprint $table) {
-            $table->integer('size_detail_id')->primary();
+            $table->integer('size_detail_id')->primary()->autoIncrement();
             $table->integer('order_id');
             $table->integer('waist_circumference');
             $table->integer('arm_circumference');

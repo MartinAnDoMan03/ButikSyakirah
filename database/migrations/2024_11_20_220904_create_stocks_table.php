@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('stocks', function (Blueprint $table) {
-            $table->integer('stock_id')->primary();
+            $table->integer('stock_id')->primary()->autoIncrement();
             $table->string('stock_name');
             $table->integer('quantity');
             $table->timestamps();

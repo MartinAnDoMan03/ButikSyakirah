@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('suppliers', function (Blueprint $table) {
-            $table->integer('supplier_id')->primary();
+            $table->integer('supplier_id')->primary()->autoIncrement();
             $table->string('supplier_name');
             $table->string('contact_info');
             $table->text('address');

@@ -15,7 +15,7 @@ return new class extends Migration
     {
 
         Schema::create('orders', function (Blueprint $table) {
-            $table->integer('order_id')->primary();
+            $table->integer('order_id')->primary()->autoIncrement();
             $table->string('customer_name');
             $table->integer('customer_id');
             $table->date('order_date');

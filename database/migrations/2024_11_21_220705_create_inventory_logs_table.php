@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('inventory_logs', function (Blueprint $table) {
-            $table->integer('transaction_id')->primary();
+            $table->integer('transaction_id')->primary()->autoIncrement();
             $table->integer('stock_id');
             $table->string('reference_type');
             $table->integer('order_reference_id')->nullable();
