@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('inventory_logs', function (Blueprint $table) {
             $table->integer('transaction_id')->primary()->autoIncrement();
             $table->integer('stock_id');
-            $table->string('reference_type');
+            $table->enum('reference_type',['Order', 'Supplier']);
             $table->integer('order_reference_id')->nullable();
             $table->integer('supplier_reference_id')->nullable();
-            $table->string('transaction_type');
+            $table->enum('transaction_type', ['Addition', 'Deduction']);
             $table->integer('quantity');
             $table->date('transaction_date');
             $table->foreign('stock_id')->references('stock_id')->on('stocks')->onDelete('restrict');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->foreign('supplier_reference_id')->references('supplier_id')->on('suppliers')->onDelete('restrict');
         });
     }
-
+    // $table->enum('transaction_type', ['purchase', 'sale', 'return']); // ENUM column
     /**
      * Reverse the migrations.
      */

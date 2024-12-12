@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('order_id');
             $table->integer('payment_amount');
             $table->date('payment_date');
-            $table->string('payment_method');
+            $table->enum('payment_method', ['Cash', 'Bank Transfer']);
             $table->foreign('order_id')->references('order_id')->on('orders')->onDelete('restrict');
 
         });
