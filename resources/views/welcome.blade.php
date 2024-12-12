@@ -69,9 +69,9 @@
                     <main class="mt-6">
                         <div class="relative z-10 flex flex-col items-center justify-start h-full px-6 text-center"
                         style="margin-top: 7%;" >
-                            <h1 class="text-5xl font-bold mb-4 text-black" style="text-shadow: 0.5px 0.5px 1px white;">Word of day</h1>
+                            <h1 class="text-5xl font-bold mb-4 text-black" style="text-shadow: 0.5px 0.5px 1px white;">Kata-kata hari ini</h1>
                             <p class="text-lg mb-6 max-w-3xl text-black" style="text-shadow: 0.5px 0.5px 1px white;">
-                                Kerjakan tugas and dengan teliti agar pelanggan ingin kembali menggunakan jasa kita. MONEY BABEH
+                                Kerjakan tugasmu dengan sebaik-baiknya karena pelanggan akan datang kembali jika puas dengan pakaian yang telah kalian kerjakan.
                             </p>
                         </div>
                     </main>
