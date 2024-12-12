@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Customer;
 
 use Illuminate\Http\Request;
 
@@ -22,6 +23,11 @@ class AdminController extends Controller
     public function stokBarang()
     {
         return view('admin.stokBarang');
+    }
+    public function customer()
+    {
+        $customers = Customer::all();
+        return view('admin.customer', ['customers' => $customers]);
     }
 }
 
