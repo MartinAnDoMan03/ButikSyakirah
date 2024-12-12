@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-    <div class="wrapper" style="background-image: url('images/back2.jpg');">
+    <div class="wrapper">
         @yield('content')
     </div>
 </body>

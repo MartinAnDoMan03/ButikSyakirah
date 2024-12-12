@@ -6,59 +6,16 @@ use Illuminate\Http\Request;
 
 class PengguntingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    // Metode khusus untuk dashboard penggunting
+    public function penggunting()
     {
-        //
-    }
+        // Ambil data pesanan atau logika lainnya
+        $dataPesanan = [
+            ['id' => 1, 'nama' => 'Pesanan 1', 'status' => 'Proses Pengguntingan'],
+            ['id' => 2, 'nama' => 'Pesanan 2', 'status' => 'Selesai'],
+        ];
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        // Return view dengan data pesanan
+        return view('penggunting.data_pesanan', compact('dataPesanan'));
     }
 }

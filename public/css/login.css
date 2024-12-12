@@ -13,6 +13,7 @@ body {
   font-family: "Poppins-Regular";
   color: #333;
   font-size: 13px;
+  background-color: #2b4053;
   margin: 0; }
 
 input, textarea, select, button {
@@ -46,7 +47,8 @@ a:hover {
 .inner {
   padding: 20px;
   background: #fff;
-  max-width: 850px;
+  width: 60%;
+  max-width: 60%;
   margin: auto;
   display: flex; }
   .inner .image-holder {
@@ -166,6 +168,29 @@ button {
   color: #d6c673;/* Menambahkan underline saat hover */
   }
     
+/* Styling untuk error messages */
+.error-messages {
+  background-color: #ffe5e5; 
+  /* border: 1px solid #ff4d4d;  */
+  color: #ff1a1a; /* Warna teks merah */
+  padding: 2px 4px; /* Ruang di dalam kotak */
+  border-radius: 5px; /* Membuat sudut kotak melengkung */
+  margin-bottom: 0; /* Jarak bawah agar tidak terlalu mepet dengan elemen lainnya */
+  font-size: 12px; /* Ukuran teks */
+  font-weight: bold; 
+}
+
+.error-messages ul {
+  margin: 0; /* Menghilangkan margin default pada ul */
+  padding: 0; /* Menghilangkan padding default pada ul */
+  list-style-type: none; /* Menghilangkan bullet point */
+}
+
+.error-messages li {
+  margin-bottom: 5px; /* Jarak antar item */
+  line-height: 1.5; /* Menambahkan tinggi baris untuk keterbacaan */
+}
+
 
 
 @-webkit-keyframes hvr-icon-wobble-horizontal {

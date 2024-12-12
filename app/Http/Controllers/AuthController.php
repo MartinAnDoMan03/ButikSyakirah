@@ -17,13 +17,36 @@ class AuthController extends Controller
     // Handle login request
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        // Validasi input
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
 
+        $credentials = $request->only('email', 'password');
+        
+        // Cek kredensial dan login
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/dashboard'); // Redirect to the dashboard or any page you want
+            $user = Auth::user();
+    
+            // Validasi role setelah login
+            if (!in_array($user->role, ['penggunting', 'penjahit', 'pemayet'])) {
+                Auth::logout();
+                return back()->withErrors(['role' => 'Akses tidak diperbolehkan untuk role ini.']);
+            }
+    
+            // Redirect berdasarkan role
+            if ($user->role == 'penggunting') {
+                return redirect()->route('penggunting.data_pesanan');
+            } elseif ($user->role == 'penjahit') {
+                return redirect()->route('penjahit.data_pesanan');
+            } elseif ($user->role == 'pemayet') {
+                return redirect()->route('pemayet.data_pesanan');
+            }
         }
 
-        return back()->withErrors(['email' => 'Invalid credentials.']);
+        // Jika login gagal
+        return back()->withErrors(['email' => 'Login gagal!']);
     }
 
     // Show register form
@@ -38,8 +61,9 @@ class AuthController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'phone_number' => 'required|string|min:8|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'phone_number' => 'required|string|min:8|confirmed',
+            'role' => 'required|string|in:penggunting,penjahit,pemayet',  // Validasi role
         ]);
 
         // Create new user
@@ -47,9 +71,10 @@ class AuthController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'phone_number' => $validated['phone_number'],
-            'password' => bcrypt($validated['password']),
+            'role' => $validated['role'], // Menyimpan role yang dipilih
+            'password' => bcrypt($validated['password']), // Enkripsi password
         ]);
-
+        
         Auth::login($user); // Log the user in after registering
 
         return redirect()->route('login');

@@ -8,8 +8,8 @@
   <form method="POST">
     @csrf
     <div class="form-group">
-      <label for="customer">Nama Customer/ID Customer:</label>
-      <input type="text" id="customer" name="customer" required>
+      <label for="customer">ID Pesanan</label>
+      <input type="text" id="orders" name="orders" required>
     </div>
 
     <div class="form-group">

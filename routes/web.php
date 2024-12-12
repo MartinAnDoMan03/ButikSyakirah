@@ -5,6 +5,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FakturController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PengguntingController;
+use App\Http\Controllers\PenjahitController;
+use App\Http\Controllers\PemayetController;
 use App\Models\Customer;
 
 Route::get('/', function () {
@@ -17,12 +20,21 @@ Route::get('pesanan', function () {
 
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
-
-Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
-Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
-
+Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+// Rute dashboard berdasarkan role
+Route::get('/penggunting/data-pesanan', [PengguntingController::class, 'penggunting'])->name('penggunting.data_pesanan');
+Route::get('penjahit/data_pesanan', [PenjahitController::class, 'penjahit'])->name('penjahit.data_pesanan');
+Route::get('pemayet/data_pesanan', [PemayetController::class, 'pemayet'])->name('pemayet.data_pesanan');
+
+
+// Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('register', [AuthController::class, 'register'])->name('register');
+
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::get('/admin/pengguna', [AdminController::class, 'pengguna'])->name('admin.pengguna');
