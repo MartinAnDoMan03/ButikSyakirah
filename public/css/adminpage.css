@@ -362,6 +362,30 @@ table th, table td {
     border-bottom: 1px solid #ddd;
 }
 
+/* Styling untuk Tombol Tambah Stok Barang */
+.add-stock-container {
+    margin: 20px 0;
+    text-align: center;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.add-stock-container button {
+    background-color: #2b4053;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.add-stock-container button:hover {
+    background-color: #456685;
+}
+
+
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {

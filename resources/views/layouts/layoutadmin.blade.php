@@ -31,7 +31,8 @@
 
                 <li><a href="{{ url('/admin/pengguna') }}"><i class="zmdi zmdi-store"></i> Kelola Pengguna</a></li>
                 <li><a href="{{ url('/admin/stokBarang') }}"><i class="zmdi zmdi-store"></i> Stok Barang</a></li>
-                <li><a href="{{ url('/admin/riwayatPesanan') }}"><i class="zmdi zmdi-file-text"></i> Riwayat Pesanan</a></li> 
+                <li><a href="{{ url('/admin/riwayatPesanan') }}"><i class="zmdi zmdi-file-text"></i> Riwayat Pesanan</a></li>
+                <li><a href="{{ url('/admin/customer') }}"><i class="zmdi zmdi-file-text"></i> Data Customer</a></li>
                 <li class="dropdown">
                     <a href="#"><i class="zmdi zmdi zmdi-account"></i> Akun</a>
                     <ul class="dropdown-menu">
@@ -50,6 +51,6 @@
     </div>
 
 
-    <script src="{{ asset('js/kasir.js') }}"></script>
+    <script src="{{ asset('js/admin.js') }}"></script>
 </body>
 </html>
