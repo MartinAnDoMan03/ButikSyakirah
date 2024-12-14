@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('stock_type', ['cloth', 'thread']);
             $table->string('stock_name');
             $table->integer('quantity');
-            $table->timestamp('last_updated');
+            $table->timestamp('last_updated')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')); 
         });
     }
 

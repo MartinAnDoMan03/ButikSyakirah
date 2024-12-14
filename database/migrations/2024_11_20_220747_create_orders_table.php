@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('order_date');
             $table->date('completion_date');
             $table->integer('total_price')->nullable();
-            $table->enum('status', ['Processing', 'Finished', 'Cancelled']);
+            $table->enum('status', ['Diproses', 'Selesai', 'Dibatalkan'])->default('Diproses');
             $table->foreign('customer_id')->references('customer_id')->on('customers')->onDelete('restrict');
         });
         

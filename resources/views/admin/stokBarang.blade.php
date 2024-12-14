@@ -54,10 +54,12 @@
             <tbody id="stockTableBody">
                 <!-- Baris stok barang akan ditambahkan di sini -->
                 @foreach ($stocks as $stock)
+                <tr>
                 <td>{{$stock->stock_id}}</td>
                 <td>{{$stock->stock_name}}</td>
                 <td>{{$stock->quantity}}</td>
                 <td>{{$stock->last_updated}}</td>
+            </tr>
                 @endforeach
             </tbody>
         </table>
