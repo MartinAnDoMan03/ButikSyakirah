@@ -47,6 +47,12 @@ class CustomerController extends Controller
         return redirect()->back()->with('success', 'Customer added successfully!');
     }
 
+    public function getCustomers()
+    {
+        $customers = Customer::all();
+        return view('kasir.add_pesanan' , ['orders' => $customers]);
+    }
+
     /**
      * Display the specified resource.
      */

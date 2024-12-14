@@ -59,3 +59,5 @@ Route::get('/penggunting/data_pesanan', function () {
     return view('penggunting.data_pesanan'); });
 
 Route::post('/kasir/add_pesanan', [CustomerController::class, 'store'])->name('customer.store');
+
+Route::get('/kasir/add_pesanan', [CustomerController::class, 'getCustomers']);
