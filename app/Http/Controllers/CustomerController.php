@@ -29,15 +29,12 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all()); // Akan menampilkan data dari form
-
-
-        // $validatedData = $request->validate([
-        //     'customer_name' => 'required|string|max:255',
-        //     'address' => 'required|string',
-        //     'phone' => 'required|string|max:20',
-        //     'email' => 'required|email|max:255|unique:customers,email',
-        // ]);
+        $validatedData = $request->validate([
+            'customer_name' => 'required|string|max:255',
+            'address' => 'required|string',
+            'phone' => 'required|string|max:20',
+            'email' => 'required|email|max:255|unique:customers,email',
+        ]);
 
         Customer::create([
             'customer_name' => $request->input('customer_name'),
@@ -45,7 +42,6 @@ class CustomerController extends Controller
             'phone' => $request->input('phone'),
             'email' => $request->input('email')
         ]);
-
 
         // Redirect atau memberi response
         return redirect()->back()->with('success', 'Customer added successfully!');

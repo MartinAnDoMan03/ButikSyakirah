@@ -15,6 +15,7 @@
                 <option value="new">Customer Baru</option>
                 <option value="old">Customer Lama</option>
             </select>
+        </form>
 
             <!-- Form untuk customer baru -->
             <div id="newCustomerForm" style="display:none;">
@@ -47,6 +48,7 @@
             </div>
 
             <!-- Form untuk customer lama -->
+            <form id="oldCustomerForm">
             <div id="oldCustomerForm" style="display:none;">
                 <h3>Pilih Customer Lama</h3>
                 <select id="oldCustomer">
