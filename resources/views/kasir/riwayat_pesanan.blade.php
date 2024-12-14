@@ -10,8 +10,9 @@
                         <tr>
                             <th>Id</th>
                             <th>Nama Costumer</th>
+                            <th>Detail Pesanan</th>
                             <th>Faktur</th>
-                            <th>Status</th>
+                        
                         </tr>
                     </thead>
                     <tbody>

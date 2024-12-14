@@ -50,12 +50,14 @@
 				</ul>
 			</div>
 			@endif
+	    <div class="button-container">
 			<button type="submit">Register
 				<i class="zmdi zmdi-arrow-right"></i>
 			</button>
 			<p class="signup-text">
                 kembali ke <a href="{{ route('login') }}">Login</a>
             </p> 
+		</div>
 	</form>
 	
 </div>

@@ -473,6 +473,13 @@ table th, table td {
 /* Form styling */
 .form-group {
   margin-bottom: 20px;
+  max-width: 100%; /* Membatasi lebar form group */
+  width: 100%;
+}
+
+.form-group input {
+  padding: 8px;
+  margin-top: 5px;
 }
 
 .container h3 {
@@ -495,6 +502,7 @@ table th, table td {
 label {
   font-size: 14px;
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
 input {
@@ -520,6 +528,10 @@ button[type="submit"]:hover {
 
 /* Responsif - Pencarian menjadi lebih kecil pada layar kecil */
 @media (max-width: 768px) {
+  .form-group input {
+    width: 100%; /* Pastikan input menyesuaikan dengan lebar layar kecil */
+  }
+
   .search-container {
       flex-direction: column;
       align-items: stretch;
@@ -536,7 +548,7 @@ button[type="submit"]:hover {
   }
 
   .container2 {
-    margin-left: 210px;
+    margin-left: 10px;
   }
 
   .row {
@@ -549,7 +561,7 @@ button[type="submit"]:hover {
 
   .container2 {
     margin-left: 0;
-    margin-top: 140px; /* Tambahkan margin karena navbar akan menutupi */
+    margin-top: 20px; /* Tambahkan margin karena navbar akan menutupi */
   }
 }
 
