@@ -379,6 +379,33 @@ tr.customer th:nth-child(5) { /* Kolom kelima (Email) */
     width: 20%;
 }
 
+/* data pesanan */
+tr.addpesanan th:nth-child(1) { /* Kolom pertama (Customer ID) */
+    width: 5%; /* Anda bisa menyesuaikan nilainya */
+}
+
+tr.addpesanan th:nth-child(2) { /* nama*/
+    width: 27%; /* Anda bisa menyesuaikan nilainya */
+}
+
+tr.addpesanan th:nth-child(3){ /* tanggal order*/
+    width: 15%;
+}
+
+tr.addpesanan th:nth-child(4) {  /*tanggal diambil*/
+    width: 15%;
+}
+
+tr.addpesanan th:nth-child(5) { /*biaya*/
+    width: 17%;
+}
+tr.addpesanan th:nth-child(6) { /*menu*/
+    width: 10%;
+}
+tr.addpesanan th:nth-child(7) { 
+    width: 15%;
+}
+
 table tbody tr:hover {
     background-color: #f1f5fa;
 }
@@ -558,4 +585,36 @@ table tbody tr:hover {
 }
 
 
+.menu-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start; /* Agar tombol-tombol rata kiri */
+}
 
+.menu-buttons i {
+    font-size: 18px; /* Ukuran ikon */
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out; /* Efek transisi untuk ikon */
+}
+
+.menu-buttons a {
+    padding: 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    text-decoration: none; 
+    color: #333; 
+    border-radius: 5px; 
+}
+
+.menu-buttons a:hover {
+    background-color: #f0f0f0; /* Efek hover untuk latar belakang tombol */
+}
+
+.menu-buttons a:hover i {
+    transform: scale(1.2); /* Memperbesar ikon saat hover */
+    color: #ff5733; /* Mengubah warna ikon saat hover */
+}
+
+.menu-buttons a:hover {
+    color: #ff5733; /* Mengubah warna teks saat hover */
+}

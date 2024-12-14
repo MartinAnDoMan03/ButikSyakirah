@@ -35,20 +35,31 @@
                     <td>{{ $order->order_date }}</td>
                     <td>{{ $order->completion_date }}</td>
                     <td>{{ number_format($order->total_cost, 0, ',', '.') }}</td>
-                    <td>
-                        <td>
-                            <div class="menu-buttons">
-                                <a href="{{ url('edit-pesanan/'.$order->id) }}" class="btn btn-edit">Edit</a>
-                                <a href="{{ url('add-detail-pesanan/'.$order->id) }}" class="btn btn-add-detail">Add Detail Pesanan</a>
-                                <a href="{{ url('detail-ukuran/'.$order->id) }}" class="btn btn-detail-ukuran">Detail Ukuran</a>
-                                <form action="{{ route('createFaktur') }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    <input type="hidden" name="order_id" value="{{ $order->id }}">
-                                    <button type="submit" class="btn btn-faktur">Buat Faktur</button>
-                                </form>
-                            </div>
-                        </td>                        
+                    <td class="menu-buttons">
+                        <!-- Tombol Edit -->
+                        <a href="{{ url('edit-pesanan/'.$order->id) }}" class="btn btn-edit" title="Edit">
+                            <i class="fa fa-edit"></i> <!-- Ikon Edit (Font Awesome) -->
+                        </a>
+                    
+                        <!-- Tombol Add Detail Pesanan -->
+                        <a href="{{ url('add-detail-pesanan/'.$order->id) }}" class="btn btn-add-detail" title="Add Detail Pesanan">
+                            <i class="fa fa-plus"></i> <!-- Ikon Plus (Font Awesome) -->
+                        </a>
+                    
+                        <!-- Tombol Detail Ukuran -->
+                        <a href="{{ url('detail-ukuran/'.$order->id) }}" class="btn btn-detail-ukuran" title="Detail Ukuran">
+                            <i class="fa fa-eye"></i> <!-- Ikon Search (Font Awesome) -->
+                        </a>
+                    
+                        <!-- Tombol Lihat Faktur -->
+                        {{-- <a href="{{ route('createFaktur', ['orderId' => $order->id]) }}" class="btn btn-faktur" title="Lihat Faktur">
+                            <i class="fa fa-file-alt"></i> 
+                        </a> --}}
+                        <a href="" class="btn btn-faktur" title="Lihat Faktur">
+                            <i class="fa fa-file-alt"></i> 
+                        </a>
                     </td>
+                                           
                     <td>{{ $order->status }}</td>
                 </tr>
                 @empty

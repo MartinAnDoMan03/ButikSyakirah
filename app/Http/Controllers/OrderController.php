@@ -80,21 +80,9 @@ class OrderController extends Controller
 
     public function createFaktur($orderId)
     {
-    // Cari pesanan berdasarkan ID
-    $order = Order::findOrFail($orderId);
+        $order = Order::find($orderId);
 
-    // Logika untuk membuat faktur (contoh sederhana)
-    $fakturData = [
-        'id' => $order->id,
-        'nama_pelanggan' => $order->customer_name,
-        'tanggal_order' => $order->order_date,
-        'tanggal_selesai' => $order->completion_date,
-        'total_biaya' => $order->total_cost,
-    ];
 
-    // Kirim data faktur ke view
-    // return view('orders.faktur', compact('fakturData'));    
-    // }
-
+        return view('kasir.faktur', compact('order'));
     }
 }

@@ -6,6 +6,7 @@
     <title>@yield('title', 'Admin Butik')</title>
     <link rel="stylesheet" href="{{ asset('css/kasirpage.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/material-design-iconic-font/css/material-design-iconic-font.min.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
