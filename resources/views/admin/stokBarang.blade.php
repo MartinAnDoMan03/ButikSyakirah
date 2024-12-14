@@ -49,7 +49,6 @@
                     <th>Nama Barang</th>
                     <th>Jumlah Stok</th>
                     <th>Tanggal Masuk Terakhir</th>
-                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody id="stockTableBody">
@@ -57,8 +56,8 @@
                 @foreach ($stocks as $stock)
                 <td>{{$stock->stock_id}}</td>
                 <td>{{$stock->stock_name}}</td>
-                <td>{{$order->quantity}}</td>
-                <td>{{$order->last_updated}}</td>
+                <td>{{$stock->quantity}}</td>
+                <td>{{$stock->last_updated}}</td>
                 @endforeach
             </tbody>
         </table>

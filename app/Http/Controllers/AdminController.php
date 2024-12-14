@@ -28,7 +28,7 @@ class AdminController extends Controller
     public function stokBarang()
     {
         $stocks = Stock::all();
-        return view('admin.stokBarang', ['stock' => $stocks]);
+        return view('admin.stokBarang', ['stocks' => $stocks]);
     }
     public function customer()
     {
