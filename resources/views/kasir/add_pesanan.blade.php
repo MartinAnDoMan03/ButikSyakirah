@@ -48,94 +48,65 @@
         </div>
 
         <!-- Form untuk customer lama -->
-        <div id="oldCustomerFormContainer" style="display:none;">
-            <label for="old_customer">Pilih Customer Lama</label>
-            <select id="oldCustomer">
-                <option value="">Pilih Customer</option>
-                <!-- Data customer lama akan dimasukkan di sini -->
-            </select>
-        </div>
+        <form action="{{route('order.store')}}">
+            <div id="oldCustomerFormContainer" style="display:none;">
+                <label for="old_customer">Pilih Customer Lama</label>
+                <select id="oldCustomer">
+                    <option value="">Pilih Customer</option>
+                    <!-- Data customer lama akan dimasukkan di sini -->
+                </select>
+            </div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                // Ambil data pelanggan yang sudah dikirim oleh controller
-                const customers = @json($orders); // Mengambil data customer dari controller (dalam format JSON)
-                
-                const customerTypeDropdown = document.getElementById("customerType");
-                const newCustomerForm = document.getElementById("newCustomerForm");
-                const oldCustomerFormContainer = document.getElementById("oldCustomerFormContainer");
-                const oldCustomerDropdown = document.getElementById("oldCustomer");
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    // Ambil data pelanggan yang sudah dikirim oleh controller
+                    const customers =
+                    @json($orders); // Mengambil data customer dari controller (dalam format JSON)
 
-                // Fungsi untuk menampilkan form sesuai pilihan
-                customerTypeDropdown.addEventListener("change", function () {
-                    const selectedType = this.value;
+                    const customerTypeDropdown = document.getElementById("customerType");
+                    const newCustomerForm = document.getElementById("newCustomerForm");
+                    const oldCustomerFormContainer = document.getElementById("oldCustomerFormContainer");
+                    const oldCustomerDropdown = document.getElementById("oldCustomer");
 
-                    // Sembunyikan form dulu
-                    newCustomerForm.style.display = "none";
-                    oldCustomerFormContainer.style.display = "none";
+                    // Fungsi untuk menampilkan form sesuai pilihan
+                    customerTypeDropdown.addEventListener("change", function() {
+                        const selectedType = this.value;
 
-                    // Menampilkan form yang sesuai dengan pilihan
-                    if (selectedType === "new") {
-                        newCustomerForm.style.display = "block";
-                    } else if (selectedType === "old") {
-                        oldCustomerFormContainer.style.display = "block";
+                        // Sembunyikan form dulu
+                        newCustomerForm.style.display = "none";
+                        oldCustomerFormContainer.style.display = "none";
 
-                        // Mengisi dropdown customer lama dengan data yang diterima
-                        oldCustomerDropdown.innerHTML = `<option value="">Pilih Customer</option>`; // Reset dropdown
+                        // Menampilkan form yang sesuai dengan pilihan
+                        if (selectedType === "new") {
+                            newCustomerForm.style.display = "block";
+                        } else if (selectedType === "old") {
+                            oldCustomerFormContainer.style.display = "block";
 
-                        customers.forEach(customer => {
-                            const option = document.createElement("option");
-                            option.value = customer.id;
-                            option.textContent = customer.customer_name;
-                            oldCustomerDropdown.appendChild(option);
-                        });
-                    }
+                            // Mengisi dropdown customer lama dengan data yang diterima
+                            oldCustomerDropdown.innerHTML =
+                            `<option value="">Pilih Customer</option>`; // Reset dropdown
+
+                            customers.forEach(customer => {
+                                const option = document.createElement("option");
+                                option.value = customer.id;
+                                option.textContent = customer.customer_name;
+                                oldCustomerDropdown.appendChild(option);
+                            });
+                        }
+                    });
                 });
-            });
-        </script>
+            </script>
 
-        <label for="clothingType">Pilih Jenis Pakaian:</label>
-        <select id="clothingType">
-            <option value="" selected disabled>Pilih Pakaian</option>
 
-            <!-- Jenis Pakaian dengan value yang berbeda -->
-            <option value="shirt_men_long">Kemeja Pria lengan panjang</option>
-            <option value="shirt_women_long">Kemeja Wanita lengan panjang</option>
-            <option value="shirt_kids_long">Kemeja anak lengan panjang</option>
-            <option value="shirt_men_short">Kemeja Pria lengan pendek</option>
-            <option value="shirt_women_short">Kemeja Wanita lengan pendek</option>
-            <option value="shirt_kids_short">Kemeja anak lengan pendek</option>
+            <label for="orderDate">Tanggal Order:</label>
+            <input type="date" id="orderDate" name="orderDate" required>
 
-            <option value="shirt_men_no_collar_long">Kemeja Pria tidak berkerah lengan panjang</option>
-            <option value="shirt_women_no_collar_long">Kemeja Wanita tidak berkerah lengan panjang</option>
-            <option value="shirt_kids_no_collar_long">Kemeja anak tidak berkerah lengan panjang</option>
-            <option value="shirt_men_no_collar_short">Kemeja Pria tidak berkerah lengan pendek</option>
-            <option value="shirt_women_no_collar_short">Kemeja Wanita tidak berkerah lengan pendek</option>
-            <option value="shirt_kids_no_collar_short">Kemeja anak tidak berkerah lengan pendek</option>
+            <label for="finishDate">Tanggal Selesai:</label>
+            <input type="date" id="finishDate" name="finishDate">
+            <div>
 
-            <option value="gamis">Gamis</option>
-            <option value="kebaya">Kebaya</option>
-            <option value="skirt_long">Rok panjang</option>
-            <option value="skirt_short">Rok pendek</option>
-            <option value="pants_men">Celana panjang pria</option>
-            <option value="pants_women">Celana panjang wanita</option>
-            <option value="pants_men_short">Celana pendek pria</option>
-            <option value="pants_women_short">Celana pendek wanita</option>
-        </select>
-
-        <div>
-            <label for="price">Harga :</label>
-            <input type="text" id="price" readonly>
-        </div>
-
-        <label for="orderDate">Tanggal Order:</label>
-        <input type="date" id="orderDate" required>
-
-        <label for="finishDate">Tanggal Selesai:</label>
-        <input type="date" id="finishDate">
-        <div>
-
-            <button type="submit">Tambahkan Pesanan</button>
-        </div>
+                <button type="submit">Tambahkan Pesanan</button>
+            </div>
     </div>
+    </form>
 @endsection

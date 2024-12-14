@@ -30,13 +30,14 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        Order::create([
-            'customer_id' => $request->input('form_name'),
-            'order_date' => $request->input('form_name'),
-            'completion_date' => $request->input('form_name'),
-            'total_price' => $request->input('form_name'),
-            'status' => $request->input('form_name')
+        $order = Order::create([
+            'customer_id' => $request->input('customerID'),
+            'order_date' => now()->toDateString(),
+            'completion_date' => $request->input('finishDate'),
+            'status' => $request->input('status')
         ]);
+        return redirect()->route('orders.add_detail', ['id' => $order->id]);
+
     }
 
     /**

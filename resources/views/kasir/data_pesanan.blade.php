@@ -52,12 +52,12 @@
                         </a>
                     
                         <!-- Tombol Lihat Faktur -->
-                        {{-- <a href="{{ route('createFaktur', ['orderId' => $order->id]) }}" class="btn btn-faktur" title="Lihat Faktur">
-                            <i class="fa fa-file-alt"></i> 
-                        </a> --}}
-                        <a href="" class="btn btn-faktur" title="Lihat Faktur">
+                        <a href="{{ route('createFaktur', ['orderId' => $order->id]) }}" class="btn btn-faktur" title="Lihat Faktur">
                             <i class="fa fa-file-alt"></i> 
                         </a>
+                        {{-- <a href="" class="btn btn-faktur" title="Lihat Faktur">
+                            <i class="fa fa-file-alt"></i> 
+                        </a> --}}
                     </td>
                                            
                     <td>{{ $order->status }}</td>
