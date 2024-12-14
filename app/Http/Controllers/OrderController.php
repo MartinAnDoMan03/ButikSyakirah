@@ -96,4 +96,5 @@ class OrderController extends Controller
     // return view('orders.faktur', compact('fakturData'));    
     // }
 
+    }
 }
