@@ -63,7 +63,7 @@ class AuthController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'phone_number' => 'required|string|min:8|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|string|in:penggunting,penjahit,pemayet',  // Validasi role
+            'role' => 'required|string|in:admin,kasir,penggunting,penjahit,pemayet',  // Validasi role
         ]);
 
         // Create new user
