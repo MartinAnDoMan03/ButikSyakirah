@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    font-family: "Cinzel", serif;
+    background-color: white;
+    color: #2b4053;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('/images/bgwlc.jpg'); /* Ganti 'your-image.jpg' dengan URL gambar */
+    background-size: cover; /* Gambar akan menyesuaikan ukuran layar */
+    background-position: center; /* Pusatkan gambar */
+    background-repeat: no-repeat; /* Gambar tidak diulang */
+}
+
+.dashboard {
+    text-align: center;
+    background: white;
+    color: #2c3e50;
+    padding: 30px 70px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(26, 43, 50, 0.709);
+}
+
+.dashboard h1 {
+    margin-bottom: 50px;
+    margin-top: 20px;
+    font-size: 5rem;
+}
+
+.dashboard button {
+    display: block;
+    width: 150px;
+    margin: 10px auto;
+    padding: 15px;
+    font-size: 16px;
+    color: white;
+    background-color: #2b4053;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+}
+
+.dashboard button:hover {
+    background-color: #41596f;
+}
