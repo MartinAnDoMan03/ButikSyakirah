@@ -29,7 +29,15 @@ class InventoryLogController extends Controller
      */
     public function store(StoreInventory_logRequest $request)
     {
-        //
+        Inventory_Log::create([
+            'stock_id' => $request->input('stock_id'),
+            'reference_type' => $request->input('reference_type'),
+            'order_reference_id' => $request->input('order_reference_id'),
+            'supplier_reference_id' => $request->input('supplier_reference_id'),
+            'transaction_type' => $request->input('transaction_type'),
+            'quantity' => $request->input('quantity'),
+            'transaction_date' => now()->toDateString(), 
+        ]);
     }
 
     /**

@@ -21,11 +21,13 @@ return new class extends Migration
             $table->integer('supplier_reference_id')->nullable();
             $table->enum('transaction_type', ['Addition', 'Deduction']);
             $table->integer('quantity');
-            $table->date('transaction_date')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->date('transaction_date');
             $table->foreign('stock_id')->references('stock_id')->on('stocks')->onDelete('restrict');
             $table->foreign('order_reference_id')->references('order_id')->on('orders')->onDelete('restrict');
             $table->foreign('supplier_reference_id')->references('supplier_id')->on('suppliers')->onDelete('restrict');
         });
+
+        
     }
     // $table->enum('transaction_type', ['purchase', 'sale', 'return']); // ENUM column
     /**

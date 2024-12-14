@@ -48,7 +48,7 @@
             </div>
 
             <!-- Form untuk customer lama -->
-            <form id="oldCustomerForm">
+            <form id="oldCustomerForm" action="order.store">
             <div id="oldCustomerForm" style="display:none;">
                 <h3>Pilih Customer Lama</h3>
                 <select id="oldCustomer">

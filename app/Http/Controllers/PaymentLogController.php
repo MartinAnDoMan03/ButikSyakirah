@@ -32,8 +32,8 @@ class PaymentLogController extends Controller
         Payment_log::create([
             'order_id' => $request->input('form_name'),
             'payment_amount' => $request->input('form_name'),
-            'payment_date' => $request->input('form_name'),
-            'payment_method' => $request->input('form_name')
+            'payment_date' => now()->toDateString(),
+            'payment_method' => $request->input('form_name'),
         ]);
     }
 
