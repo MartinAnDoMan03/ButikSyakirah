@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->integer('job_id')->primary()->autoIncrement();
             $table->integer('user_id');
-            $table->string('job_type');
+            $table->enum('job_type', ['seaming', 'cutting', 'sequining']);
             $table->date('start_date');
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('restrict');
         });

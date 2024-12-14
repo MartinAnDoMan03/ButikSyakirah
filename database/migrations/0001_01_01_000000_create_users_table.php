@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->integer('user_id')->primary()->autoIncrement();
-            
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone_number')->unique();
-            $table->enum('role', ['penggunting', 'penjahit', 'pemayet'])->default('penggunting');
-            $table->timestamp('email_verified_at')->nullable();
+            $table->enum('role', ['penggunting', 'penjahit', 'pemayet']);
+            $table->enum('status', ['aktif','nonaktif'])->default('aktif');
             $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP')); 
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

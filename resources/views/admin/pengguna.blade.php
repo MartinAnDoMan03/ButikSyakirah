@@ -11,17 +11,22 @@
                             <th>Id</th>
                             <th>Nama Pengguna</th>
                             <th>Email</th>
+                            <th>No. Hp</th>
+                            <th>Posisi</th>
                             <th>Status</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Data akan dimasukkan di sini -->
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tbody id="userTableBody">
+                        @foreach ($users as $user)
+                        <tr>
+                            <!-- Data akan dimasukkan di sini -->
+                            <td>{{$user->user_id}}</td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->phone_number}}</td>
+                            <td>{{$user->role}}</td>
+                        </tr>
+                            @endforeach
                     </tbody>
                 </table>
 @endsection

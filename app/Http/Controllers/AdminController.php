@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Customer;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Stock;
 
 use Illuminate\Http\Request;
 
@@ -9,19 +13,27 @@ class AdminController extends Controller
     // Menampilkan halaman Data Pengguna
     public function pengguna()
     {
-        return view('admin.pengguna');
+        $users = User::all();
+        return view('admin.pengguna', ['users'=>$users]);
     }
 
     // Menampilkan halaman Riwayat Pesanan
     public function riwayatPesanan()
     {
-        return view('admin.riwayatPesanan');
+        $orders = Order::all();
+        return view('admin.riwayatPesanan' , ['orders' => $orders]);
     }
 
     // Menampilkan halaman Stok Barang
     public function stokBarang()
     {
-        return view('admin.stokBarang');
+        $stocks = Stock::all();
+        return view('admin.stokBarang', ['stocks' => $stocks]);
+    }
+    public function customer()
+    {
+        $customers = Customer::all();
+        return view('admin.customer', ['customers' => $customers]);
     }
 }
 

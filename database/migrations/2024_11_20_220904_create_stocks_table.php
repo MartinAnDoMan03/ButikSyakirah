@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->integer('stock_id')->primary()->autoIncrement();
+            $table->enum('stock_type', ['cloth', 'thread']);
             $table->string('stock_name');
             $table->integer('quantity');
-            $table->timestamps();
+            $table->timestamp('last_updated')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')); 
         });
     }
 

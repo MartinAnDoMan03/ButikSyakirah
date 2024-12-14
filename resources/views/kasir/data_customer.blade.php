@@ -23,12 +23,17 @@
                 </tr>
             </thead>
             <tbody id="customerTableBody">
-                <!-- Baris customer akan ditambahkan di sini -->
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                @foreach ($customers as $customer)
+                    <tr>
+                        <td>{{ $customer->customer_id }}</td>
+                        <td>{{ $customer->customer_name }}</td>
+                        <td>{{ $customer->address }}</td>
+                        <td>{{ $customer->phone }}</td>
+                        <td>{{ $customer->email }}</td>
+                        <td>{{ $customer->created_at }}</td>
+                        <td>{{ $customer->updated_at }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

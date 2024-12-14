@@ -17,8 +17,8 @@ return new class extends Migration
             $table->integer('payment_id')->primary()->autoIncrement();
             $table->integer('order_id');
             $table->integer('payment_amount');
-            $table->date('payment_date');
-            $table->string('payment_method');
+            $table->date('payment_date')->default(DB::raw('CURRENT_DATE'));
+            $table->enum('payment_method', ['Cash', 'Bank Transfer']);
             $table->foreign('order_id')->references('order_id')->on('orders')->onDelete('restrict');
 
         });

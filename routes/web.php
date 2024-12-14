@@ -11,7 +11,7 @@ use App\Http\Controllers\PemayetController;
 use App\Http\Controllers\CustomerController;
 
 Route::get('/', function () {
-    return view('welcome');    
+    return view('welcome');
 });
 
 Route::get('pesanan', function () {
@@ -40,6 +40,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/admin/pengguna', [AdminController::class, 'pengguna'])->name('admin.pengguna');
 Route::get('/admin/riwayatPesanan', [AdminController::class, 'riwayatPesanan'])->name('admin.riwayatPesanan');
 Route::get('/admin/stokBarang', [AdminController::class, 'stokBarang'])->name('admin.stokBarang');
+Route::get('/admin/customer', [AdminController::class, 'customer'])->name('admin.customer');
 
 
 Route::get('/kasir/data_customer', [KasirController::class, 'showCustomer'])->name('kasir.data_customer');
@@ -50,8 +51,11 @@ Route::post('/kasir/add_pesanan', [KasirController::class, 'store'])->name('kasi
 Route::get('/kasir/riwayat_pesanan', [KasirController::class, 'showRiwayat'])->name('kasir.riwayat_pesanan');
 
 
-Route::get('/penggunting/home', function () {return view('penggunting.home');});
-Route::get('/penggunting/detail_ukuran', function () {return view('penggunting.detail_ukuran');});
-Route::get('/penggunting/data_pesanan', function () {return view('penggunting.data_pesanan');});
+Route::get('/penggunting/home', function () {
+    return view('penggunting.home'); });
+Route::get('/penggunting/detail_ukuran', function () {
+    return view('penggunting.detail_ukuran'); });
+Route::get('/penggunting/data_pesanan', function () {
+    return view('penggunting.data_pesanan'); });
 
 Route::post('/kasir/add_pesanan', [CustomerController::class, 'store'])->name('customer.store');

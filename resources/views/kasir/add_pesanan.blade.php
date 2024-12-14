@@ -3,7 +3,7 @@
 @section('title', 'Data Customer')
 
 @section('content')
-    <h1>Daftar Pesanan</h1>
+            <h1>Tambah Pesanan</h1>
 
     <!-- Form Input untuk Menambah Pesanan Baru -->
     <div class="order-form">
