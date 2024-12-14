@@ -7,10 +7,13 @@
     <h1>Daftar Pesanan</h1>
 
     <!-- Tabel Pesanan -->
-    <div class="search-container">
-        <input type="text" placeholder="Search..." class="search-input">
-        <button class="search-icon"><i class="zmdi zmdi-search"></i></button>
-    </div> 
+    <div class="search-faktur-container">
+        <button class="btn-create-faktur">Buat Faktur</button>
+        <div class="search-input-wrapper">
+            <input type="text" placeholder="Search..." class="search-input2">
+            <button class="search-icon2"><i class="zmdi zmdi-search"></i></button>
+        </div>
+    </div>  
     <div class="table-container">
         <table>
             <thead>
@@ -38,23 +41,18 @@
                                 <a href="{{ url('edit-pesanan/'.$order->id) }}" class="btn btn-edit">Edit</a>
                                 <a href="{{ url('add-detail-pesanan/'.$order->id) }}" class="btn btn-add-detail">Add Detail Pesanan</a>
                                 <a href="{{ url('detail-ukuran/'.$order->id) }}" class="btn btn-detail-ukuran">Detail Ukuran</a>
-                                <a href="{{ route('faktur', $order->id) }}" class="btn btn-faktur">Lihat Faktur</a>
+                                <form action="{{ route('createFaktur') }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                    <button type="submit" class="btn btn-faktur">Buat Faktur</button>
+                                </form>
                             </div>
                         </td>                        
                     </td>
                     <td>{{ $order->status }}</td>
                 </tr>
                 @empty
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                
+           
                 @endforelse
             </tbody>
         </table>

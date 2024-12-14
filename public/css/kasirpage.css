@@ -384,39 +384,6 @@ table tbody tr:hover {
 }
 
 
-/* tabel untuk addpesanan */
-tr.addpesanan th:nth-child(1) {
-    width: 5%; /* Kolom "No" */
-    text-align: center;
-}
-
-tr.addpesanan th:nth-child(2) {
-    width: 25%; /* Kolom "Nama Pelanggan" */
-}
-
-tr.addpesanan th:nth-child(3) {
-    width: 15%; /* Kolom "Tanggal Order" */
-}
-
-tr.addpesanan th:nth-child(4) {
-    width: 15%; /* Kolom "Tanggal Selesai" */
-}
-
-tr.addpesanan th:nth-child(5) {
-    width: 20%; /* Kolom "Total Biaya" */
-    text-align: right;
-}
-
-tr.addpesanan th:nth-child(6) {
-    width: 15%; /* Kolom "Menu" */
-    text-align: center;
-}
-
-tr.addpesanan th:nth-child(7) {
-    width: 5%; /* Kolom "Status" */
-    text-align: center;
-}
-
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     .sidebar {
@@ -524,6 +491,70 @@ tr.addpesanan th:nth-child(7) {
         margin-left: 0;
         margin-top: 10px;
     }
+}
+
+
+/* search dan button faktur data pesanan */
+.search-faktur-container {
+    display: flex;
+    justify-content: space-between;  /* Memberi jarak antara search dan tombol faktur */
+    align-items: center;
+    width: 100%; /* Membuat container menggunakan lebar penuh */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Membungkus input dan ikon pencarian */
+.search-input-wrapper {
+    position: relative;  /* Agar ikon bisa diposisikan relatif terhadap input */
+    width: 400px; /* Lebar input */
+}
+
+/* Input pencarian */
+.search-input2 {
+    padding: 8px 40px 8px 12px; /* Memberikan ruang untuk ikon di kanan */
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+    width: 100%;  /* Menyesuaikan lebar dengan wadah */
+    transition: border-color 0.3s;
+}
+
+/* Hover effect untuk input */
+.search-input2:focus {
+    border-color: #333; 
+    outline: none;
+}
+
+/* Ikon pencarian dalam input */
+.search-icon2 {
+    position: absolute;
+    right: 10px;  /* Posisi ikon di sebelah kanan input */
+    top: 50%;
+    transform: translateY(-50%); /* Agar ikon berada di tengah vertikal */
+    color: #aaa; 
+    font-size: 23px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 1;  /* Pastikan ikon tetap berada di atas input */
+}
+
+/* Tombol faktur */
+.btn-create-faktur {
+    background-color: #2b4053;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect untuk tombol faktur */
+.btn-create-faktur:hover {
+    background-color: #456685;
 }
 
 

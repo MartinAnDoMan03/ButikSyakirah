@@ -13,7 +13,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+        return view('orders.data_pesanan', compact('orders'));
     }
 
     /**
@@ -43,7 +44,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        // return view('orders.show', compact('order'));
     }
 
     /**
@@ -51,7 +52,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        // 
     }
 
     /**
@@ -59,7 +60,14 @@ class OrderController extends Controller
      */
     public function update(UpdateOrderRequest $request, Order $order)
     {
-        //
+        $validated = $request->validate([
+            'customer_id' => 'required|integer|exists:customers,id',
+            'order_date' => 'required|date',
+            'completion_date' => 'nullable|date|after_or_equal:order_date',
+            'total_price' => 'required|numeric|min:0',
+            'status' => 'required|string|max:255',
+        ]);
+
     }
 
     /**
@@ -69,4 +77,23 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function createFaktur($orderId)
+    {
+    // Cari pesanan berdasarkan ID
+    $order = Order::findOrFail($orderId);
+
+    // Logika untuk membuat faktur (contoh sederhana)
+    $fakturData = [
+        'id' => $order->id,
+        'nama_pelanggan' => $order->customer_name,
+        'tanggal_order' => $order->order_date,
+        'tanggal_selesai' => $order->completion_date,
+        'total_biaya' => $order->total_cost,
+    ];
+
+    // Kirim data faktur ke view
+    // return view('orders.faktur', compact('fakturData'));    
+    // }
+
 }

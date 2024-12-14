@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\FakturController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PengguntingController;
 use App\Http\Controllers\PenjahitController;
 use App\Http\Controllers\PemayetController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -61,3 +61,6 @@ Route::get('/penggunting/data_pesanan', function () {
 Route::post('/kasir/add_pesanan', [CustomerController::class, 'store'])->name('customer.store');
 
 Route::get('/kasir/add_pesanan', [CustomerController::class, 'getCustomers']);
+
+// route order
+Route::get('/orders/{orderId}/faktur', [OrderController::class, 'createFaktur'])->name('faktur');
