@@ -12,7 +12,7 @@ class AdminController extends Controller
     public function pengguna()
     {
         $users = User::all();
-        return view('admin.pengguna', ['users'->$users]);
+        return view('admin.pengguna', ['users'=>$users]);
     }
 
     // Menampilkan halaman Riwayat Pesanan
