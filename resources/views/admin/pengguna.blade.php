@@ -17,9 +17,6 @@
                         </tr>
                     </thead>
                     <tbody id="userTableBody">
-                        @php
-                                $user = $users->first(); 
-                        @endphp
                         @foreach ($users as $user)
                         <!-- Data akan dimasukkan di sini -->
                         <td>{{$user->user_id}}</td>
