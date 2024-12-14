@@ -24,7 +24,7 @@
            <img 
         id="background" 
         class="absolute inset-0 w-full h-full object-cover z-[-1]" 
-        src="{{ asset('images/luarButik.jpg') }}" 
+        src="{{ asset('images/back91.jpg') }}" 
         alt="Laravel background" 
     />
             <div class="relative min-h-screen flex flex-col items-center selection:bg-[#FF2D20] selection:text-white">

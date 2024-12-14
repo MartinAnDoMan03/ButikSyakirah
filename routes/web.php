@@ -8,7 +8,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PengguntingController;
 use App\Http\Controllers\PenjahitController;
 use App\Http\Controllers\PemayetController;
-use App\Models\Customer;
+use App\Http\Controllers\CustomerController;
 
 Route::get('/', function () {
     return view('welcome');    
@@ -46,6 +46,7 @@ Route::get('/kasir/data_customer', [KasirController::class, 'showCustomer'])->na
 Route::get('/kasir/data_pesanan', [KasirController::class, 'showDataPesanan'])->name('kasir.data_pesanan');
 Route::get('/kasir/stok_barang', [KasirController::class, 'showStockBarang'])->name('kasir.stok_barang');
 Route::get('/kasir/add_pesanan', [KasirController::class, 'addPesanan'])->name('kasir.add_pesanan');
+Route::post('/kasir/add_pesanan', [KasirController::class, 'store'])->name('kasir.store');
 Route::get('/kasir/riwayat_pesanan', [KasirController::class, 'showRiwayat'])->name('kasir.riwayat_pesanan');
 
 
@@ -53,4 +54,4 @@ Route::get('/penggunting/home', function () {return view('penggunting.home');});
 Route::get('/penggunting/detail_ukuran', function () {return view('penggunting.detail_ukuran');});
 Route::get('/penggunting/data_pesanan', function () {return view('penggunting.data_pesanan');});
 
-
+Route::post('/kasir/add_pesanan', [CustomerController::class, 'store'])->name('customer.store');

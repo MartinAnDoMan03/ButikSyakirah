@@ -15,5 +15,11 @@ class Customer extends Model
 
     protected $keyType = 'int';
 
-    protected $fillable = ['name', 'address', 'phone', 'email']; // Sesuaikan dengan kolom di tabel
+    protected $fillable = [
+        'customer_name',
+        'address',
+        'phone',
+        'email',
+        'created_at',
+        'updated_at']; // Sesuaikan dengan kolom di tabel
 }

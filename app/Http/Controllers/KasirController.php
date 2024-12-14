@@ -29,7 +29,7 @@ class KasirController extends Controller
         // Logika untuk menampilkan stok barang
         return view('kasir.stok_barang');
     }
-    
+
     public function addPesanan()
     {
         // Logika untuk menampilkan stok barang
@@ -41,5 +41,8 @@ class KasirController extends Controller
         // Logika untuk menampilkan riwayat pesanan
         return view('kasir.riwayat_pesanan');
     }
+
     
+
+
 }

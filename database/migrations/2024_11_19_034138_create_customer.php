@@ -12,16 +12,16 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up()
-    {
-        Schema::create('customers', function (Blueprint $table) {
-            $table->integer('customer_id')->primary()->autoIncrement();
-            $table->string('customer_name');
-            $table->text('address');
-            $table->string('phone');
-            $table->string('email')->unique();
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('customers', function (Blueprint $table) {
+        $table->integer('customer_id')->primary()->autoIncrement();;
+        $table->string('customer_name');
+        $table->text('address');
+        $table->string('phone');
+        $table->string('email')->unique();
+        $table->timestamps();
+    });
+}
     
     /**
      * Reverse the migrations.
