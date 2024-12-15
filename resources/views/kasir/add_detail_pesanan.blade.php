@@ -4,47 +4,8 @@
 
 @section('content')
     <h1>Tambah Detail Pesanan</h1>
-
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                // Ambil data pelanggan yang sudah dikirim oleh controller
-                const customers =
-                @json($orders); // Mengambil data customer dari controller (dalam format JSON)
-
-                const customerTypeDropdown = document.getElementById("customerType");
-                const newCustomerForm = document.getElementById("newCustomerForm");
-                const oldCustomerFormContainer = document.getElementById("oldCustomerFormContainer");
-                const oldCustomerDropdown = document.getElementById("oldCustomer");
-
-                // Fungsi untuk menampilkan form sesuai pilihan
-                customerTypeDropdown.addEventListener("change", function() {
-                    const selectedType = this.value;
-
-                    // Sembunyikan form dulu
-                    newCustomerForm.style.display = "none";
-                    oldCustomerFormContainer.style.display = "none";
-
-                    // Menampilkan form yang sesuai dengan pilihan
-                    if (selectedType === "new") {
-                        newCustomerForm.style.display = "block";
-                    } else if (selectedType === "old") {
-                        oldCustomerFormContainer.style.display = "block";
-
-                        // Mengisi dropdown customer lama dengan data yang diterima
-                        oldCustomerDropdown.innerHTML =
-                        `<option value="">Pilih Customer</option>`; // Reset dropdown
-
-                        customers.forEach(customer => {
-                            const option = document.createElement("option");
-                            option.value = customer.id;
-                            option.textContent = customer.customer_name;
-                            oldCustomerDropdown.appendChild(option);
-                        });
-                    }
-                });
-            });
-        </script>
-
+    <form action="">
+        @csrf
         <label for="clothingType">Pilih Jenis Pakaian:</label>
         <select id="clothingType">
             <option value="" selected disabled>Pilih Pakaian</option>
@@ -83,5 +44,6 @@
 
             <button type="submit">Tambahkan Pesanan</button>
         </div>
-    </div>
+        </div>
+    </form>
 @endsection

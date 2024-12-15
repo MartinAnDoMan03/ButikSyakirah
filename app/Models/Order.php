@@ -13,4 +13,6 @@ class Order extends Model
     protected $keyType = 'int';
 
     protected $fillable = ['customer_id', 'order_date', 'completion_date', 'status']; 
+    
+    public $timestamps = false;
 }

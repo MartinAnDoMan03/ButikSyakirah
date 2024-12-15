@@ -64,6 +64,7 @@ Route::get('/kasir/add_pesanan', [CustomerController::class, 'getCustomers']);
 
 // route order
 // Route::get('/orders/{orderId}/faktur', [OrderController::class, 'createFaktur'])->name('faktur');
-Route::get('/kasir/add_pesanan', [OrderController::class, 'store'])->name('order.store');
+Route::post('/kasir/add_pesanan/order_store', [OrderController::class, 'store'])->name('order.store');
 Route::get('/order/add_details/{id}', [OrderController::class, 'add_detail'])->name('order.add_detail');
 Route::get('/orders/{orderId}/faktur', [OrderController::class, 'createFaktur'])->name('createFaktur');
+

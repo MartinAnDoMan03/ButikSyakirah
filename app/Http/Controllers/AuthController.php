@@ -30,7 +30,7 @@ class AuthController extends Controller
             $user = Auth::user();
     
             // Validasi role setelah login
-            if (!in_array($user->role, ['penggunting', 'penjahit', 'pemayet'])) {
+            if (!in_array($user->role, ['admin','kasir','penggunting', 'penjahit', 'pemayet'])) {
                 Auth::logout();
                 return back()->withErrors(['role' => 'Akses tidak diperbolehkan untuk role ini.']);
             }
@@ -42,6 +42,10 @@ class AuthController extends Controller
                 return redirect()->route('penjahit.data_pesanan');
             } elseif ($user->role == 'pemayet') {
                 return redirect()->route('pemayet.data_pesanan');
+            } elseif($user->role == 'admin'){
+                return redirect()->route('admin.pengguna');
+            } elseif($user->role == 'kasir'){
+                return redirect()->route('kasir.data_customer');
             }
         }
 
