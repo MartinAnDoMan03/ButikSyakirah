@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
@@ -26,28 +27,38 @@ class OrderController extends Controller
         //
     }
 
+    public function addPesanan()
+{
+    // Ambil data customer dari database
+    $customers = Customer::all(); 
+
+    // Kirim data ke view
+    return view('kasir.add_pesanan', compact('customers'));
+}
+
+
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOrderRequest $request)
-    {
-        $request->validate([
-            'customer_id' => 'required|exists:customers,id',
-            'orderDate' => 'required|date',
-            'finishDate' => 'nullable|date|after_or_equal:orderDate',
-            'status' => 'required|string|max:255',
-        ]);
-        
-        dd($request->all());
-        $order = Order::create([
-            'customer_id' => $request->input('customer_id'),
-            'order_date' => $request->input('orderDate'),
-            'completion_date' => $request->input('finishDate'),
-            'status' => $request->input('status'),
-        ]);
+    public function store(Request $request)
+{
+    $validated = $request->validate([
+        'customer_id' => 'required|exists:customers,customer_id',
+        'orderDate' => 'required|date',
+        'finishDate' => 'nullable|date|after_or_equal:orderDate',
+    ]);
+    
+    Order::create([
+        'customer_id' => $validated['customer_id'],
+        'order_date' => $validated['orderDate'],
+        'completion_date' => $validated['finishDate'],
+        'status' => $request->input('status', 'Diproses'), // Gunakan input status atau default
+    ]);
+    
+    return redirect()->route('kasir.data_pesanan')->with('success', 'Pesanan berhasil ditambahkan.');
+}
 
-        return redirect()->route('orders.add_detail', ['id' => $order->id]);
-    }
+
 
 
 

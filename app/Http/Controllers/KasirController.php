@@ -31,10 +31,14 @@ class KasirController extends Controller
     }
 
     public function addPesanan()
-    {
-        // Logika untuk menampilkan stok barang
-        return view('kasir.add_pesanan');
-    }
+{
+    // Ambil data customer dari database
+    $customers = Customer::all(); 
+
+    // Kirim data ke view
+    return view('kasir.add_pesanan', compact('customers'));
+}
+
 
     public function showRiwayat()
     {

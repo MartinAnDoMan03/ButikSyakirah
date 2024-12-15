@@ -50,12 +50,17 @@
             @csrf
             <div id="oldCustomerFormContainer" style="display:none;">
                 <label for="old_customer">Pilih Customer Lama</label>
-                <select id="oldCustomer" name="customer_id">
+
+                {{-- <label for="customer_name">ID:</label>
+                <input type="text" id="oldeCustomer" name="customer_id" required><br><br> --}}
+                <select id="oldCustomer" name="customer_id" required>
                     <option value="">Pilih Customer</option>
                     @foreach ($orders as $customer)
-                        <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
+                        <option value="{{ $customer->customer_id }}">{{ $customer->customer_name }}</option>
                     @endforeach
+
                 </select>
+
             </div>
 
             <label for="orderDate">Tanggal Order:</label>
