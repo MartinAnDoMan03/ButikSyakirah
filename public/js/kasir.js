@@ -32,168 +32,98 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-// pilih customer
-document.addEventListener("DOMContentLoaded", function() {
-    const customerTypeSelect = document.getElementById("customerType");
-    const newCustomerForm = document.getElementById("newCustomerForm");
-    const oldCustomerForm = document.getElementById("oldCustomerForm");
-    const oldCustomerSelect = document.getElementById("oldCustomer");
+ // Fungsi untuk membuka modal
+ function openDetailModal() {
+    document.getElementById('detailModal').style.display = 'block';
+}
 
-    // Fungsi untuk menampilkan form sesuai pilihan customer (baru/lamanya)
-    function toggleCustomerForm() {
-      const customerType = customerTypeSelect.value;
-  
-      if (customerType === "new") {
-        newCustomerForm.style.display = "block";
-        oldCustomerForm.style.display = "none";
-      } else if (customerType === "old") {
-        newCustomerForm.style.display = "none";
-        oldCustomerForm.style.display = "block";
-        loadOldCustomers(); 
-      }
-    }
-  
-    function loadOldCustomers() {
-      oldCustomerSelect.innerHTML = '';  
-    
-      fetch('datacustomer.php') //mengembalikan nilai data customer
-        .then(response => response.json()) 
-        .then(data => console.log(data))
-        .then(customers => {
-          if (customers.length > 0) {
-            customers.forEach(customer => {
-              const option = document.createElement("option");
-              option.value = customer.id;
-              option.textContent = customer.nama;
-              oldCustomerSelect.appendChild(option);
-            });
-          } else {
-            const option = document.createElement("option");
-            option.textContent = "Tidak ada customer lama";
-            oldCustomerSelect.appendChild(option);
-          }
-        })
-        .catch(error => {
-          console.error("Error fetching customer data:", error);
-        });
-    }
-  
-    // Event listener untuk menangani perubahan pada dropdown customerType
-    customerTypeSelect.addEventListener("change", toggleCustomerForm);
-  
-    // Memanggil fungsi untuk menampilkan form sesuai dengan pilihan yang sudah dipilih
-    toggleCustomerForm();
-} );
+// fungsi untuk menutup modal
+function closeDetailModal() {
+    document.getElementById('detailModal').style.display = 'none';
+}
 
+// Fungsi untuk memperbarui harga baju sesuai pilihan
+function updatePrice() {
+    var clothingType = document.getElementById('clothingType').value;
+    var priceInput = document.getElementById('priceInput');
 
-document.addEventListener("DOMContentLoaded", function () {
-    const clothingTypeSelect = document.getElementById("clothingType");
-    const priceInput = document.getElementById("price");
-    const storeFabricSelect = document.getElementById("storeFabric");
-    const storeFabricPriceInput = document.getElementById("storeFabricPrice");
-    const payetPriceInput = document.getElementById("payetPrice");
-    const totalPriceInput = document.getElementById("totalPrice");
-    const fabricPriceInput = document.getElementById("fabricPrice");
-    const fabricLengthInput = document.getElementById("fabricLength");
-    const totalFabricPriceInput = document.getElementById("totalFabricPrice");
-
-    // Daftar harga pakaian
-    const clothingPrices = {
-        shirt_men_long: 100000,
-        shirt_women_long: 120000,
-        shirt_kids_long: 110000,
-        shirt_men_short: 90000,
-        shirt_women_short: 95000,
-        shirt_kids_short: 85000,
-        shirt_men_no_collar_long: 105000,
-        shirt_women_no_collar_long: 125000,
-        shirt_kids_no_collar_long: 115000,
-        shirt_men_no_collar_short: 90000,
-        shirt_women_no_collar_short: 95000,
-        shirt_kids_no_collar_short: 85000,
-        gamis: 160000,
-        kebaya: 140000,
-        skirt_long: 120000,
-        skirt_short: 110000,
-        pants_men: 130000,
-        pants_women: 125000,
-        pants_men_short: 100000,
-        pants_women_short: 95000
+    // Harga berdasarkan jenis baju yang dipilih
+    var prices = {
+        "kemeja-lengan-panjang-pria": 100000,
+        "kemeja-lengan-pendek-pria": 80000,
+        "gamis-wanita": 120000,
+        "rok-panjang-wanita": 90000,
+        "rok-pendek-wanita": 75000,
+        "kebaya": 150000,
+        "kemeja-lengan-panjang-anak": 70000,
+        "kemeja-lengan-pendek-anak": 60000,
+        "gamis-anak": 100000,
+        "jas": 200000,
+        "custom": 0
     };
 
-    // Daftar harga kain
-    const fabricPrices = {
-        katun: 50000,
-        sutra: 100000,
-        wolfis: 75000
+    // Set harga pada input harga
+    if (clothingType && prices[clothingType]) {
+        priceInput.value = prices[clothingType].toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+    } else {
+        priceInput.value = "Harga Tidak Diketahui";
+    }
+}
+
+// Fungsi untuk memperbarui harga kain berdasarkan pilihan
+function updateFabricPrice() {
+    var fabricType = document.getElementById('storeFabric').value;
+    var fabricPriceInput = document.getElementById('fabricPrice');
+
+    // Harga kain per meter
+    var fabricPrices = {
+        "katun": 50000,
+        "sutra": 100000,
+        "wolfis": 75000
     };
 
-    // Fungsi untuk menghitung total harga
-    function calculateTotalPrice() {
-        const clothingPrice = parseInt(priceInput.value.replace(/[^\d]/g, "")) || 0;
-        const fabricPricePerMeter = parseInt(storeFabricPriceInput.value.replace(/[^\d]/g, "")) || 0;
-        const fabricLength = parseFloat(fabricLengthInput.value) || 0;
-        const payetPrice = parseInt(payetPriceInput.value.replace(/[^\d]/g, "")) || 0;
+    // Set harga kain
+    if (fabricType && fabricPrices[fabricType]) {
+        fabricPriceInput.value = fabricPrices[fabricType].toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+    } else {
+        fabricPriceInput.value = "Harga Tidak Diketahui";
+    }
+}
 
-        const totalFabricPrice = fabricPricePerMeter * fabricLength;
-        const totalPrice = clothingPrice + totalFabricPrice + payetPrice;
-        
-        totalPriceInput.value = `Rp ${totalPrice.toLocaleString()}`;
+// Fungsi untuk menghitung biaya kain
+function calculateFabricCost() {
+    var fabricPrice = parseFloat(document.getElementById('fabricPrice').value.replace(/[^0-9.-]+/g,""));
+    var fabricLength = parseFloat(document.getElementById('fabricLength').value);
+    var totalFabricPrice = document.getElementById('totalFabricPrice');
+
+    // Jika harga kain dan panjang kain valid, hitung total harga kain
+    if (!isNaN(fabricPrice) && !isNaN(fabricLength)) {
+        totalFabricPrice.value = (fabricPrice * fabricLength).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+    } else {
+        totalFabricPrice.value = "Harga Tidak Valid";
     }
 
-    // Event listener untuk memilih jenis pakaian
-    clothingTypeSelect.addEventListener("change", function () {
-        const selectedClothing = clothingTypeSelect.value;
-        if (clothingPrices[selectedClothing]) {
-            priceInput.value = `Rp ${clothingPrices[selectedClothing].toLocaleString()}`;
-        } else {
-            priceInput.value = "";
-        }
-        calculateTotalPrice();
-    });
-
-    // Event listener untuk memilih kain
-    function calculateTotalFabricPrice() {
-        const selectedFabric = storeFabricSelect.value;
-        const fabricLength = parseFloat(fabricLengthInput.value) || 0;
-        const fabricPrice = fabricPrices[selectedFabric] || 0;
-
-        const totalFabricPrice = fabricLength * fabricPrice;
-
-        if (totalFabricPrice > 0) {
-            totalFabricPriceInput.value = `Rp ${totalFabricPrice.toLocaleString()}`;
-        } else {
-            totalFabricPriceInput.value = "";
-        }
-        calculateTotalPrice();
-    }
-
-    // Event listener untuk memilih kain
-    storeFabricSelect.addEventListener("change", function () {
-        const selectedFabric = storeFabricSelect.value;
-        if (fabricPrices[selectedFabric]) {
-            fabricPriceInput.value = `Rp ${fabricPrices[selectedFabric].toLocaleString()}`;
-        } else {
-            fabricPriceInput.value = "";
-        }
-        calculateTotalFabricPrice(); // Hitung total harga kain setelah kain dipilih
-    });
-
-    // Event listener untuk menginput ukuran kain
-    fabricLengthInput.addEventListener("input", calculateTotalFabricPrice);
-
-
-    payetPriceInput.addEventListener("input", function () {
-        // Ambil nilai input dan hapus karakter yang bukan angka
-        let value = payetPriceInput.value.replace(/[^\d]/g, "");
-
-        // Tambahkan pemisah ribuan
-        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-        // Perbarui nilai input
-        payetPriceInput.value = value ? "Rp " + value : "";
-        calculateTotalPrice();
-    });
     calculateTotalPrice();
+}
 
-});
+// fungsi untuk menghitung total harga berdasarkan kain dan payet
+function calculateTotalPrice() {
+    var fabricCost = parseFloat(document.getElementById('totalFabricPrice').value.replace(/[^0-9.-]+/g,""));
+    var payetPrice = parseFloat(document.getElementById('payetPrice').value.replace(/[^0-9.-]+/g,""));
+    var payetCode = document.getElementById('payetCode').value;
+    var totalPrice = document.getElementById('totalPrice');
+
+    var total = fabricCost;
+
+    if (payetCode === "yes" && !isNaN(payetPrice)) {
+        total += payetPrice;
+    }
+
+    totalPrice.value = total.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+}
+
+// fungsi untuk menampilkan form detail pesanan
+function showDetailForm() {
+    openDetailModal(); 
+}
+

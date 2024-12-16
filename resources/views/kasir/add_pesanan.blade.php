@@ -21,16 +21,16 @@
             <form action="{{ route('customer.store') }}" method="POST">
                 @csrf
                 <label for="customer_name">Nama:</label>
-                <input type="text" id="customer_name" name="customer_name" required><br><br>
+                <input type="text" id="customer_name" name="customer_name" required>
 
                 <label for="address">Alamat:</label>
-                <input type="text" id="address" name="address" required><br><br>
+                <input type="text" id="address" name="address" required>
 
                 <label for="phone">Telepon:</label>
-                <input type="text" id="phone" name="phone" required><br><br>
+                <input type="text" id="phone" name="phone" required>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required><br><br>
+                <input type="email" id="email" name="email" required>
                 @if ($errors->any())
                     <div>
                         <ul>

@@ -44,8 +44,6 @@
         </main>
     </div>
 
-
-
     <script src="{{ asset('js/kasir.js') }}"></script>
 </body>
 </html>
