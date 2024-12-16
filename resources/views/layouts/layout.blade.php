@@ -33,7 +33,7 @@
                 <li><a href="{{ url('/kasir/add_pesanan') }}"><i class="zmdi zmdi-shopping-cart"></i>Pesanan Baru</a></li>
                 <li><a href="{{ url('/kasir/data_pesanan') }}"><i class="zmdi zmdi-shopping-cart"></i> Data Pesanan</a></li>
                 <li><a href="{{ url('/kasir/data_customer') }}"><i class="zmdi zmdi-accounts"></i> Data Customer</a></li>
-                <li><a href="{{ url('/kasir/detail_ukuran') }}"><i class="zmdi zmdi-shopping-cart"></i> Detail Ukuran</a></li>
+                {{-- <li><a href="{{ url('/kasir/detail_pesanan') }}"><i class="zmdi zmdi-shopping-cart"></i> Detail pesanan</a></li> --}}
                 <li><a href="{{ url('/kasir/riwayat_pesanan') }}"><i class="zmdi zmdi-file-text"></i> Riwayat Pesanan</a></li>                
             </ul>
         </aside>
