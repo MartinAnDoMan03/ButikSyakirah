@@ -34,7 +34,7 @@
                     <td>{{ $order->customer_name }}</td>
                     <td>{{ $order->order_date }}</td>
                     <td>{{ $order->completion_date }}</td>
-                    <td>{{ number_format($order->total_cost, 0, ',', '.') }}</td>
+                    <td>{{ number_format($order->price, 0, ',', '.') }}</td>
                     <td class="menu-buttons">
                         <!-- Tombol Edit -->
                         <a href="{{ url('edit-pesanan/'.$order->id) }}" class="btn btn-edit" title="Edit">
