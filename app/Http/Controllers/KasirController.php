@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Order;
+use Illuminate\Support\Facades\DB;
 
 class KasirController extends Controller
 {
@@ -19,7 +20,11 @@ class KasirController extends Controller
 
     public function showDataPesanan()
     {
-        $orders = Order::all();
+        $orders = DB::select("
+        SELECT orders.*, customers.customer_name as customer_name
+        FROM orders
+        JOIN customers ON orders.customer_id = customers.customer_id
+        ");
         return view('kasir.data_pesanan', ['orders' => $orders]);
 
     }
@@ -31,13 +36,13 @@ class KasirController extends Controller
     }
 
     public function addPesanan()
-{
-    // Ambil data customer dari database
-    $customers = Customer::all(); 
+    {
+        // Ambil data customer dari database
+        $customers = Customer::all();
 
-    // Kirim data ke view
-    return view('kasir.add_pesanan', compact('customers'));
-}
+        // Kirim data ke view
+        return view('kasir.add_pesanan', compact('customers'));
+    }
 
 
     public function showRiwayat()
@@ -46,7 +51,7 @@ class KasirController extends Controller
         return view('kasir.riwayat_pesanan');
     }
 
-    
+
 
 
 }

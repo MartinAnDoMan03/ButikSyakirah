@@ -30,7 +30,7 @@
             <tbody id="orderTableBody">
                 @forelse ($orders as $order)
                 <tr>
-                    <td>{{ $order->id }}</td>
+                    <td>{{ $order->order_id }}</td>
                     <td>{{ $order->customer_name }}</td>
                     <td>{{ $order->order_date }}</td>
                     <td>{{ $order->completion_date }}</td>
