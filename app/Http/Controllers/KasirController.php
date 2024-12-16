@@ -23,7 +23,7 @@ class KasirController extends Controller
         $orders = DB::select("
         SELECT orders.*, customers.customer_name as customer_name, order_details.price as price
         FROM orders
-        JOIN customers ON orders.customer_id = customers.customer_id JOIN order_details ON orders.order_id = order_details.order_id
+        JOIN customers ON orders.customer_id = customers.customer_id LEFT JOIN order_details ON orders.order_id = order_details.order_id
         ");
         return view('kasir.data_pesanan', ['orders' => $orders]);
 

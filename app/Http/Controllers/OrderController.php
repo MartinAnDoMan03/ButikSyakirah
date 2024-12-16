@@ -52,7 +52,7 @@ class OrderController extends Controller
         'customer_id' => $validated['customer_id'],
         'order_date' => $validated['orderDate'],
         'completion_date' => $validated['finishDate'],
-        'status' => $request->input('status', 'Diproses'), // Gunakan input status atau default
+        'status' => $request->input('status', 'Diproses') 
     ]);
     
     return redirect()->route('kasir.data_pesanan')->with('success', 'Pesanan berhasil ditambahkan.');

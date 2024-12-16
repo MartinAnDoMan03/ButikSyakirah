@@ -37,17 +37,17 @@
                     <td>{{ number_format($order->price, 0, ',', '.') }}</td>
                     <td class="menu-buttons">
                         <!-- Tombol Edit -->
-                        <a href="{{ url('edit-pesanan/'.$order->id) }}" class="btn btn-edit" title="Edit">
+                        <a href="{{ url('edit-pesanan/'.$order->order_id) }}" class="btn btn-edit" title="Edit">
                             <i class="fa fa-edit"></i> <!-- Ikon Edit (Font Awesome) -->
                         </a>
                     
                         <!-- Tombol Add Detail Pesanan -->
-                        <a href="{{ url('add-detail-pesanan/'.$order->id) }}" class="btn btn-add-detail" title="Add Detail Pesanan">
+                        <a href="{{ url('add-detail-pesanan/'.$order->order_id) }}" class="btn btn-add-detail" title="Add Detail Pesanan">
                             <i class="fa fa-plus"></i> <!-- Ikon Plus (Font Awesome) -->
                         </a>
                     
                         <!-- Tombol Detail Ukuran -->
-                        <a href="{{ url('detail-ukuran/'.$order->id) }}" class="btn btn-detail-ukuran" title="Detail Ukuran">
+                        <a href="{{ url('detail-ukuran/'.$order->order_id) }}" class="btn btn-detail-ukuran" title="Detail Ukuran">
                             <i class="fa fa-eye"></i> <!-- Ikon Search (Font Awesome) -->
                         </a>
                     
