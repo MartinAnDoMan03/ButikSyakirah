@@ -64,8 +64,8 @@
 <div id="detailModal" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close-btn" onclick="closeDetailModal()">&times;</span>
-        <h2>Detail Pesanan</h2>
         
+        <h2>Detail Pesanan</h2>
         <form class="detail-form" action="{{ url('add-detail-pesanan') }}" method="POST">
             @csrf
 
@@ -157,6 +157,5 @@
         </form>
     </div>
 </div>
-
 
 @endsection

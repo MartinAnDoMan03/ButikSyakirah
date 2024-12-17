@@ -16,9 +16,9 @@
         </select>
 
         <!-- Form untuk customer baru -->
-        <div id="newCustomerForm" style="display:none;">
+        <div  id="newCustomerForm" style="display:none;">
             <h3>Form Customer Baru</h3>
-            <form action="{{ route('customer.store') }}" method="POST">
+            <form  action="{{ route('customer.store') }}" method="POST">
                 @csrf
                 <label for="customer_name">Nama:</label>
                 <input type="text" id="customer_name" name="customer_name" required>

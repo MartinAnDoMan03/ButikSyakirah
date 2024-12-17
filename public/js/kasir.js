@@ -127,3 +127,6 @@ function showDetailForm() {
     openDetailModal(); 
 }
 
+
+
+

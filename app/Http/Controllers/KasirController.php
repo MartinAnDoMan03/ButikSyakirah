@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\Stock;
 use Illuminate\Support\Facades\DB;
 
 class KasirController extends Controller
@@ -31,8 +32,9 @@ class KasirController extends Controller
 
     public function showStockBarang()
     {
-        // Logika untuk menampilkan stok barang
-        return view('kasir.stok_barang');
+
+        $stocks = Stock::all();
+        return view('kasir.stok_barang', ['stocks' => $stocks]);
     }
 
     public function addPesanan()

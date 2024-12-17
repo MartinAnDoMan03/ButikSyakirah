@@ -30,8 +30,6 @@
                         <td>{{ $customer->address }}</td>
                         <td>{{ $customer->phone }}</td>
                         <td>{{ $customer->email }}</td>
-                        <td>{{ $customer->created_at }}</td>
-                        <td>{{ $customer->updated_at }}</td>
                     </tr>
                 @endforeach
             </tbody>
