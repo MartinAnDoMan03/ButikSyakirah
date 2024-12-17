@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Stock;
+use App\Models\Supplier;
 use App\Http\Requests\StoreStockRequest;
 use App\Http\Requests\UpdateStockRequest;
 use Illuminate\Http\Request;
@@ -23,7 +24,11 @@ class StockController extends Controller
      */
     public function create()
     {
-        //
+            // Ambil semua data suppliers dari database
+    $suppliers = Supplier::all();
+
+    // Kirim data suppliers ke view
+    return view('kasir.stok_barang', compact('suppliers'));
     }
 
     /**
@@ -38,13 +43,15 @@ class StockController extends Controller
             'quantity' => 'required|integer',
         ]);
 
-        Stock::create([
+        $stock = Stock::create([
             'stock_type' => $request->input('stock_type'),
             'stock_name' => $request->input('stock_name'),
             'quantity' => $request->input('quantity'),
             'last_updated' => Carbon::now(), // Tanggal hari ini otomatis
         ]);
 
+           // Attach supplier to the stock (pivot table)
+    $stock->suppliers()->attach($validatedData['supplier_id']);
         // Redirect atau memberi response
         return redirect()->back()->with('success', 'Stock added successfully!');
     }

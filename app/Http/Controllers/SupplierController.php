@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Supplier;
 use App\Http\Requests\StoreSupplierRequest;
 use App\Http\Requests\UpdateSupplierRequest;
+use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
@@ -27,15 +28,23 @@ class SupplierController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSupplierRequest $request)
+    public function store(Request $request)
     {
-        Supplier::create([
-            'supplier_name' => $request->input('form_name'),
-            'contact_info' => $request->input('form_name'),
-            'address' => $request->input('form_name')
+
+        $validatedData = $request->validate([
+            'supplier_name' => 'required|string|max:255',
+            'contact_info' => 'required|string|max:255',
+            'address' => 'required|string',
         ]);
 
-        return redirect()->back()->with('success', 'Data Supplier Berhasil Dimasukkan');
+        $suppliers = Supplier::create([
+            'supplier_name' => $request->input('supplier_name'),
+            'contact_info' => $request->input('contact_info'),
+            'address' => $request->input('address'),
+        ]);
+
+        // Redirect atau memberi response
+        return redirect()->back()->with('success', 'Stock added successfully!');
     }
 
     /**

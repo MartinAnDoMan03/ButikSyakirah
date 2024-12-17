@@ -10,14 +10,15 @@ use App\Http\Controllers\PemayetController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\SupplierController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/kasir/stok_barang', function () {
-//     return view('/kasir/stok_barang');
-// });
+Route::get('/kasir/supplier', function () {
+    return view('/kasir/supplier');
+});
 
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -51,6 +52,9 @@ Route::get('/kasir/add_pesanan', [KasirController::class, 'addPesanan'])->name('
 Route::post('/kasir/add_pesanan', [KasirController::class, 'store'])->name('kasir.store');
 Route::get('/kasir/riwayat_pesanan', [KasirController::class, 'showRiwayat'])->name('kasir.riwayat_pesanan');
 Route::post('/kasir/stok_barang', [StockController::class, 'store'])->name('stock.store');
+Route::get('/kasir/stok_barang', [StockController::class, 'create'])->name('stock.create');
+Route::post('/kasir/supplier', [SupplierController::class, 'store'])->name('supplier.store');
+
 
 
 Route::get('/penggunting/home', function () {
