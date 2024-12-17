@@ -13,4 +13,9 @@ class Supplier extends Model
     protected $keyType = 'int';
 
     protected $fillable = ['supplier_name', 'contact_info', 'address']; 
+    
+    public function stocks()
+    {
+        return $this->belongsToMany(Stock::class, 'stock_suppliers', 'supplier_id', 'stock_id');
+    }
 }

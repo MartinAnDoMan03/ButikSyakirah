@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail pesanan</title>
 </head>
+
 <body>
     <div>
         <form action="" method="POST">
             @csrf
-        <label for="clothingType">Jenis Baju:</label>
-        <select id="clothingType" name="clothingType">
-            <option value="" disabled selected>Pilih Jenis Baju</option>
-            <option value="kemeja-lengan-panjang-pria">Kemeja Lengan Panjang Pria</option>
-            <option value="kemeja-lengan-pendek-pria">Kemeja Lengan Pendek Pria</option>
-            <option value="gamis-wanita">Gamis Wanita</option>
-            <option value="rok-panjang-wanita">Rok Panjang Wanita</option>
-            <option value="rok-pendek-wanita">Rok Pendek Wanita</option>
-            <option value="kebaya">Kebaya</option>
-            <option value="kemeja-lengan-panjang-anak">Kemeja Lengan Panjang Anak</option>
-            <option value="kemeja-lengan-pendek-anak">Kemeja Lengan Pendek Anak</option>
-            <option value="gamis-anak">Gamis Anak</option>
-            <option value="jas">Jas</option>
-            <option value="custom">Custom</option>
-        </select>
+            <label for="clothingType">Jenis Baju:</label>
+            <select id="clothingType" name="clothingType">
+                <option value="" disabled selected>Pilih Jenis Baju</option>
+                <option value="kemeja-lengan-panjang-pria">Kemeja Lengan Panjang Pria</option>
+                <option value="kemeja-lengan-pendek-pria">Kemeja Lengan Pendek Pria</option>
+                <option value="gamis-wanita">Gamis Wanita</option>
+                <option value="rok-panjang-wanita">Rok Panjang Wanita</option>
+                <option value="rok-pendek-wanita">Rok Pendek Wanita</option>
+                <option value="kebaya">Kebaya</option>
+                <option value="kemeja-lengan-panjang-anak">Kemeja Lengan Panjang Anak</option>
+                <option value="kemeja-lengan-pendek-anak">Kemeja Lengan Pendek Anak</option>
+                <option value="gamis-anak">Gamis Anak</option>
+                <option value="jas">Jas</option>
+                <option value="custom">Custom</option>
+            </select>
     </div>
-    
+
     <!-- Input harga manual untuk custom -->
     <div id="customPriceInput" style="display: none; margin-top: 20px;">
         <label for="manualPrice">Masukkan Harga Custom:</label>
@@ -38,7 +40,7 @@
     </div>
 
     <div id="priceDisplay" style="margin-top: 20px; font-weight: bold;"></div>
-     <!-- Pilih Kain Toko -->
+    <!-- Pilih Kain Toko -->
     <div>
         <label for="storeFabric">Kain Toko:</label>
         <select id="storeFabric" name="storeFabric">
@@ -79,7 +81,7 @@
         <label for="totalPrice">Total Harga:</label>
         <input type="text" id="totalPrice" name="totalPrice" readonly>
     </div>
-</form>
+    </form>
 
     <script>
         const clothingDropdown = document.getElementById('clothingType');
@@ -134,5 +136,5 @@
         });
     </script>
 </body>
-</html>
 
+</html>

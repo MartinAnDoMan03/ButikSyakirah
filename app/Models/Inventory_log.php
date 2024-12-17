@@ -13,4 +13,9 @@ class Inventory_log extends Model
     protected $keyType = 'int';
 
     protected $fillable = ['stock_id', 'reference_type', 'order_reference_id', 'supplier_reference_id', 'transaction_type', 'quanitity', 'transaction_date'];
+
+    public function stock()
+    {
+        return $this->belongsTo(Stock::class, 'stock_id');
+    }
 }

@@ -56,6 +56,29 @@ class StockController extends Controller
         //
     }
 
+    public function deductStock(Request $request, $stockId)
+    {
+        $stock = Stock::find($stockId);
+
+        // Deduct 10 units
+        $stock->update([
+            'quantity' => $stock->quantity - 10,
+        ]);
+
+        return response()->json(['message' => 'Stock deducted successfully!', 'stock' => $stock]);
+    }
+
+    public function addStock(Request $request)
+{
+    $stock = Stock::create([
+        'stock_type' => 'cloth',
+        'stock_name' => 'Cotton Fabric',
+        'quantity' => 50,
+    ]);
+
+    return response()->json(['message' => 'Stock added successfully!', 'stock' => $stock]);
+}
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -79,4 +102,6 @@ class StockController extends Controller
     {
         //
     }
+
+
 }
