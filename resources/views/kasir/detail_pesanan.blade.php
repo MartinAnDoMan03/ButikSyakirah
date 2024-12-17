@@ -7,6 +7,8 @@
 </head>
 <body>
     <div>
+        <form action="" method="POST">
+            @csrf
         <label for="clothingType">Jenis Baju:</label>
         <select id="clothingType" name="clothingType">
             <option value="" disabled selected>Pilih Jenis Baju</option>
@@ -77,6 +79,7 @@
         <label for="totalPrice">Total Harga:</label>
         <input type="text" id="totalPrice" name="totalPrice" readonly>
     </div>
+</form>
 
     <script>
         const clothingDropdown = document.getElementById('clothingType');
