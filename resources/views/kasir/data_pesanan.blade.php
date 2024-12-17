@@ -158,4 +158,56 @@
     </div>
 </div>
 
+<div class="modal-detail-ukuran" id="detailUkuranModal" style="display: none;">
+    <div class="modal-content-detail-ukuran">
+        <span class="close-btn-detail-ukuran" onclick="closeDetailUkuranModal()">&times;</span>
+
+        <h2>Detail Ukuran</h2>
+        <table class="detail-ukuran-table">
+            <thead>
+                <tr>
+                    <th>Detail Ukuran</th>
+                    <th>Nilai (cm)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Lingkar Dada</strong></td>
+                    <td> cm</td>
+                </tr>
+                <tr>
+                    <td><strong>Lingkar Pinggang</strong></td>
+                    <td> cm</td>
+                </tr>
+                <tr>
+                    <td><strong>Lingkar Lengan</strong></td>
+                    <td> cm</td>
+                </tr>
+                <tr>
+                    <td><strong>Panjang Tangan</strong></td>
+                    <td> cm</td>
+                </tr>
+                <tr>
+                    <td><strong>Lebar Bahu</strong></td>
+                    <td> cm</td>
+                </tr>
+                <tr>
+                    <td><strong>Pinggul</strong></td>
+                    <td> cm</td>
+                </tr>
+                <tr>
+                    <td><strong>Lingkar Pergelangan</strong></td>
+                    <td> cm</td>
+                </tr>
+                <tr>
+                    <td><strong>Panjang Baju</strong></td>
+                    <td> cm</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
 @endsection

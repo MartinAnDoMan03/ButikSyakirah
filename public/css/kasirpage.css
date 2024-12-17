@@ -773,3 +773,102 @@ h2 {
         font-size: 14px;
     }
 }
+
+/* Style untuk modal detail ukuran */
+.modal-detail-ukuran {
+    display: none; /* Modal disembunyikan secara default */
+    position: fixed; 
+    z-index: 9999; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Background gelap dengan transparansi */
+    overflow: auto; /* Jika konten lebih besar dari modal, memungkinkan scroll */
+    padding-top: 60px; /* Memberikan jarak di bagian atas */
+}
+
+/* Konten modal */
+.modal-content-detail-ukuran {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 90%; /* Lebar modal */
+    max-width: 800px; /* Lebar maksimal modal */
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    animation: fadeIn 0.4s ease; /* Animasi muncul modal */
+    position: relative;
+}
+
+/* Animasi fade in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Tombol close */
+.close-btn-detail-ukuran {
+    font-size: 30px;
+    color: #333;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+.close-btn-detail-ukuran:hover {
+    color: #f00; /* Warna merah saat hover */
+}
+
+/* Tabel untuk menampilkan detail ukuran */
+.detail-ukuran-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    
+}
+
+/* Styling untuk header tabel */
+.detail-ukuran-table th {
+    padding: 12px;
+    text-align: left;
+    background-color: #2b4053;
+    color: white;
+    font-weight: bold;
+}
+
+/* Styling untuk isi tabel */
+.detail-ukuran-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+    width: 25%
+}
+
+/* Alternating row colors */
+.detail-ukuran-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover effect pada baris tabel */
+.detail-ukuran-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+/* Efek hover pada tombol */
+.btn-detail-ukuran:hover {
+    background-color: #0056b3; /* Lebih gelap saat hover */
+}
+
+
+
