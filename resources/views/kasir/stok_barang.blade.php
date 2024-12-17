@@ -38,7 +38,7 @@
             <label for="quantity">Jumlah Stok:</label>
             <input type="number" id="quantity" name="quantity" step="1" required>
 
-            <button type="submit">Tambahkan Stok</button>
+            <button type="submit">Tambahkan stok</button>
         </form>
     </div>
 

@@ -11,6 +11,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\PaymentLogController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -54,8 +55,8 @@ Route::get('/kasir/riwayat_pesanan', [KasirController::class, 'showRiwayat'])->n
 Route::post('/kasir/stok_barang', [StockController::class, 'store'])->name('stock.store');
 Route::get('/kasir/stok_barang', [StockController::class, 'create'])->name('stock.create');
 Route::post('/kasir/supplier', [SupplierController::class, 'store'])->name('supplier.store');
-
-
+Route::post('/kasir/payment', [PaymentLogController::class, 'store'])->name('payment.store');
+Route::get('/kasir/payment', [PaymentLogController::class, 'create'])->name('payment.create');
 
 Route::get('/penggunting/home', function () {
     return view('penggunting.home'); });
