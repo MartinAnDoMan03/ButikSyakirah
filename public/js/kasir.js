@@ -1,35 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Logout Button Event Listener
-    document.getElementById("logoutButton").addEventListener("click", function(event) {
-        event.preventDefault(); 
-
-        // Menampilkan modal konfirmasi logout
-        const modal = document.getElementById("logoutModal");
-        modal.style.display = "flex";
-
-        // Menutup modal jika tombol close diklik
-        document.querySelector(".close").addEventListener("click", function() {
-            modal.style.display = "none"; // Menutup modal
+        // Toggle Form dan Tabel Barang
+        const showFormButton = document.getElementById('showFormButton');
+        const addStockForm = document.getElementById('addStockForm');
+    
+        showFormButton.addEventListener('click', function() {
+            // Tampilkan form dan sembunyikan tabel
+            addStockForm.style.display = 'block';
         });
-
-        // Menangani klik tombol "Ya, Logout"
-        document.getElementById("confirmLogout").addEventListener("click", function() {
-            window.location.href = "login.php"; // Arahkan ke halaman logout
-        });
-
-        // Menangani klik tombol "Batal"
-        document.getElementById("cancelLogout").addEventListener("click", function() {
-            modal.style.display = "none"; // Menutup modal tanpa logout
-        });
-    });
-
-    // Menutup modal jika pengguna klik di luar modal
-    window.addEventListener("click", function(event) {
-        const modal = document.getElementById("logoutModal");
-        if (event.target === modal) {
-            modal.style.display = "none"; // Menutup modal jika klik di luar modal
-        }
-    });
 });
 
  // Fungsi untuk membuka modal

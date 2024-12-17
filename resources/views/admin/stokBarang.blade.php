@@ -15,22 +15,27 @@
     <!-- Form Input untuk Menambah Stok Barang Baru -->
     <div class="order-form" id="addStockForm" style="display: none;">
         <h3>Tambah Stok Barang Baru</h3>
-        <form id="addStockForm">
+        <form action="{{ route('stock.store') }}" method="POST">
+            <label for="supplier_id">Supplier:</label>
+            <select id="supplier_id" name="supplier_id" required>
+                <option value="" selected disabled>Pilih Supplier</option>
+            </select>
 
             <label for="stockType">Jenis Barang:</label>
             <select id="stockType" required>
-                <option value="kain">Kain</option>
-                <option value="benang">Benang</option>
+                <option value="" selected disabled>Pilih jenis barang</option>
+                <option value="cloth">Kain</option>
+                <option value="thread">Benang</option>
             </select>
 
             <label for="stockName">Nama Barang:</label>
-            <input type="text" id="stockName" required>
+            <input type="text" id="stock_name" name="stock_name" required>
         
             <label for="quantityLabel" id="quantityLabel">Jumlah Stok:</label>
-            <input type="number" id="stockQuantity" step="any" required>
+            <input type="number" id="quantity" name="quantity" step="1" required>
         
-            <label for="entryDate">Tanggal Masuk:</label>
-            <input type="date" id="entryDate" required>
+            <!-- <label for="entryDate">Tanggal Masuk:</label>
+            <input type="date" id="entryDate" required> -->
         
             <button type="submit">Tambahkan Stok</button>
         </form>                

@@ -1,4 +1,4 @@
-@extends('layouts.layoutpekerja')
+@extends('layouts.layoutpayet')
 
 @section('title', 'Data Pesanan')
 
@@ -17,9 +17,9 @@
                 <tr>
                     <th>Customer ID</th>
                     <th>Nama Customer</th>
-                    <th>Letak Payetan</th>
                     <th>Harga Payet</th>
-                    <th>Aksi</th>
+                    <th>Catatan</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody id="customerTableBody">

@@ -6,8 +6,14 @@
 
     <h1>Daftar Stok Barang</h1>
 
+    <!-- Tombol Toggle -->
+    <div class="add-stock-container">
+        <!-- <button id="showTableButton">Lihat Tabel Barang</button> -->
+        <button id="showFormButton">Tambah Barang Baru</button>
+    </div>
+
     <!-- Form Input untuk Menambah Stok Barang Baru -->
-    <div class="order-form">
+    <div class="order-form" id="addStockForm" style="display: none;">
         <h3>Tambah Stok Barang Baru</h3>
         <form action="{{ route('stock.store') }}" method="POST">
             @csrf
@@ -19,9 +25,9 @@
                 @endforeach
             </select>
 
-            <label for="stock_type">Jenis Stok:</label>
+            <label for="stock_type">Jenis Barang:</label>
             <select id="stock_type" name="stock_type" required>
-                <option value="" selected disabled>Pilih jenis stok</option>
+                <option value="" selected disabled>Pilih jenis barang</option>
                 <option value="cloth">Kain</option>
                 <option value="thread">Benang</option>
             </select>
