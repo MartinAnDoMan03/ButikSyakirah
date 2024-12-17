@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Stock;
 use App\Http\Requests\StoreStockRequest;
 use App\Http\Requests\UpdateStockRequest;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class StockController extends Controller
 {
@@ -27,14 +29,25 @@ class StockController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStockRequest $request)
+    public function store(Request $request)
     {
-        Stock::create([
-            'stock_name' => $request->input('form_name'),
-            'quantity' => $request->input('form_name')
-        ]);
-    }
 
+        $validatedData = $request->validate([
+            'stock_type' => 'required|string|in:cloth,thread',
+            'stock_name' => 'required|string|max:255',
+            'quantity' => 'required|integer',
+        ]);
+
+        Stock::create([
+            'stock_type' => $request->input('stock_type'),
+            'stock_name' => $request->input('stock_name'),
+            'quantity' => $request->input('quantity'),
+            'last_updated' => Carbon::now(), // Tanggal hari ini otomatis
+        ]);
+
+        // Redirect atau memberi response
+        return redirect()->back()->with('success', 'Stock added successfully!');
+    }
     /**
      * Display the specified resource.
      */

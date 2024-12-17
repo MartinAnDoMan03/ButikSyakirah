@@ -9,18 +9,23 @@
     <!-- Form Input untuk Menambah Stok Barang Baru -->
     <div class="order-form">
         <h3>Tambah Stok Barang Baru</h3>
-        <form id="addStockForm">
-            <label for="stockName">Nama Barang:</label>
-            <input type="text" id="stockName" required>
+        <form action="{{ route('stock.store') }}" method="POST">
+            @csrf
+            <label for="stock_type">Jenis Stok:</label>
+            <select id="stock_type" name="stock_type" required>
+                <option value="" selected disabled>Pilih jenis stok</option>
+                <option value="cloth">Kain</option>
+                <option value="thread">Benang</option>
+            </select>
         
-            <label for="stockQuantity">Jumlah Stok:</label>
-            <input type="number" id="stockQuantity" step="any" required>
+            <label for="stock_name">Nama Barang:</label>
+            <input type="text" id="stock_name" name="stock_name" required>
         
-            <label for="entryDate">Tanggal Masuk:</label>
-            <input type="date" id="entryDate" required>
+            <label for="quantity">Jumlah Stok:</label>
+            <input type="number" id="quantity" name="quantity" step="1" required>
         
             <button type="submit">Tambahkan Stok</button>
-        </form>                
+        </form>              
     </div>
 
     <!-- Tabel Stok Barang -->
@@ -40,14 +45,14 @@
             </thead>
             <tbody id="stockTableBody">
                 <!-- Baris stok barang akan ditambahkan di sini -->
-                @foreach ($stocks as $stock)
+                {{-- @foreach ($stocks as $stock)
                 <tr>
                 <td>{{$stock->stock_id}}</td>
                 <td>{{$stock->stock_name}}</td>
                 <td>{{$stock->quantity}}</td>
                 <td>{{$stock->last_updated}}</td>
             </tr>
-                @endforeach
+                @endforeach --}}
             </tbody>
         </table>
     </div>

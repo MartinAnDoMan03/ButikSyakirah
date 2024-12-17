@@ -10,7 +10,12 @@ class Stock extends Model
 
     protected $primaryKey = 'stock_id';
 
-    protected $keyType = 'int';
+    protected $fillable = [
+        'stock_type',
+        'stock_name',
+        'quantity',
+        'last_updated',
+    ];
 
-    protected $fillable = ['stock_name', 'quantity']; 
+    public $timestamps = false; 
 }
