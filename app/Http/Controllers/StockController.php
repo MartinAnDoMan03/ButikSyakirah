@@ -24,11 +24,11 @@ class StockController extends Controller
      */
     public function create()
     {
-            // Ambil semua data suppliers dari database
-    $suppliers = Supplier::all();
+        // Ambil semua data suppliers dari database
+        $suppliers = Supplier::all();
 
-    // Kirim data suppliers ke view
-    return view('kasir.stok_barang', compact('suppliers'));
+        // Kirim data suppliers ke view
+        return view('kasir.stok_barang', compact('suppliers'));
     }
 
     /**
@@ -50,8 +50,8 @@ class StockController extends Controller
             'last_updated' => Carbon::now(), // Tanggal hari ini otomatis
         ]);
 
-           // Attach supplier to the stock (pivot table)
-    $stock->suppliers()->attach($validatedData['supplier_id']);
+        // Attach supplier to the stock (pivot table)
+        $stock->suppliers()->attach($validatedData['supplier_id']);
         // Redirect atau memberi response
         return redirect()->back()->with('success', 'Stock added successfully!');
     }
@@ -66,8 +66,10 @@ class StockController extends Controller
     public function getStocks()
     {
         $stocks = Stock::all();
-        return view('kasir.stok_barang' , ['orders' => $stocks]);
+        $suppliers = Supplier::all();
+        return view('kasir.stok_barang', ['stocks' => $stocks], ['suppliers' => $suppliers]); 
     }
+
 
 
     public function deductStock(Request $request, $stockId)
@@ -93,7 +95,7 @@ class StockController extends Controller
         return response()->json(['message' => 'Stock added successfully!', 'stock' => $stock]);
     }
 
-    
+
     /**
      * Show the form for editing the specified resource.
      */

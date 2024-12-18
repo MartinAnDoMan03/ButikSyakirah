@@ -52,12 +52,12 @@ Route::get('/admin/customer', [AdminController::class, 'customer'])->name('admin
 
 Route::get('/kasir/data_customer', [KasirController::class, 'showCustomer'])->name('kasir.data_customer');
 Route::get('/kasir/data_pesanan', [KasirController::class, 'showDataPesanan'])->name('kasir.data_pesanan');
-Route::get('/kasir/stok_barang', [KasirController::class, 'showStockBarang'])->name('kasir.stok_barang');
+Route::get('/kasir/stok_barang', [StockController::class, 'getStocks'])->name('kasir.stok_barang');
 Route::get('/kasir/add_pesanan', [KasirController::class, 'addPesanan'])->name('kasir.add_pesanan');
 Route::post('/kasir/add_pesanan', [KasirController::class, 'store'])->name('kasir.store');
 Route::get('/kasir/riwayat_pesanan', [KasirController::class, 'showRiwayat'])->name('kasir.riwayat_pesanan');
 Route::post('/kasir/stok_barang', [StockController::class, 'store'])->name('stock.store');
-Route::get('/kasir/stok_barang', [StockController::class, 'create'])->name('stock.create');
+Route::get('/kasir/stok_barang/create', [StockController::class, 'create'])->name('stock.create');
 Route::post('/kasir/supplier', [SupplierController::class, 'store'])->name('supplier.store');
 Route::get('/kasir/supplier', [SupplierController::class, 'showSupplier'])->name('supplier.data');
 Route::post('/kasir/payment', [PaymentLogController::class, 'store'])->name('payment.store');
