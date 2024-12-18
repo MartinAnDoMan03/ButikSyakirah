@@ -45,9 +45,9 @@
         <label for="storeFabric">Kain Toko:</label>
         <select id="storeFabric" name="storeFabric">
             <option value="" disabled selected>Pilih Kain Toko</option>
-            <option value="katun">Katun - Rp 50,000/m</option>
-            <option value="sutra">Sutra - Rp 100,000/m</option>
-            <option value="wolfis">Wolfis - Rp 75,000/m</option>
+            <option value="katun">Katun - </option>
+            <option value="sutra">Sutra - </option>
+            <option value="wolfis">Wolfis - </option>
         </select>
     </div>
     <div>
@@ -83,58 +83,7 @@
     </div>
     </form>
 
-    <script>
-        const clothingDropdown = document.getElementById('clothingType');
-        const customPriceInput = document.getElementById('customPriceInput');
-        const manualPrice = document.getElementById('manualPrice');
-        const checkPriceButton = document.getElementById('checkPriceButton');
-        const priceDisplay = document.getElementById('priceDisplay');
 
-        // Menampilkan input manual jika "Custom" dipilih
-        clothingDropdown.addEventListener('change', () => {
-            if (clothingDropdown.value === 'custom') {
-                customPriceInput.style.display = 'block';
-            } else {
-                customPriceInput.style.display = 'none';
-                manualPrice.value = ''; // Reset input manual jika bukan custom
-            }
-        });
-
-        // Menangani tombol cek harga
-        checkPriceButton.addEventListener('click', () => {
-            const selectedValue = clothingDropdown.value;
-            let priceMessage = '';
-
-            if (selectedValue === '') {
-                priceMessage = "Silakan pilih jenis baju terlebih dahulu.";
-            } else if (selectedValue === 'custom') {
-                const customPrice = manualPrice.value;
-                if (customPrice) {
-                    priceMessage = `Harga Custom: Rp ${parseInt(customPrice).toLocaleString()}`;
-                } else {
-                    priceMessage = "Silakan masukkan harga untuk Custom.";
-                }
-            } else {
-                // Untuk opsi yang tidak custom, ambil harga dari database atau atur manual (contoh data)
-                const priceData = {
-                    'kemeja-lengan-panjang-pria': 150000,
-                    'kemeja-lengan-pendek-pria': 130000,
-                    'gamis-wanita': 200000,
-                    'rok-panjang-wanita': 120000,
-                    'rok-pendek-wanita': 100000,
-                    'kebaya': 250000,
-                    'kemeja-lengan-panjang-anak': 100000,
-                    'kemeja-lengan-pendek-anak': 80000,
-                    'gamis-anak': 150000,
-                    'jas': 500000
-                };
-
-                priceMessage = `Harga: Rp ${priceData[selectedValue].toLocaleString()}`;
-            }
-
-            priceDisplay.textContent = priceMessage;
-        });
-    </script>
 </body>
 
 </html>

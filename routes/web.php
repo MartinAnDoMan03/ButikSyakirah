@@ -63,7 +63,6 @@ Route::get('/kasir/supplier', [SupplierController::class, 'showSupplier'])->name
 Route::post('/kasir/payment', [PaymentLogController::class, 'store'])->name('payment.store');
 Route::get('/kasir/payment', [PaymentLogController::class, 'create'])->name('payment.create');
 Route::post('/kasir/size_detail', [SizeDetailController::class, 'store'])->name('size_detail.store');
-Route::get('/kasir/size_detail', [SizeDetailController::class, 'create'])->name('size_detail.create');
 
 Route::get('/penggunting/home', function () {
     return view('penggunting.home'); });
