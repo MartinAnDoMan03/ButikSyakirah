@@ -63,6 +63,13 @@ class StockController extends Controller
         //
     }
 
+    public function getStocks()
+    {
+        $stocks = Stock::all();
+        return view('kasir.stok_barang' , ['orders' => $stocks]);
+    }
+
+
     public function deductStock(Request $request, $stockId)
     {
         $stock = Stock::find($stockId);
@@ -76,16 +83,17 @@ class StockController extends Controller
     }
 
     public function addStock(Request $request)
-{
-    $stock = Stock::create([
-        'stock_type' => 'cloth',
-        'stock_name' => 'Cotton Fabric',
-        'quantity' => 50,
-    ]);
+    {
+        $stock = Stock::create([
+            'stock_type' => 'cloth',
+            'stock_name' => 'Cotton Fabric',
+            'quantity' => 50,
+        ]);
 
-    return response()->json(['message' => 'Stock added successfully!', 'stock' => $stock]);
-}
+        return response()->json(['message' => 'Stock added successfully!', 'stock' => $stock]);
+    }
 
+    
     /**
      * Show the form for editing the specified resource.
      */

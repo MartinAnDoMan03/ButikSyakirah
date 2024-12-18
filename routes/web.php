@@ -59,6 +59,7 @@ Route::get('/kasir/riwayat_pesanan', [KasirController::class, 'showRiwayat'])->n
 Route::post('/kasir/stok_barang', [StockController::class, 'store'])->name('stock.store');
 Route::get('/kasir/stok_barang', [StockController::class, 'create'])->name('stock.create');
 Route::post('/kasir/supplier', [SupplierController::class, 'store'])->name('supplier.store');
+Route::get('/kasir/supplier', [SupplierController::class, 'showSupplier'])->name('supplier.data');
 Route::post('/kasir/payment', [PaymentLogController::class, 'store'])->name('payment.store');
 Route::get('/kasir/payment', [PaymentLogController::class, 'create'])->name('payment.create');
 Route::post('/kasir/size_detail', [SizeDetailController::class, 'store'])->name('size_detail.store');
