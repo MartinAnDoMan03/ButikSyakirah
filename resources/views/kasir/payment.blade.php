@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Stok Barang')
+@section('title', 'Pembayaran')
 
 @section('content')
 
@@ -10,7 +10,7 @@
    
 
     <!-- Form Input untuk Menambah Stok Barang Baru -->
-    <div class="order-form" id="addStockForm"">
+    <div class="order-form" id="addStockForm">
         <h3>Form Pembayaran</h3>
         <form action="{{ route('payment.store') }}" method="POST">
             @csrf

@@ -12,15 +12,19 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\PaymentLogController;
+use App\Http\Controllers\SizeDetailController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/kasir/detail_ukuran', function () {
+    return view('/kasir/detail_ukuran');
+});
+
 Route::get('/kasir/supplier', function () {
     return view('/kasir/supplier');
 });
-
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -57,6 +61,8 @@ Route::get('/kasir/stok_barang', [StockController::class, 'create'])->name('stoc
 Route::post('/kasir/supplier', [SupplierController::class, 'store'])->name('supplier.store');
 Route::post('/kasir/payment', [PaymentLogController::class, 'store'])->name('payment.store');
 Route::get('/kasir/payment', [PaymentLogController::class, 'create'])->name('payment.create');
+Route::post('/kasir/size_detail', [SizeDetailController::class, 'store'])->name('size_detail.store');
+Route::get('/kasir/size_detail', [SizeDetailController::class, 'create'])->name('size_detail.create');
 
 Route::get('/penggunting/home', function () {
     return view('penggunting.home'); });

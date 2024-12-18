@@ -37,7 +37,8 @@
                 {{-- <li><a href="{{ url('/kasir/detail_pesanan') }}"><i class="zmdi zmdi-shopping-cart"></i> Detail pesanan</a></li> --}}
                 <li><a href="{{ url('/kasir/riwayat_pesanan') }}"><i class="zmdi zmdi-file-text"></i> Riwayat Pesanan</a></li>  
                 <li><a href="{{ url('/kasir/supplier') }}"><i class="zmdi zmdi-store"></i> Supplier</a></li>  
-                <li><a href="{{ url('/kasir/payment') }}"><i class="zmdi zmdi-store"></i> Pembayaran</a></li>            
+                <li><a href="{{ url('/kasir/payment') }}"><i class="zmdi zmdi-store"></i> Pembayaran</a></li>  
+                <li><a href="{{ url('/kasir/size_detail') }}"><i class="zmdi zmdi-store"></i> Detail Ukuran</a></li>             
             </ul>
         </aside>
         <!-- Main Content -->
