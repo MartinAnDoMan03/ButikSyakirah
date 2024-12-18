@@ -47,6 +47,13 @@ class SupplierController extends Controller
         return redirect()->back()->with('success', 'Stock added successfully!');
     }
 
+    public function showSupplier()
+    {
+        $suppliers = Supplier::all();
+        return view('kasir.supplier' , ['suppliers' => $suppliers]);
+    }
+
+
     /**
      * Display the specified resource.
      */

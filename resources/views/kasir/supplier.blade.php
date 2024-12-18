@@ -4,11 +4,11 @@
 
 @section('content')
 
-    <h1>Daftar Stok Barang</h1>
+    <h1>Daftar Supplier</h1>
 
     <!-- Form Input untuk Menambah Stok Barang Baru -->
     <div class="order-form">
-        <h3>Tambah Stok Barang Baru</h3>
+        <h3>Tambah Supplier Baru</h3>
         <form action="{{ route('supplier.store') }}" method="POST">
             @csrf
 
@@ -42,14 +42,14 @@
             </thead>
             <tbody id="stockTableBody">
                 <!-- Baris stok barang akan ditambahkan di sini -->
-                {{-- @foreach ($stocks as $stock)
+                 @foreach ($suppliers as $supplier)
                 <tr>
-                <td>{{$stock->stock_id}}</td>
-                <td>{{$stock->stock_name}}</td>
-                <td>{{$stock->quantity}}</td>
-                <td>{{$stock->last_updated}}</td>
+                <td>{{$supplier->supplier_id}}</td>
+                <td>{{$supplier->supplier_name}}</td>
+                <td>{{$supplier->contact_info}}</td>
+                <td>{{$supplier->address}}</td>
             </tr>
-                @endforeach --}}
+                @endforeach 
             </tbody>
         </table>
     </div>

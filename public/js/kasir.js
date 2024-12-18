@@ -98,12 +98,36 @@ function calculateTotalPrice() {
 
     totalPrice.value = total.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
 }
-
 // fungsi untuk menampilkan form detail pesanan
 function showDetailForm() {
     openDetailModal(); 
 }
 
 
+
+// Fungsi untuk membuka modal
+function openDetailUkuranModal() {
+    document.getElementById("detailUkuranModal").style.display = "block";
+}
+
+// Fungsi untuk menutup modal
+function closeDetailUkuranModal() {
+    document.getElementById("detailUkuranModal").style.display = "none";
+}
+
+// Menambahkan event listener pada tombol dengan kelas btn-detail-ukuran
+document.querySelectorAll('.btn-detail-ukuran').forEach(function(button) {
+    button.addEventListener('click', function(event) {
+        event.preventDefault(); // Mencegah tombol redirect
+        openDetailUkuranModal(); // Membuka modal
+    });
+});
+
+// Menambahkan event listener untuk menutup modal ketika klik di luar modal
+window.onclick = function(event) {
+    if (event.target == document.getElementById("detailUkuranModal")) {
+        closeDetailUkuranModal(); // Menutup modal jika klik di luar modal
+    }
+}
 
 

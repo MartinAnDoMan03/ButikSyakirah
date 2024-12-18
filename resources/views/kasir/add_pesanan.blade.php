@@ -63,13 +63,15 @@
 
             </div>
 
-            <label for="orderDate">Tanggal Order:</label>
-            <input type="date" id="orderDate" name="orderDate">
+            <div id="addOrders">
+                <label for="orderDate">Tanggal Order:</label>
+                <input type="date" id="orderDate" name="orderDate">
 
-            <label for="finishDate">Tanggal Selesai:</label>
-            <input type="date" id="finishDate" name="finishDate">
-            <div>
-                <button type="submit">Tambahkan Pesanan</button>
+                <label for="finishDate">Tanggal Selesai:</label>
+                <input type="date" id="finishDate" name="finishDate">
+                <div>
+                    <button type="submit">Tambahkan Pesanan</button>
+                </div>
             </div>
         </form>
     </div>
@@ -78,16 +80,20 @@
         function toggleCustomerForms(value) {
             const newCustomerForm = document.getElementById('newCustomerForm');
             const oldCustomerFormContainer = document.getElementById('oldCustomerFormContainer');
+            const orderDetails = document.getElementById('addOrders');
 
             // Hide both forms by default
             newCustomerForm.style.display = 'none';
             oldCustomerFormContainer.style.display = 'none';
+            addOrders.style.display = 'none';
 
             // Show the form based on the selected type
             if (value === 'new') {
                 newCustomerForm.style.display = 'block';
+                orderDetails.style.display = 'none';
             } else if (value === 'old') {
                 oldCustomerFormContainer.style.display = 'block';
+                addOrders.style.display = 'block';
             }
         }
     </script>
