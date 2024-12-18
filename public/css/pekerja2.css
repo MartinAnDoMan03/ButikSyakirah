@@ -292,6 +292,7 @@ body {
 table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed; /* Membagi kolom sama rata */
   background-color: white;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -479,6 +480,107 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #2980b9;
 }
+
+/* untuk tombol barang */
+.navigation-container {
+  margin-bottom: 20px; /* Memberikan jarak antara tombol dan elemen di bawahnya */
+  text-align: right; /* Mengatur posisi tombol ke kiri */
+}
+
+.navigation-container .btn {
+  display: inline-block;
+  padding: 10px 20px; /* Ukuran tombol */
+  background-color: #2b4053; /* Warna latar tombol (biru) */
+  color: #ffffff; /* Warna teks tombol (putih) */
+  text-decoration: none; /* Menghapus underline pada teks */
+  border-radius: 5px; /* Membuat sudut tombol melengkung */
+  font-size: 16px; /* Ukuran font */
+  font-weight: bold; /* Teks lebih tebal */
+  transition: background-color 0.3s ease; /* Animasi saat hover */
+}
+
+.navigation-container .btn:hover {
+  background-color: #3e5a75; /* Warna saat tombol di-hover */
+  text-decoration: none; /* Menghindari underline saat hover */
+}
+
+.navigation-container .btn:active {
+  background-color: #2b4053; /* Warna saat tombol ditekan */
+}
+
+
+#contentBarang {
+  display: none; /* Form awalnya disembunyikan */
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0 auto; /* Menjaga posisi tetap di tengah */
+  width: 300px; /* Menentukan lebar form */
+  max-width: 100%; /* Menghindari lebar form melebihi lebar layar */
+  /* Posisi form di kanan */
+  position: fixed; /* Tetap di posisi saat scroll */
+  top: 50%; /* Tengah secara vertikal */
+  right: 20px; /* Jarak dari sisi kanan halaman */
+  transform: translateY(-50%); /* Menengahkan form secara vertikal */
+  
+  z-index: 1000; /* Tetap di atas elemen lainnya */
+  /* top: 20%; Menempatkan form agak lebih tinggi di tengah halaman */
+}
+
+#contentBarang h2 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#contentBarang form {
+  display: flex;
+  flex-direction: column;
+}
+
+#contentBarang label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+#contentBarang select,
+#contentBarang input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+#contentBarang button {
+  background-color: #2b4053;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100%; /* Tombol lebar penuh */
+}
+
+#contentBarang button:hover {
+  background-color: #425e79;
+}
+  
+.status-dropdown {
+  padding: 5px;
+  background-color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  border: none; /* Menghilangkan garis/border */
+  outline: none; /* Menghilangkan garis fokus saat dropdown aktif */
+  appearance: none; /* Menghapus tampilan default browser */
+}
+
 
 /* Responsif - Pencarian menjadi lebih kecil pada layar kecil */
 @media (max-width: 768px) {
