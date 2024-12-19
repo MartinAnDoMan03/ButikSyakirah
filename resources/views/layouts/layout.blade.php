@@ -34,11 +34,9 @@
                 <li><a href="{{ url('/kasir/data_pesanan') }}"><i class="zmdi zmdi-shopping-cart"></i> Data Pesanan</a></li>
                 <li><a href="{{ url('/kasir/data_customer') }}"><i class="zmdi zmdi-accounts"></i> Data Customer</a></li>
                 <li><a href="{{ url('/kasir/stok_barang') }}"><i class="zmdi zmdi-store"></i> Stok Barang</a></li>
-                {{-- <li><a href="{{ url('/kasir/detail_pesanan') }}"><i class="zmdi zmdi-shopping-cart"></i> Detail pesanan</a></li> --}}
                 <li><a href="{{ url('/kasir/riwayat_pesanan') }}"><i class="zmdi zmdi-file-text"></i> Riwayat Pesanan</a></li>  
                 <li><a href="{{ url('/kasir/supplier') }}"><i class="zmdi zmdi-store"></i> Supplier</a></li>  
                 <li><a href="{{ url('/kasir/payment') }}"><i class="zmdi zmdi-store"></i> Pembayaran</a></li>  
-                <li><a href="{{ url('/kasir/size_detail') }}"><i class="zmdi zmdi-store"></i> Detail Ukuran</a></li>             
             </ul>
         </aside>
         <!-- Main Content -->
