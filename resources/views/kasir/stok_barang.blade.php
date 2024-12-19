@@ -51,24 +51,35 @@
     
         {{-- Form untuk menambah stok ke barang lama  --}}
         <div id="oldStockForm" style="display:none;">
-            <h3>Tambah Stok ke Barang Lama</h3>
             <form action="" method="POST">
                 @csrf
                 @method('PUT') 
+    
+                <!-- Dropdown untuk memilih stok barang -->
                 <label for="existing_stock_id">Pilih Barang:</label>
                 <select id="existing_stock_id" name="stock_id" required>
                     <option value="" selected disabled>Pilih Barang</option>
+                        <option value=""></option>
+                </select>
 
-                        <option value=""> stok tersedia</option>
-
+                {{-- Dropdown untuk Supplier --}}
+                <label for="supplier_id">Pilih Supplier:</label>
+                <select id="supplier_id" name="supplier_id" class="select2-supplier" required>
+                    <option value="" selected disabled>Pilih Supplier</option>
+                    @foreach ($suppliers as $supplier)
+                        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                    @endforeach
                 </select>
                 
+                <!-- Input untuk jumlah tambahan stok -->
                 <label for="additional_quantity">Jumlah Tambahan:</label>
                 <input type="number" id="additional_quantity" name="additional_quantity" step="1" required>
-    
+        
+                <!-- Tombol untuk menambahkan stok -->
                 <button type="submit">Tambahkan Stok</button>
             </form>
         </div>
+        
     </div>
     
 
@@ -100,20 +111,25 @@
             </tbody>
         </table>
     </div>
-    <script>
-        function toggleStockForms(value) {
-            const newStockForm = document.getElementById('newStockForm');
-            const oldStockForm = document.getElementById('oldStockForm');
 
-            newStockForm.style.display = 'none';
-            oldStockForm.style.display = 'none';
+    <script>       
+        $(document).ready(function() {
+            $('#existing_stock_id').select2({
+                placeholder: 'Cari Barang',
+                width: '100%',
+                theme: 'default',
+                allowClear: true
+            });
+        });
 
-            if (value === 'new') {
-                newStockForm.style.display = 'block';
-            } else if (value === 'old') {
-                oldStockForm.style.display = 'block'; 
-            }
-        }
- 
+        $(document).ready(function() {
+        $('.select2-supplier').select2({
+            placeholder: "Pilih Supplier",
+            width: '100%',
+            theme: 'default',
+            allowClear: true
+        });
+    });
+
     </script>
 @endsection

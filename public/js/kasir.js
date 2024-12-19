@@ -43,7 +43,7 @@ function updatePrice() {
     if (clothingType && prices[clothingType]) {
         priceInput.value = prices[clothingType].toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
     } else {
-        priceInput.value = "Harga Tidak Diketahui";
+        priceInput.value = "";
     }
 }
 
@@ -131,3 +131,52 @@ window.onclick = function(event) {
 }
 
 
+
+// js untuk customers forms
+function toggleCustomerForms(value) {
+    const newCustomerForm = document.getElementById('newCustomerForm');
+    const oldCustomerFormContainer = document.getElementById('oldCustomerFormContainer');
+    const orderDetails = document.getElementById('addOrders');
+
+    // Hide both forms by default
+    newCustomerForm.style.display = 'none';
+    oldCustomerFormContainer.style.display = 'none';
+    addOrders.style.display = 'none';
+
+    // Show the form based on the selected type
+    if (value === 'new') {
+        newCustomerForm.style.display = 'block';
+        orderDetails.style.display = 'none';
+    } else if (value === 'old') {
+        oldCustomerFormContainer.style.display = 'block';
+        addOrders.style.display = 'block';
+    }
+}
+
+// script select customer lama
+$(document).ready(function() {
+    // Mengaktifkan Select2 pada dropdown #oldCustomer
+    $('#oldCustomer').select2({
+        placeholder: 'Cari Customer',
+        width: '100%',
+        theme: 'default',
+        height: '50px',
+        allowClear: true  // Menambahkan tombol clear (kosongkan pilihan)
+    });
+});
+
+
+// js untuk stock forms
+function toggleStockForms(value) {
+    const newStockForm = document.getElementById('newStockForm');
+    const oldStockForm = document.getElementById('oldStockForm');
+
+    newStockForm.style.display = 'none';
+    oldStockForm.style.display = 'none';
+
+    if (value === 'new') {
+        newStockForm.style.display = 'block';
+    } else if (value === 'old') {
+        oldStockForm.style.display = 'block'; 
+    }
+}

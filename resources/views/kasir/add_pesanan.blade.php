@@ -50,18 +50,14 @@
             @csrf
             <div id="oldCustomerFormContainer" style="display:none;">
                 <label for="old_customer">Pilih Customer Lama</label>
-
-                {{-- <label for="customer_name">ID:</label>
-                <input type="text" id="oldeCustomer" name="customer_id" required><br><br> --}}
                 <select id="oldCustomer" name="customer_id" required>
                     <option value="">Pilih Customer</option>
                     @foreach ($orders as $customer)
                         <option value="{{ $customer->customer_id }}">{{ $customer->customer_name }}</option>
                     @endforeach
-
                 </select>
-
             </div>
+
 
             <div id="addOrders">
                 <label for="orderDate">Tanggal Order:</label>
@@ -76,25 +72,5 @@
         </form>
     </div>
 
-    <script>
-        function toggleCustomerForms(value) {
-            const newCustomerForm = document.getElementById('newCustomerForm');
-            const oldCustomerFormContainer = document.getElementById('oldCustomerFormContainer');
-            const orderDetails = document.getElementById('addOrders');
 
-            // Hide both forms by default
-            newCustomerForm.style.display = 'none';
-            oldCustomerFormContainer.style.display = 'none';
-            addOrders.style.display = 'none';
-
-            // Show the form based on the selected type
-            if (value === 'new') {
-                newCustomerForm.style.display = 'block';
-                orderDetails.style.display = 'none';
-            } else if (value === 'old') {
-                oldCustomerFormContainer.style.display = 'block';
-                addOrders.style.display = 'block';
-            }
-        }
-    </script>
 @endsection
