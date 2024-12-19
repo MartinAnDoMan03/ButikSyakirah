@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Stock;
 use App\Models\Supplier;
 use App\Http\Requests\StoreStockRequest;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UpdateStockRequest;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -41,17 +42,20 @@ class StockController extends Controller
             'stock_type' => 'required|string|in:cloth,thread',
             'stock_name' => 'required|string|max:255',
             'quantity' => 'required|integer',
+            'supplier_id' => 'required|integer|exists:suppliers,supplier_id', 
         ]);
 
         $stock = Stock::create([
             'stock_type' => $request->input('stock_type'),
             'stock_name' => $request->input('stock_name'),
             'quantity' => $request->input('quantity'),
-            'last_updated' => Carbon::now(), // Tanggal hari ini otomatis
+            'last_updated' => Carbon::now(), 
         ]);
 
-        // Attach supplier to the stock (pivot table)
-        $stock->suppliers()->attach($validatedData['supplier_id']);
+        DB::table('stock_suppliers')->insert([
+            'stock_id' => $stock->stock_id,
+            'supplier_id' => $validatedData['supplier_id'],
+        ]);
         // Redirect atau memberi response
         return redirect()->back()->with('success', 'Stock added successfully!');
     }

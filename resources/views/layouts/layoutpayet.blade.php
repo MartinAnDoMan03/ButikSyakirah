@@ -29,6 +29,6 @@
             @yield('content')
         </main>
     </div>
-
+    <script src="{{ asset('js/payet.js') }}"></script>
 </body>
 </html>

@@ -4,8 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-//changed
-
 return new class extends Migration
 {
     /**
@@ -13,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('seams', function (Blueprint $table) {
-            $table->integer('seam_id')->primary()->autoIncrement();
+        Schema::create('stocks_orders', function (Blueprint $table) {
+            $table->integer('stock_id');
             $table->integer('order_id');
-            $table->string('seam_name');
-            $table->string('cloth_type');
-            $table->string('seamer_name');
-            $table->integer('seam_size');
-            $table->integer('seam_price');
-            $table->integer('seam_status');
+            $table->foreign('stock_id')->references('stock_id')->on('stocks')->onDelete('restrict');
             $table->foreign('order_id')->references('order_id')->on('orders')->onDelete('restrict');
+            $table->primary(['stock_id', 'order_id']);
         });
     }
 
@@ -31,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('seams');
+        Schema::dropIfExists('stocks_orders');
     }
 };
