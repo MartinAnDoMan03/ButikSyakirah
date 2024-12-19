@@ -42,14 +42,14 @@ class StockController extends Controller
             'stock_type' => 'required|string|in:cloth,thread',
             'stock_name' => 'required|string|max:255',
             'quantity' => 'required|integer',
-            'supplier_id' => 'required|integer|exists:suppliers,supplier_id', 
+            'supplier_id' => 'required|integer|exists:suppliers,supplier_id',
         ]);
 
         $stock = Stock::create([
             'stock_type' => $request->input('stock_type'),
             'stock_name' => $request->input('stock_name'),
             'quantity' => $request->input('quantity'),
-            'last_updated' => Carbon::now(), 
+            'last_updated' => Carbon::now(),
         ]);
 
         DB::table('stock_suppliers')->insert([
@@ -71,7 +71,7 @@ class StockController extends Controller
     {
         $stocks = Stock::all();
         $suppliers = Supplier::all();
-        return view('kasir.stok_barang', ['stocks' => $stocks], ['suppliers' => $suppliers]); 
+        return view('kasir.stok_barang', ['stocks' => $stocks], ['suppliers' => $suppliers]);
     }
 
 
@@ -98,6 +98,24 @@ class StockController extends Controller
 
         return response()->json(['message' => 'Stock added successfully!', 'stock' => $stock]);
     }
+
+    public function updateStocks(Request $request)
+    {
+        $validatedData = $request->validate([
+            'stock_id' => 'required|integer|exists:stocks,stock_id',
+            'additional_quantity' => 'required|integer|min:1',
+        ]);
+
+        // Find the stock and update the quantity
+        $stock = Stock::findOrFail($validatedData['stock_id']);
+        $stock->quantity += $validatedData['additional_quantity'];
+        $stock->last_updated = now();
+        $stock->save();
+
+        return redirect()->back()->with('success', 'Stock updated successfully!');
+    }
+
+
 
 
     /**

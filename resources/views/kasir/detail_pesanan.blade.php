@@ -9,7 +9,7 @@
 
 <body>
     <div>
-        <form action="" method="POST">
+        <form action="{{ route('size_details.store') }}" method="POST">
             @csrf
             <label for="clothingType">Jenis Baju:</label>
             <select id="clothingType" name="clothingType">
@@ -43,11 +43,12 @@
     <!-- Pilih Kain Toko -->
     <div>
         <label for="storeFabric">Kain Toko:</label>
-        <select id="storeFabric" name="storeFabric">
-            <option value="" disabled selected>Pilih Kain Toko</option>
-            <option value="katun">Katun - </option>
-            <option value="sutra">Sutra - </option>
-            <option value="wolfis">Wolfis - </option>
+        <label for="store_fabric">Pilih Stok Kain:</label>
+        <select id="store_fabric" name="store_fabric" required>
+            <option value="" disabled selected>Pilih Stok</option>
+            @foreach ($stocks as $stock)
+                <option value="{{ $stock->stock_name }}">{{ $stock->stock_name }}</option>
+            @endforeach
         </select>
     </div>
     <div>

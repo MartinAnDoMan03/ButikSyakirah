@@ -40,6 +40,9 @@
                 <li><a href="{{ url('/kasir/riwayat_pesanan') }}"><i class="zmdi zmdi-file-text"></i> Riwayat Pesanan</a></li>  
                 <li><a href="{{ url('/kasir/supplier') }}"><i class="zmdi zmdi-store"></i> Supplier</a></li>  
                 <li><a href="{{ url('/kasir/payment') }}"><i class="zmdi zmdi-store"></i> Pembayaran</a></li>  
+                <li><a href="{{ route('order.report') }}"><i class="zmdi zmdi-file-text"></i> Laporan Pesanan</a></li>
+
+                
             </ul>
         </aside>
         <!-- Main Content -->

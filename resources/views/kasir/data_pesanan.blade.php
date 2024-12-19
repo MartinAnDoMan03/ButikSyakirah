@@ -37,9 +37,10 @@
                     <td>{{ number_format($order->price, 0, ',', '.') }}</td>
                     <td class="menu-buttons">
                         <!-- Tombol Edit -->
-                        <a href="{{ url('edit-pesanan/'.$order->order_id) }}" class="btn btn-edit" title="Edit">
+                        <a href="{{ route('orders.edit', $order->order_id) }}" class="btn btn-edit" title="Edit">
                             <i class="fa fa-edit"></i>
                         </a>
+                        
                     
                         <!-- Tombol Add Detail Pesanan -->
                         <a href="javascript:void(0)" class="btn btn-add-detail" title="Add Detail Pesanan" onclick="openDetailModal()">
@@ -170,43 +171,44 @@
                     <th>Nilai (cm)</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="sizeDetailsTable">
                 <tr>
                     <td><strong>Lingkar Dada</strong></td>
-                    <td> cm</td>
+                    <td id="lingkarDada">-</td>
                 </tr>
                 <tr>
                     <td><strong>Lingkar Pinggang</strong></td>
-                    <td> cm</td>
+                    <td id="lingkarPinggang">-</td>
                 </tr>
                 <tr>
                     <td><strong>Lingkar Lengan</strong></td>
-                    <td> cm</td>
+                    <td id="lingkarLengan">-</td>
                 </tr>
                 <tr>
                     <td><strong>Panjang Tangan</strong></td>
-                    <td> cm</td>
+                    <td id="panjangTangan">-</td>
                 </tr>
                 <tr>
                     <td><strong>Lebar Bahu</strong></td>
-                    <td> cm</td>
+                    <td id="lebarBahu">-</td>
                 </tr>
                 <tr>
                     <td><strong>Pinggul</strong></td>
-                    <td> cm</td>
+                    <td id="pinggul">-</td>
                 </tr>
                 <tr>
                     <td><strong>Lingkar Pergelangan</strong></td>
-                    <td> cm</td>
+                    <td id="lingkarPergelangan">-</td>
                 </tr>
                 <tr>
                     <td><strong>Panjang Baju</strong></td>
-                    <td> cm</td>
+                    <td id="panjangBaju">-</td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
+
 
 
 

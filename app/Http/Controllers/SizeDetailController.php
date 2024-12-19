@@ -22,12 +22,12 @@ class SizeDetailController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-{
-    $orders = Order::all();
+    {
+        $orders = Order::all();
 
-    // Kirim data suppliers ke view
-    return view('kasir.size_detail', compact('orders'));
-}
+        // Kirim data suppliers ke view
+        return view('kasir.size_detail', compact('orders'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -45,16 +45,16 @@ class SizeDetailController extends Controller
             'arm_length' => 'required|integer',
         ]);
 
-        $size_details = Size_detail ::create([
-        'order_id' => $validatedData['order_id'],
-        'waist_circumference' => $validatedData['waist_circumference'],
-        'arm_circumference' => $validatedData['arm_circumference'],
-        'body_height' => $validatedData['body_height'],
-        'shoulder_width' => $validatedData['shoulder_width'],
-        'chest_circumference' => $validatedData['chest_circumference'],
-        'arm_length' => $validatedData['arm_length'],
-    ]);
-    
+        $size_details = Size_detail::create([
+            'order_id' => $validatedData['order_id'],
+            'waist_circumference' => $validatedData['waist_circumference'],
+            'arm_circumference' => $validatedData['arm_circumference'],
+            'body_height' => $validatedData['body_height'],
+            'shoulder_width' => $validatedData['shoulder_width'],
+            'chest_circumference' => $validatedData['chest_circumference'],
+            'arm_length' => $validatedData['arm_length'],
+        ]);
+
         // Redirect atau memberikan response
         return redirect()->back()->with('success', 'Payment added successfully!');
     }

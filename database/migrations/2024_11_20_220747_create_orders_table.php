@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('customer_id');
             $table->date('order_date');
             $table->date('completion_date')->nullable();
-            $table->enum('status', ['Diproses', 'Selesai', 'Dibatalkan'])->default('Diproses');
+            $table->enum('status', ['Diproses', 'Selesai_Dikerjakan','Selesai', 'Dibatalkan'])->default('Diproses');
             $table->foreign('customer_id')->references('customer_id')->on('customers')->onDelete('restrict');
         });
         

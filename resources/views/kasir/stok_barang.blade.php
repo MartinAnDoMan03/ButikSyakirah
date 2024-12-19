@@ -51,7 +51,8 @@
     
         {{-- Form untuk menambah stok ke barang lama  --}}
         <div id="oldStockForm" style="display:none;">
-            <form action="" method="POST">
+            <h3>Tambah Stok ke Barang Lama</h3>
+            <form action="{{ route('stocks.update') }}" method="POST">
                 @csrf
                 @method('PUT') 
     

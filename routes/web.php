@@ -58,6 +58,7 @@ Route::get('/kasir/add_pesanan', [KasirController::class, 'addPesanan'])->name('
 Route::post('/kasir/add_pesanan', [KasirController::class, 'store'])->name('kasir.store');
 Route::get('/kasir/riwayat_pesanan', [KasirController::class, 'showRiwayat'])->name('kasir.riwayat_pesanan');
 Route::post('/kasir/stok_barang', [StockController::class, 'store'])->name('stock.store');
+Route::put('/kasir/update_stock', [StockController::class, 'updateStocks'])->name('stocks.update');
 Route::get('/kasir/stok_barang/create', [StockController::class, 'create'])->name('stock.create');
 Route::post('/kasir/supplier', [SupplierController::class, 'store'])->name('supplier.store');
 Route::get('/kasir/supplier', [SupplierController::class, 'showSupplier'])->name('supplier.data');
@@ -75,10 +76,17 @@ Route::get('/penggunting/data_pesanan', function () {
 Route::post('/kasir/add_pesanan', [CustomerController::class, 'store'])->name('customer.store');
 
 Route::get('/kasir/add_pesanan', [CustomerController::class, 'getCustomers']);
+Route::get('/edit-pesanan/{order_id}', [OrderController::class, 'edit'])->name('orders.edit');
+Route::put('/edit-pesanan/{order_id}', [OrderController::class, 'update'])->name('orders.edit');
+
 
 // route order
 // Route::get('/orders/{orderId}/faktur', [OrderController::class, 'createFaktur'])->name('faktur');
 Route::post('/kasir/add_pesanan/order_store', [OrderController::class, 'store'])->name('order.store');
 Route::get('/order/add_details/{id}', [OrderController::class, 'add_detail'])->name('order.add_detail');
 Route::get('/orders/{orderId}/faktur', [OrderController::class, 'createFaktur'])->name('createFaktur');
-
+Route::get('/generate-order-report', [OrderController::class, 'generateOrderReport'])->name('report.generate');
+Route::get('/sizes/{order_id}', [OrderController::class, 'getSizeDetails']);
+Route::get('/kasir/order_report', function () {
+    return view('kasir.order_report');
+})->name('order.report');

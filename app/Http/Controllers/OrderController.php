@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Customer;
+use App\Models\Size_detail;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreOrderRequest;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UpdateOrderRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class OrderController extends Controller
 {
@@ -28,35 +31,35 @@ class OrderController extends Controller
     }
 
     public function addPesanan()
-{
-    // Ambil data customer dari database
-    $customers = Customer::all(); 
+    {
+        // Ambil data customer dari database
+        $customers = Customer::all();
 
-    // Kirim data ke view
-    return view('kasir.add_pesanan', compact('customers'));
-}
+        // Kirim data ke view
+        return view('kasir.add_pesanan', compact('customers'));
+    }
 
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $validated = $request->validate([
-        'customer_id' => 'required|exists:customers,customer_id',
-        'orderDate' => 'required|date',
-        'finishDate' => 'nullable|date|after_or_equal:orderDate',
-    ]);
-    
-    Order::create([
-        'customer_id' => $validated['customer_id'],
-        'order_date' => $validated['orderDate'],
-        'completion_date' => $validated['finishDate'],
-        'status' => $request->input('status', 'Diproses') 
-    ]);
-    
-    return redirect()->route('kasir.data_pesanan')->with('success', 'Pesanan berhasil ditambahkan.');
-}
+    {
+        $validated = $request->validate([
+            'customer_id' => 'required|exists:customers,customer_id',
+            'orderDate' => 'required|date',
+            'finishDate' => 'nullable|date|after_or_equal:orderDate',
+        ]);
+
+        Order::create([
+            'customer_id' => $validated['customer_id'],
+            'order_date' => $validated['orderDate'],
+            'completion_date' => $validated['finishDate'],
+            'status' => $request->input('status', 'Diproses')
+        ]);
+
+        return redirect()->route('kasir.data_pesanan')->with('success', 'Pesanan berhasil ditambahkan.');
+    }
 
 
 
@@ -73,15 +76,16 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Order $order)
+    public function edit($order_id)
     {
-        // 
-    }
+        $order = Order::findOrFail($order_id);
 
+        return view('kasir.edit_pesanan', compact('order'));
+    }
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateOrderRequest $request, Order $order)
+    public function update(Request $request, Order $order_id)
     {
         $validated = $request->validate([
             'customer_id' => 'required|integer|exists:customers,id',
@@ -90,6 +94,14 @@ class OrderController extends Controller
             'total_price' => 'required|numeric|min:0',
             'status' => 'required|string|max:255',
         ]);
+        // Find the order by ID
+        $order = Order::findOrFail($order_id);
+
+        // Update the order details
+        $order->update($validated);
+
+        // Redirect or return a response
+        return redirect()->route('kasir.edit_pesanan', $order->order_id)->with('success', 'Order updated successfully!');
 
     }
 
@@ -108,4 +120,48 @@ class OrderController extends Controller
 
         return view('kasir.faktur', compact('order'));
     }
+
+
+    public function generateOrderReport(Request $request)
+    {
+        $request->validate([
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+        ]);
+
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+
+        $orders = DB::select('CALL GenerateOrderReport(?, ?)', [$start_date, $end_date]);
+
+        if ($request->has('print_pdf')) {
+            $pdf = Pdf::loadView('order_report_pdf', compact('orders', 'start_date', 'end_date'));
+            return $pdf->download('Order_Report_' . now()->format('Ymd') . '.pdf');
+        }
+
+        return view('order_report', compact('orders', 'start_date', 'end_date'));
+    }
+
+
+    public function getSizeDetails($order_id)
+    {
+        $sizes = Size_detail::where('order_id', $order_id)->first();
+
+        if (!$sizes) {
+            return response()->json(['message' => 'No sizes found'], 404);
+        }
+
+        return response()->json([
+            'lingkar_dada' => $sizes->chest_circumference,
+            'lingkar_pinggang' => $sizes->waist_circumference,
+            'lingkar_lengan' => $sizes->arm_circumference,
+            'panjang_tangan' => $sizes->arm_length,
+            'lebar_bahu' => $sizes->shoulder_width,
+            'pinggul' => $sizes->pinggul,
+            'lingkar_pergelangan' => $sizes->lingkar_pergelangan,
+            'panjang_baju' => $sizes->panjang_baju,
+        ]);
+    }
+
+    
 }
