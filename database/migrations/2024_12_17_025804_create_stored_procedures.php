@@ -32,8 +32,6 @@ return new class extends Migration {
             order_details od ON o.order_id = od.order_id
         WHERE 
             o.order_date BETWEEN start_date AND end_date
-        GROUP BY 
-            o.order_id
         ORDER BY 
             o.order_date;
     END
@@ -48,7 +46,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('stored_procedures');
         DB::unprepared('DROP PROCEDURE IF EXISTS GenerateOrderReport');
     }
 };

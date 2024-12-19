@@ -128,18 +128,18 @@ class OrderController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
         ]);
-
+        
         $start_date = $request->input('start_date');
         $end_date = $request->input('end_date');
-
+        
         $orders = DB::select('CALL GenerateOrderReport(?, ?)', [$start_date, $end_date]);
 
         if ($request->has('print_pdf')) {
-            $pdf = Pdf::loadView('order_report_pdf', compact('orders', 'start_date', 'end_date'));
+            $pdf = Pdf::loadView('kasir.order_report_pdf', compact('orders', 'start_date', 'end_date'));
             return $pdf->download('Order_Report_' . now()->format('Ymd') . '.pdf');
         }
 
-        return view('order_report', compact('orders', 'start_date', 'end_date'));
+        return view('kasir.order_report', compact('orders', 'start_date', 'end_date'));
     }
 
 

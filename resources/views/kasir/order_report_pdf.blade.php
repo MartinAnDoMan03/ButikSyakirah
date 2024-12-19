@@ -41,12 +41,12 @@
         <tbody>
             @foreach($orders as $order)
                 <tr>
-                    <td>{{ $order->order_id }}</td>
-                    <td>{{ $order->customer_name }}</td>
-                    <td>{{ $order->order_date }}</td>
-                    <td>{{ $order->completion_date }}</td>
-                    <td>{{ $order->status }}</td>
-                    <td>{{ number_format($order->total_price, 0, ',', '.') }}</td>
+                    <td>{{ $order->{'Order ID'} }}</td>
+                    <td>{{ $order->{'Customer Name'} }}</td>
+                    <td>{{ $order->{'Order Date'} }}</td>
+                    <td>{{ $order->{'Completion Date'} }}</td>
+                    <td>{{ $order->{'Order Status'} }}</td>
+                    <td>{{ number_format($order->{'Total Price'}, 0, ',', '.') }}</td>
                 </tr>
             @endforeach
         </tbody>
