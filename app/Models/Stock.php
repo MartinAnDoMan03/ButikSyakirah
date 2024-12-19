@@ -20,19 +20,6 @@ class Stock extends Model
 
     public $timestamps = false;
 
-    // Relationship with Inventory Logs
-    public function logs()
-    {
-        return $this->hasMany(Inventory_Log::class, 'stock_id');
-    }
-
-    // Relationship with Suppliers
-    public function suppliers()
-    {
-        return $this->belongsToMany(Supplier::class, 'stock_suppliers', 'stock_id', 'supplier_id');
-    }
-
-
 
     protected static function booted()
     {
