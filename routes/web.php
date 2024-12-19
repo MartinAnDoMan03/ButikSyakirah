@@ -77,7 +77,7 @@ Route::post('/kasir/add_pesanan', [CustomerController::class, 'store'])->name('c
 
 Route::get('/kasir/add_pesanan', [CustomerController::class, 'getCustomers']);
 Route::get('/edit-pesanan/{order_id}', [OrderController::class, 'edit'])->name('orders.edit');
-Route::put('/edit-pesanan/{order_id}', [OrderController::class, 'update'])->name('orders.edit');
+Route::put('/edit-pesanan/{order_id}', [OrderController::class, 'update'])->name('orders.update');
 
 
 // route order

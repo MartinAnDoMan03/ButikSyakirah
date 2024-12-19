@@ -7,7 +7,7 @@
     <h1>Edit Pesanan</h1>
 
     <!-- Order Edit Form -->
-    <form action="{{ url('edit_pesanan/'.$order->order_id) }}" method="POST">
+    <form action="{{ route('orders.update', $order->order_id) }}" method="POST">
         @csrf
         @method('PUT')
 

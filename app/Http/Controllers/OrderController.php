@@ -85,25 +85,25 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Order $order_id)
+    public function update(Request $request, $order_id)
     {
         $validated = $request->validate([
-            'customer_id' => 'required|integer|exists:customers,id',
+            'customer_id' => 'required|integer|exists:customers,customer_id',
             'order_date' => 'required|date',
             'completion_date' => 'nullable|date|after_or_equal:order_date',
-            'total_price' => 'required|numeric|min:0',
             'status' => 'required|string|max:255',
         ]);
-        // Find the order by ID
+
+        // Find the order by its primary key
         $order = Order::findOrFail($order_id);
 
         // Update the order details
         $order->update($validated);
 
         // Redirect or return a response
-        return redirect()->route('kasir.edit_pesanan', $order->order_id)->with('success', 'Order updated successfully!');
-
+        return redirect()->route('kasir.data_pesanan')->with('success', 'Order updated successfully!');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -163,5 +163,5 @@ class OrderController extends Controller
         ]);
     }
 
-    
+
 }
