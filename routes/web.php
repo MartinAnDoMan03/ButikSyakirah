@@ -45,6 +45,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::get('/admin/pengguna', [AdminController::class, 'pengguna'])->name('admin.pengguna');
+Route::put('/admin/pengguna', [AdminController::class, 'updateUser'])->name('user.update');
 Route::get('/admin/riwayatPesanan', [AdminController::class, 'riwayatPesanan'])->name('admin.riwayatPesanan');
 Route::get('/admin/stokBarang', [AdminController::class, 'stokBarang'])->name('admin.stokBarang');
 Route::get('/admin/customer', [AdminController::class, 'customer'])->name('admin.customer');

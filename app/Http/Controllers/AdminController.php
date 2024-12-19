@@ -14,14 +14,14 @@ class AdminController extends Controller
     public function pengguna()
     {
         $users = User::all();
-        return view('admin.pengguna', ['users'=>$users]);
+        return view('admin.pengguna', ['users' => $users]);
     }
 
     // Menampilkan halaman Riwayat Pesanan
     public function riwayatPesanan()
     {
         $orders = Order::all();
-        return view('admin.riwayatPesanan' , ['orders' => $orders]);
+        return view('admin.riwayatPesanan', ['orders' => $orders]);
     }
 
     // Menampilkan halaman Stok Barang
@@ -34,6 +34,27 @@ class AdminController extends Controller
     {
         $customers = Customer::all();
         return view('admin.customer', ['customers' => $customers]);
+    }
+
+    // Update User
+    public function updateUser(Request $request)
+    {
+        $validated = $request->validate([
+            'user_id' => 'required|exists:users,user_id',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+            'role' => 'required|in:kasir,penggunting,penjahit,pemayet',
+        ]);
+
+        $user = User::find($request->user_id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone_number = $request->phone;
+        $user->role = $request->role;
+        $user->save();
+
+        return redirect()->route('admin.pengguna')->with('success', 'User updated successfully.');
     }
 }
 
