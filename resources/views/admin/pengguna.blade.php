@@ -45,7 +45,7 @@
             <span class="close-btn" onclick="closeEditUserModal()">&times;</span>
 
             <h2>Edit Pengguna</h2>
-            <form action="{{ route('user.update') }}" method="POST">
+            <form  class="detail-form" action="{{ route('user.update') }}" method="POST">
                 @csrf
                 @method('PUT')
                 <input type="hidden" id="edit_user_id" name="user_id">
@@ -85,7 +85,7 @@
                 </div>
 
                 <div style="margin-top: 20px;">
-                    <button type="submit" class="btn btn-save">Simpan</button>
+                    <button type="submit" class="sv-detail">Simpan</button>
                 </div>
             </form>
         </div>
