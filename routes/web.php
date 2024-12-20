@@ -48,6 +48,9 @@ Route::get('/admin/pengguna', [AdminController::class, 'pengguna'])->name('admin
 Route::put('/admin/pengguna', [AdminController::class, 'updateUser'])->name('user.update');
 Route::get('/admin/riwayatPesanan', [AdminController::class, 'riwayatPesanan'])->name('admin.riwayatPesanan');
 Route::get('/admin/stokBarang', [AdminController::class, 'stokBarang'])->name('admin.stokBarang');
+Route::post('/admin/stokBarang', [AdminController::class, 'store'])->name('admin.store');
+Route::post('/admin/supplier', [AdminController::class, 'addSupplier'])->name('admin.store');
+Route::get('/admin/supplier', [AdminController::class, 'showSupplier'])->name('admin.data');
 Route::get('/admin/customer', [AdminController::class, 'customer'])->name('admin.customer');
 Route::get('/admin/inventory_log', [AdminController::class, 'inventory_log'])->name('admin.inventory_log');
 Route::get('/admin/payment_log', [AdminController::class, 'payment_log'])->name('admin.payment_log');
