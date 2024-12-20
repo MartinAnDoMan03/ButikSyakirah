@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Stock;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\pdf;
 
 class KasirController extends Controller
 {

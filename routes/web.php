@@ -48,7 +48,13 @@ Route::get('/admin/pengguna', [AdminController::class, 'pengguna'])->name('admin
 Route::put('/admin/pengguna', [AdminController::class, 'updateUser'])->name('user.update');
 Route::get('/admin/riwayatPesanan', [AdminController::class, 'riwayatPesanan'])->name('admin.riwayatPesanan');
 Route::get('/admin/stokBarang', [AdminController::class, 'stokBarang'])->name('admin.stokBarang');
+Route::post('/admin/stokBarang', [AdminController::class, 'store'])->name('admin.store');
+Route::post('/admin/supplier', [AdminController::class, 'addSupplier'])->name('admin.store');
+Route::get('/admin/supplier', [AdminController::class, 'showSupplier'])->name('admin.data');
 Route::get('/admin/customer', [AdminController::class, 'customer'])->name('admin.customer');
+Route::get('/admin/inventory_log', [AdminController::class, 'inventory_log'])->name('admin.inventory_log');
+Route::get('/admin/payment_log', [AdminController::class, 'payment_log'])->name('admin.payment_log');
+Route::get('/admin/order_log', [AdminController::class, 'order_log'])->name('admin.order_log');
 
 
 Route::get('/kasir/data_customer', [KasirController::class, 'showCustomer'])->name('kasir.data_customer');
@@ -84,9 +90,14 @@ Route::put('/edit-pesanan/{order_id}', [OrderController::class, 'update'])->name
 // Route::get('/orders/{orderId}/faktur', [OrderController::class, 'createFaktur'])->name('faktur');
 Route::post('/kasir/add_pesanan/order_store', [OrderController::class, 'store'])->name('order.store');
 Route::get('/order/add_details/{id}', [OrderController::class, 'add_detail'])->name('order.add_detail');
-Route::get('/orders/{orderId}/faktur', [OrderController::class, 'createFaktur'])->name('createFaktur');
+// Route::get('/orders/{orderId}/faktur', [OrderController::class, 'createFaktur'])->name('createFaktur');
 Route::get('/generate-order-report', [OrderController::class, 'generateOrderReport'])->name('report.generate');
 Route::get('/sizes/{order_id}', [OrderController::class, 'getSizeDetails']);
 Route::get('/kasir/order_report', function () {
     return view('kasir.order_report');
 })->name('order.report');
+
+Route::get('/kasir/sales_report', function () {
+    return view('kasir.sales_report');
+})->name('sales.report');
+Route::get('/generate-sales-report', [OrderController::class, 'generateSalesReport'])->name('sales.report.generate');

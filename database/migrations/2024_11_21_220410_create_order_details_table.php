@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('order_type');
             $table->integer('customer_cloth')->nullable();
             $table->integer('store_cloth')->nullable();
-            $table->string('sequin')->nullable();
+            $table->enum('sequin', ['yes', 'no']);
             $table->integer('price')->nullable();
             $table->text('note')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP')); 

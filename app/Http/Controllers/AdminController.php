@@ -5,8 +5,13 @@ use App\Models\Customer;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Stock;
-
+use App\Models\Order_log;
+use App\Models\Payment_log;
+use App\Models\Inventory_log;
+use App\Models\Supplier;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -26,14 +31,37 @@ class AdminController extends Controller
 
     // Menampilkan halaman Stok Barang
     public function stokBarang()
-    {
-        $stocks = Stock::all();
-        return view('admin.stokBarang', ['stocks' => $stocks]);
-    }
+{
+    $stocks = Stock::all();
+    $suppliers = Supplier::all(); // Tambahkan query untuk mendapatkan data supplier
+    return view('admin.stokBarang', [
+        'stocks' => $stocks,
+        'suppliers' => $suppliers, // Kirim data supplier ke view
+    ]);
+}
+
     public function customer()
     {
         $customers = Customer::all();
         return view('admin.customer', ['customers' => $customers]);
+    }
+
+    public function inventory_log()
+    {
+        $inventory_logs = Inventory_log::all();
+        return view('admin.inventory_log', ['inventory_logs' => $inventory_logs]);
+    }
+
+    public function payment_log()
+    {
+        $payment_logs = Payment_log::all();
+        return view('admin.payment_log', ['payment_logs' => $payment_logs]);
+    }
+
+    public function order_log()
+    {
+        $order_logs = Order_log::all();
+        return view('admin.order_log', ['order_logs' => $order_logs]);
     }
 
     // Update User
@@ -61,5 +89,55 @@ class AdminController extends Controller
     return redirect()->route('admin.pengguna')->with('success', 'User updated successfully.');
 }
 
+public function addSupplier(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            'supplier_name' => 'required|string|max:255',
+            'contact_info' => 'required|string|max:255',
+            'address' => 'required|string',
+        ]);
+
+        $suppliers = Supplier::create([
+            'supplier_name' => $request->input('supplier_name'),
+            'contact_info' => $request->input('contact_info'),
+            'address' => $request->input('address'),
+        ]);
+
+        // Redirect atau memberi response
+        return redirect()->back()->with('success', 'Stock added successfully!');
+    }
+
+public function showSupplier()
+{
+    $suppliers = Supplier::all();
+    return view('admin.supplier' , ['suppliers' => $suppliers]);
 }
 
+// Store method
+public function store(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            'stock_type' => 'required|string|in:cloth,thread',
+            'stock_name' => 'required|string|max:255',
+            'quantity' => 'required|integer',
+            'supplier_id' => 'required|integer|exists:suppliers,id', // Change supplier_id to id
+        ]);
+
+        $stock = Stock::create([
+            'stock_type' => $request->input('stock_type'),
+            'stock_name' => $request->input('stock_name'),
+            'quantity' => $request->input('quantity'),
+            'last_updated' => Carbon::now(),
+        ]);
+
+        DB::table('stock_suppliers')->insert([
+            'stock_id' => $stock->stock_id,
+            'supplier_id' => $validatedData['supplier_id'],
+        ]);
+        // Redirect atau memberi response
+        return redirect()->back()->with('success', 'Stock added successfully!');
+    }
+
+}

@@ -15,29 +15,30 @@
     <!-- Form Input untuk Menambah Stok Barang Baru -->
     <div class="order-form" id="addStockForm" style="display: none;">
         <h3>Tambah Stok Barang Baru</h3>
-        <form action="{{ route('stock.store') }}" method="POST">
+        <form action="{{ route('admin.store') }}" method="POST">
+            @csrf
             <label for="supplier_id">Supplier:</label>
-            <select id="supplier_id" name="supplier_id" required>
-                <option value="" selected disabled>Pilih Supplier</option>
-            </select>
-
-            <label for="stockType">Jenis Barang:</label>
-            <select id="stockType" required>
-                <option value="" selected disabled>Pilih jenis barang</option>
-                <option value="cloth">Kain</option>
-                <option value="thread">Benang</option>
-            </select>
-
-            <label for="stockName">Nama Barang:</label>
-            <input type="text" id="stock_name" name="stock_name" required>
-        
-            <label for="quantityLabel" id="quantityLabel">Jumlah Stok:</label>
-            <input type="number" id="quantity" name="quantity" step="1" required>
-        
-            <!-- <label for="entryDate">Tanggal Masuk:</label>
-            <input type="date" id="entryDate" required> -->
-        
-            <button type="submit">Tambahkan Stok</button>
+                <select id="supplier_id" name="supplier_id" >
+                    <option value="" selected disabled>Pilih Supplier</option>
+                    @foreach ($suppliers as $supplier)
+                        <option value="{{ $supplier->supplier_id }}">{{ $supplier->supplier_name }}</option>
+                    @endforeach
+                </select>
+    
+                <label for="stock_type">Jenis Barang:</label>
+                <select id="stock_type" name="stock_type" required>
+                    <option value="" selected disabled>Pilih jenis barang</option>
+                    <option value="cloth">Kain</option>
+                    <option value="thread">Benang</option>
+                </select>
+    
+                <label for="stock_name">Nama Barang:</label>
+                <input type="text" id="stock_name" name="stock_name" required>
+    
+                <label for="quantity">Jumlah Stok:</label>
+                <input type="number" id="quantity" name="quantity" step="1" required>
+    
+                <button type="submit">Tambahkan stok</button>
         </form>                
     </div>
 
