@@ -95,4 +95,3 @@ Route::get('/kasir/order_report', function () {
     return view('kasir.order_report');
 })->name('order.report');
 Route::post('/generate-invoice', [KasirController::class, 'generateInvoice'])->name('generate.invoice');
-Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
