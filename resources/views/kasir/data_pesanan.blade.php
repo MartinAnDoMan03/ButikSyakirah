@@ -99,9 +99,9 @@
                 <label for="storeFabric">Kain Toko:</label>
                 <select id="storeFabric" name="storeFabric" onchange="updateFabricPrice()">
                     <option value="" disabled selected>Pilih Kain Toko</option>
-                    <option value="katun">Katun - Rp 50,000/m</option>
-                    <option value="sutra">Sutra - Rp 100,000/m</option>
-                    <option value="wolfis">Wolfis - Rp 75,000/m</option>
+                    <option value="katun">Katun </option>
+                    <option value="sutra">Sutra </option>
+                    <option value="wolfis">Wolfis</option>
                 </select>
             </div>
 
@@ -208,7 +208,9 @@
     </div>
 </div>
 
-
+<script>
+    
+</script>
 
 
 @endsection
