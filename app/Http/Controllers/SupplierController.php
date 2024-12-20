@@ -38,9 +38,9 @@ class SupplierController extends Controller
         ]);
 
         $suppliers = Supplier::create([
-            'supplier_name' => $request->input('supplier_name'),
-            'contact_info' => $request->input('contact_info'),
-            'address' => $request->input('address'),
+            'supplier_name' => $validatedData['supplier_name'],
+            'contact_info' => $validatedData['contact_info'],
+            'address' => $validatedData['address']
         ]);
 
         // Redirect atau memberi response

@@ -122,13 +122,13 @@ public function store(Request $request)
             'stock_type' => 'required|string|in:cloth,thread',
             'stock_name' => 'required|string|max:255',
             'quantity' => 'required|integer',
-            'supplier_id' => 'required|integer|exists:suppliers,id', // Change supplier_id to id
+            'supplier_id' => 'required|integer',
         ]);
 
         $stock = Stock::create([
-            'stock_type' => $request->input('stock_type'),
-            'stock_name' => $request->input('stock_name'),
-            'quantity' => $request->input('quantity'),
+            'stock_type' => $validatedData['stock_type'],
+            'stock_name' => $validatedData['stock_name'],
+            'quantity' => $validatedData['quantity'],
             'last_updated' => Carbon::now(),
         ]);
 
