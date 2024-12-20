@@ -10,6 +10,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        DB::unprepared("DROP FUNCTION IF EXISTS CalculateTotalSales");
         DB::unprepared("
             CREATE FUNCTION CalculateTotalSales(
     start_date DATE, 

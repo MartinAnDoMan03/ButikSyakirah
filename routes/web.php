@@ -13,7 +13,6 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\PaymentLogController;
 use App\Http\Controllers\SizeDetailController;
-use App\Http\Controllers\InvoiceController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -88,10 +87,14 @@ Route::put('/edit-pesanan/{order_id}', [OrderController::class, 'update'])->name
 // Route::get('/orders/{orderId}/faktur', [OrderController::class, 'createFaktur'])->name('faktur');
 Route::post('/kasir/add_pesanan/order_store', [OrderController::class, 'store'])->name('order.store');
 Route::get('/order/add_details/{id}', [OrderController::class, 'add_detail'])->name('order.add_detail');
-Route::get('/orders/{orderId}/faktur', [OrderController::class, 'createFaktur'])->name('createFaktur');
+// Route::get('/orders/{orderId}/faktur', [OrderController::class, 'createFaktur'])->name('createFaktur');
 Route::get('/generate-order-report', [OrderController::class, 'generateOrderReport'])->name('report.generate');
 Route::get('/sizes/{order_id}', [OrderController::class, 'getSizeDetails']);
 Route::get('/kasir/order_report', function () {
     return view('kasir.order_report');
 })->name('order.report');
-Route::post('/generate-invoice', [KasirController::class, 'generateInvoice'])->name('generate.invoice');
+
+Route::get('/kasir/sales_report', function () {
+    return view('kasir.sales_report');
+})->name('sales.report');
+Route::get('/generate-sales-report', [OrderController::class, 'generateSalesReport'])->name('sales.report.generate');
