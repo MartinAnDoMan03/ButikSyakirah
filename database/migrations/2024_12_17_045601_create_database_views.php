@@ -11,10 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('database_views', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        DB::unprepared('
+    CREATE VIEW job_view AS
+    SELECT 
+        jobs.job_id,
+        users.user_id,
+        users.name,
+        jobs.job_type,
+        CURDATE() AS start_date
+    FROM jobs
+    LEFT JOIN users ON users.user_id = jobs.user_id
+');
     }
 
     /**

@@ -45,7 +45,6 @@ return new class extends Migration {
                 IN end_date DATE
             )
             BEGIN
-                -- Select the sales report details directly
                 SELECT 
                     o.order_id AS OrderID,
                     c.customer_name AS CustomerName,
@@ -65,44 +64,32 @@ return new class extends Migration {
             END
         ");
 
-        // Drop and create the GenerateInvoice procedure
-        DB::unprepared('DROP PROCEDURE IF EXISTS GenerateInvoice');
-        DB::unprepared("
-            CREATE PROCEDURE GenerateInvoice(
-                IN order_id INT
-            )
+        DB::unprepared('
+            CREATE PROCEDURE seamer_job()
             BEGIN
-                -- Select invoice details
+                INSERT INTO jobs (user_id, job_type, start_date)
                 SELECT 
-                    o.order_id AS OrderID,
-                    c.customer_name AS CustomerName,
-                    o.order_date AS OrderDate,
-                    o.completion_date AS CompletionDate,
-                    o.status AS Status,
-                    (
-                        SELECT SUM(od.price) 
-                        FROM order_details od 
-                        WHERE od.order_id = o.order_id
-                    ) AS TotalCost
-                FROM 
-                    orders o
-                LEFT JOIN 
-                    customers c ON o.customer_id = c.customer_id
-                WHERE 
-                    o.order_id = order_id;
-
-                -- Select menu items for the invoice
-                SELECT 
-                    od.menu_name AS MenuName,
-                    od.price AS Price
-                FROM 
-                    order_details od
-                WHERE 
-                    od.order_id = order_id;
+                    seamer_id AS user_id,
+                    "seaming" AS job_type,
+                    NOW() AS start_date
+                FROM seams
+                WHERE seam_status = "Belum-Selesai" AND seamer_id IS NOT NULL;
             END
-        ");
-
+        ');
         
+        DB::unprepared('
+            CREATE PROCEDURE sequiner_job()
+            BEGIN
+                -- Insert data into jobs table based on sequin table
+                INSERT INTO jobs (user_id, job_type, start_date)
+                SELECT 
+                    sequiner_id AS user_id,
+                    "sequining" AS job_type,
+                    NOW() AS start_date
+                FROM sequin
+                WHERE sequiner_id IS NOT NULL;
+            END
+        ');
     }
 
     /**

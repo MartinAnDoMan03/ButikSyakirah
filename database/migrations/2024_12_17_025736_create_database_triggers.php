@@ -55,6 +55,15 @@ return new class extends Migration {
         VALUES (NEW.order_id, OLD.status, NEW.status, NOW(), NOW());
     END IF;
 END");
+
+        DB::unprepared("
+        CREATE TRIGGER cutter_job
+        AFTER INSERT ON size_details
+        FOR EACH ROW
+        BEGIN
+        INSERT INTO jobs (user_id, job_type, start_date)
+    VALUES (3, 'cutting', CURRENT_TIMESTAMP);
+END");
     }
 
 
