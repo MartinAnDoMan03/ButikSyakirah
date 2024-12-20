@@ -64,6 +64,7 @@ return new class extends Migration {
             END
         ");
 
+         DB::unprepared('DROP PROCEDURE IF EXISTS seamer_job');
         DB::unprepared('
             CREATE PROCEDURE seamer_job()
             BEGIN
@@ -77,6 +78,8 @@ return new class extends Migration {
             END
         ');
         
+        DB::unprepared('DROP PROCEDURE IF EXISTS sequiner_job');
+
         DB::unprepared('
             CREATE PROCEDURE sequiner_job()
             BEGIN
