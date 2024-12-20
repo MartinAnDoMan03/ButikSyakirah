@@ -34,6 +34,9 @@
                 <li><a href="{{ url('/admin/riwayatPesanan') }}"><i class="zmdi zmdi-file-text"></i> Riwayat Pesanan</a></li>
                 <li><a href="{{ url('/admin/customer') }}"><i class="zmdi zmdi-file-text"></i> Data Customer</a></li>
                 <li><a href="{{ url('/admin/supplier') }}"><i class="zmdi zmdi-file-text"></i> Supplier</a></li>
+                <li><a href="{{ url('/admin/order_log') }}"><i class="zmdi zmdi-file-text"></i> Log Pesanan</a></li>
+                <li><a href="{{ url('/admin/payment_log') }}"><i class="zmdi zmdi-file-text"></i> Log Pembayaran</a></li>
+                <li><a href="{{ url('/admin/inventory_log') }}"><i class="zmdi zmdi-file-text"></i> Log Inventori</a></li>
                 <li class="dropdown">
                     <a href="#"><i class="zmdi zmdi zmdi-account"></i> Akun</a>
                     <ul class="dropdown-menu">

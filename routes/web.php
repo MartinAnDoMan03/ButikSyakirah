@@ -49,6 +49,9 @@ Route::put('/admin/pengguna', [AdminController::class, 'updateUser'])->name('use
 Route::get('/admin/riwayatPesanan', [AdminController::class, 'riwayatPesanan'])->name('admin.riwayatPesanan');
 Route::get('/admin/stokBarang', [AdminController::class, 'stokBarang'])->name('admin.stokBarang');
 Route::get('/admin/customer', [AdminController::class, 'customer'])->name('admin.customer');
+Route::get('/admin/inventory_log', [AdminController::class, 'inventory_log'])->name('admin.inventory_log');
+Route::get('/admin/payment_log', [AdminController::class, 'payment_log'])->name('admin.payment_log');
+Route::get('/admin/order_log', [AdminController::class, 'order_log'])->name('admin.order_log');
 
 
 Route::get('/kasir/data_customer', [KasirController::class, 'showCustomer'])->name('kasir.data_customer');

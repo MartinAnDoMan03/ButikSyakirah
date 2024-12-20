@@ -5,6 +5,9 @@ use App\Models\Customer;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Stock;
+use App\Models\Order_log;
+use App\Models\Payment_log;
+use App\Models\Inventory_log;
 
 use Illuminate\Http\Request;
 
@@ -34,6 +37,24 @@ class AdminController extends Controller
     {
         $customers = Customer::all();
         return view('admin.customer', ['customers' => $customers]);
+    }
+
+    public function inventory_log()
+    {
+        $inventory_logs = Inventory_log::all();
+        return view('admin.inventory_log', ['inventory_logs' => $inventory_logs]);
+    }
+
+    public function payment_log()
+    {
+        $payment_logs = Payment_log::all();
+        return view('admin.payment_log', ['payment_logs' => $payment_logs]);
+    }
+
+    public function order_log()
+    {
+        $order_logs = Order_log::all();
+        return view('admin.order_log', ['order_logs' => $order_logs]);
     }
 
     // Update User
