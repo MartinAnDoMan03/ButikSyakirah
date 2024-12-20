@@ -21,7 +21,7 @@
             <label for="address">Alamat:</label>
             <input type="text" id="address" name="address" required>
 
-            <button type="submit">Tambahkan Stok</button>
+            <button type="submit">Tambahkan Supplier</button>
         </form>
     </div>
 

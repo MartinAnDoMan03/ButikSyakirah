@@ -8,7 +8,7 @@
 
     <!-- Tabel Pesanan -->
     <div class="search-faktur-container">
-        <button class="btn-create-faktur">Buat Faktur</button>
+        <a href="{{ route('invoices.create') }}" class="btn-create-faktur">Buat Faktur</a>
         <div class="search-input-wrapper">
             <input type="text" placeholder="Search..." class="search-input2">
             <button class="search-icon2"><i class="zmdi zmdi-search"></i></button>

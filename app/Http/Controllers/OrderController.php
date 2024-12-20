@@ -163,5 +163,32 @@ class OrderController extends Controller
         ]);
     }
 
+    public function generateSalesReport(Request $request)
+{
+    $request->validate([
+        'start_date' => 'required|date',
+        'end_date' => 'required|date|after_or_equal:start_date',
+    ]);
+
+    $start_date = $request->input('start_date');
+    $end_date = $request->input('end_date');
+
+    // Call the procedure to get the report
+    $orders = DB::select('CALL GenerateSalesReport(?, ?)', [$start_date, $end_date]);
+
+    // Get the total sales using the stored function
+    $total_sales = DB::selectOne('SELECT CalculateTotalSales(?, ?) AS TotalSales', [$start_date, $end_date])->TotalSales;
+
+    // Handle PDF generation if requested
+    if ($request->has('print_pdf')) {
+        $pdf = Pdf::loadView('kasir.sales_report_pdf', compact('orders', 'start_date', 'end_date', 'total_sales'));
+        return $pdf->download('Sales_Report_' . now()->format('Ymd') . '.pdf');
+    }
+
+    // Return the view with the report data
+    return view('kasir.sales_report', compact('orders', 'start_date', 'end_date', 'total_sales'));
+}
+
+
 
 }

@@ -13,6 +13,7 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\PaymentLogController;
 use App\Http\Controllers\SizeDetailController;
+use App\Http\Controllers\InvoiceController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -90,3 +91,5 @@ Route::get('/sizes/{order_id}', [OrderController::class, 'getSizeDetails']);
 Route::get('/kasir/order_report', function () {
     return view('kasir.order_report');
 })->name('order.report');
+Route::post('/generate-invoice', [KasirController::class, 'generateInvoice'])->name('generate.invoice');
+Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
