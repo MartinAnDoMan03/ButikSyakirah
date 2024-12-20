@@ -33,8 +33,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Rute dashboard berdasarkan role
 Route::get('/penggunting/data-pesanan', [PengguntingController::class, 'penggunting'])->name('penggunting.data_pesanan');
-Route::get('penjahit/data_pesanan', [PenjahitController::class, 'penjahit'])->name('penjahit.data_pesanan');
-Route::get('pemayet/data_pesanan', [PemayetController::class, 'pemayet'])->name('pemayet.data_pesanan');
+Route::get('/penjahit/data_pesanan', [PenjahitController::class, 'penjahit'])->name('penjahit.data_pesanan');
+Route::get('/pemayet/data_pesanan', [PemayetController::class, 'pemayet'])->name('pemayet.data_pesanan');
 
 
 // Route::post('/register', [AuthController::class, 'register'])->name('register.submit');

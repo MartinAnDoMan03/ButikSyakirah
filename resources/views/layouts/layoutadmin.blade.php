@@ -40,10 +40,10 @@
                 <li class="dropdown">
                     <a href="#"><i class="zmdi zmdi zmdi-account"></i> Akun</a>
                     <ul class="dropdown-menu">
-                        <li><a href="pekerja.php">Kasir</a></li>
-                        <li><a href="pekerja.php">Penjahit</a></li>
-                        <li><a href="kasir.php">Penggunting</a></li>
-                        <li><a href="kasir.php">Pemayet</a></li>
+                        <li><a href="{{url('/kasir/add_pesanan')}}">Kasir</a></li>
+                        <li><a href="{{url('/penggunting/data_pesanan')}}">Penggunting</a></li>
+                        <li><a href="{{url('/penjahit/data_pesanan')}}">Penjahit</a></li>
+                        <li><a href="{{url('/pemayet/data_pesanan')}}">Pemayet</a></li>
                     </ul>
                 </li>              
             </ul>
