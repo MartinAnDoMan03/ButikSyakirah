@@ -22,6 +22,7 @@ return new class extends Migration
                 CURDATE() AS start_date
             FROM jobs
             LEFT JOIN users ON users.user_id = jobs.user_id
+            GROUP BY jobs.job_id, users.user_id, users.name, jobs.job_type
         ');
     }
 
