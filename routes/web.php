@@ -6,7 +6,7 @@ use App\Http\Controllers\KasirController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PengguntingController;
 use App\Http\Controllers\PenjahitController;
-use App\Http\Controllers\PemayetController;
+use App\Http\Controllers\SequinController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StockController;
@@ -34,7 +34,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Rute dashboard berdasarkan role
 Route::get('/penggunting/data-pesanan', [PengguntingController::class, 'penggunting'])->name('penggunting.data_pesanan');
 Route::get('/penjahit/data_pesanan', [PenjahitController::class, 'penjahit'])->name('penjahit.data_pesanan');
-Route::get('/pemayet/data_pesanan', [PemayetController::class, 'pemayet'])->name('pemayet.data_pesanan');
+Route::get('/pemayet/data_pesanan', [SequinController::class, 'getOrdersWithSequin'])->name('sequiner.orders');
 
 
 // Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
@@ -85,6 +85,7 @@ Route::get('/kasir/add_pesanan', [CustomerController::class, 'getCustomers']);
 Route::get('/edit-pesanan/{order_id}', [OrderController::class, 'edit'])->name('orders.edit');
 Route::put('/edit-pesanan/{order_id}', [OrderController::class, 'update'])->name('orders.update');
 
+Route::get('/kasir/detail-ukuran/{order_id}', [OrderController::class, 'getSizeDetails']);
 
 // route order
 // Route::get('/orders/{orderId}/faktur', [OrderController::class, 'createFaktur'])->name('faktur');
@@ -92,7 +93,7 @@ Route::post('/kasir/add_pesanan/order_store', [OrderController::class, 'store'])
 Route::get('/order/add_details/{id}', [OrderController::class, 'add_detail'])->name('order.add_detail');
 // Route::get('/orders/{orderId}/faktur', [OrderController::class, 'createFaktur'])->name('createFaktur');
 Route::get('/generate-order-report', [OrderController::class, 'generateOrderReport'])->name('report.generate');
-Route::get('/sizes/{order_id}', [OrderController::class, 'getSizeDetails']);
+Route::get('/detail-ukuran/{order_id}', [OrderController::class, 'getSizeDetails'])->name('sizeDetails.get');
 Route::get('/kasir/order_report', function () {
     return view('kasir.order_report');
 })->name('order.report');

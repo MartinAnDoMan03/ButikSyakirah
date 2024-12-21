@@ -145,23 +145,24 @@ class OrderController extends Controller
 
     public function getSizeDetails($order_id)
     {
-        $sizes = Size_detail::where('order_id', $order_id)->first();
-
-        if (!$sizes) {
-            return response()->json(['message' => 'No sizes found'], 404);
+        $sizeDetails = Size_Detail::where('order_id', $order_id)->first();
+    
+        if (!$sizeDetails) {
+            return response()->json(['error' => 'Size details not found for this order.']);
         }
-
+    
         return response()->json([
-            'lingkar_dada' => $sizes->chest_circumference,
-            'lingkar_pinggang' => $sizes->waist_circumference,
-            'lingkar_lengan' => $sizes->arm_circumference,
-            'panjang_tangan' => $sizes->arm_length,
-            'lebar_bahu' => $sizes->shoulder_width,
-            'pinggul' => $sizes->pinggul,
-            'lingkar_pergelangan' => $sizes->lingkar_pergelangan,
-            'panjang_baju' => $sizes->panjang_baju,
+            'lingkar_dada' => $sizeDetails->chest_circumference,
+            'lingkar_pinggang' => $sizeDetails->waist_circumference,
+            'lingkar_lengan' => $sizeDetails->arm_circumference,
+            'panjang_tangan' => $sizeDetails->arm_length,
+            'lebar_bahu' => $sizeDetails->shoulder_width,
+            'pinggul' => $sizeDetails->hip,
+            'lingkar_pergelangan' => $sizeDetails->wrist_circumference,
+            'panjang_baju' => $sizeDetails->shoulder_length,
         ]);
     }
+    
 
     public function generateSalesReport(Request $request)
 {
@@ -188,6 +189,7 @@ class OrderController extends Controller
     // Return the view with the report data
     return view('kasir.sales_report', compact('orders', 'start_date', 'end_date', 'total_sales'));
 }
+
 
 
 

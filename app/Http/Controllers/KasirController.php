@@ -57,5 +57,4 @@ class KasirController extends Controller
 
 
 
-
 }

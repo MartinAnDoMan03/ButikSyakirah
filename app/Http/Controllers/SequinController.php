@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sequin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SequinController extends Controller
 {
@@ -58,10 +59,33 @@ class SequinController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Sequin $sequin)
-    {
-        //
+
+public function getOrdersWithSequin()
+{
+    $user = Auth::user();
+
+    // Check if the logged-in user has the role 'pemayet'
+    if ($user->role !== 'pemayet' && $user->role !== 'admin') {
+        abort(403, 'Unauthorized action.');
     }
+
+    // Query the orders and sequin tables
+    $orders = \DB::table('orders')
+        ->join('sequin', 'orders.order_id', '=', 'sequin.order_id')
+        ->where('sequin.sequiner_id', $user->id)
+        ->select(
+            'orders.order_id',
+            'orders.customer_id',
+            'orders.order_date',
+            'orders.completion_date',
+            'orders.status',
+            'sequin.sequin_price'
+        )
+        ->get();
+
+    return view('pemayet.data_pesanan', ['orders' => $orders]);
+}
+
 
     /**
      * Remove the specified resource from storage.
