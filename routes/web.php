@@ -35,7 +35,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/penggunting/data-pesanan', [PengguntingController::class, 'penggunting'])->name('penggunting.data_pesanan');
 Route::get('/penjahit/data_pesanan', [PenjahitController::class, 'penjahit'])->name('penjahit.data_pesanan');
 Route::get('/pemayet/data_pesanan', [SequinController::class, 'getOrdersWithSequin'])->name('sequiner.orders');
-
+Route::put('/update-status/{order}', [SequinController::class, 'updateStatus'])->name('update.status');
 
 // Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register');

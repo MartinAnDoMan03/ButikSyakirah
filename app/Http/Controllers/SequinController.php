@@ -72,7 +72,8 @@ public function getOrdersWithSequin()
     // Query the orders and sequin tables
     $orders = \DB::table('orders')
         ->join('sequin', 'orders.order_id', '=', 'sequin.order_id')
-        ->where('sequin.sequiner_id', $user->id)
+        ->where('sequin.sequiner_id', $user->id,)
+        ->where('orders.status', 'diproses',)
         ->select(
             'orders.order_id',
             'orders.customer_id',
@@ -93,5 +94,18 @@ public function getOrdersWithSequin()
     public function destroy(Sequin $sequin)
     {
         //
+    }
+    public function updateStatus(Request $request, $orderId)
+    {
+        // Validate the request
+        $request->validate([
+            'status' => 'required|in:Selesai',
+        ]);
+
+        $order = Sequin::findOrFail($orderId);
+        $order->status = $request->status;
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order status updated successfully!');
     }
 }

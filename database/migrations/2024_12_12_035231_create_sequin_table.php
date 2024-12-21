@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('order_id');
             $table->integer('sequin_price');
             $table->integer('sequiner_id')->nullable();
+            $table->enum('sequin_status', ['Belum Selesai', 'Selesai'])->default('Belum Selesai');
             $table->foreign('order_id')->references('order_id')->on('orders')->onDelete('restrict');
             $table->foreign('sequiner_id')->references('user_id')->on('users')->onDelete('restrict');
         });
