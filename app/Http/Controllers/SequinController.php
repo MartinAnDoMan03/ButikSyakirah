@@ -72,15 +72,19 @@ public function getOrdersWithSequin()
     // Query the orders and sequin tables
     $orders = \DB::table('orders')
         ->join('sequin', 'orders.order_id', '=', 'sequin.order_id')
+        ->join('order_details', 'orders.order_id', '=', 'order_details.order_id')
+        ->join('customers', 'orders.customer_id', '=', 'customers.customer_id')
         ->where('sequin.sequiner_id', $user->id,)
         ->where('orders.status', 'diproses',)
+        ->where('order_details.sequin', 'yes',)
         ->select(
             'orders.order_id',
-            'orders.customer_id',
+            'customers.customer_name',
             'orders.order_date',
             'orders.completion_date',
-            'orders.status',
-            'sequin.sequin_price'
+            'order_details.note',
+            'sequin.sequin_price',
+            'sequin.sequin_status'
         )
         ->get();
 

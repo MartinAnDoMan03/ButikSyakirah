@@ -1,23 +1,3 @@
-<tbody id="customerTableBody">
-    @forelse ($orders as $order)
-        <tr>
-            <td>{{ $order->customer_id }}</td>
-            <td>{{ $order->order_id }}</td>
-            <td>{{ $order->sequin_price }}</td>
-            <td>{{ $order->completion_date ?? 'Belum selesai' }}</td>
-            <td>
-                <select name="status" class="status-dropdown">
-                    <option value="Diproses" {{ $order->status === 'Diproses' ? 'selected' : '' }}>Diproses</option>
-                    <option value="Selesai_Dikerjakan" {{ $order->status === 'Selesai_Dikerjakan' ? 'selected' : '' }}>Selesai Diproses</option>
-                </select>
-            </td>
-        </tr>
-    @empty
-        <tr>
-            <td colspan="5">No orders found.</td>
-        </tr>
-    @endforelse
-
     @if(session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
@@ -28,10 +8,13 @@
 <tbody id="customerTableBody">
     @forelse ($orders as $order)
         <tr>
-            <td>{{ $order->customer_id }}</td>
             <td>{{ $order->order_id }}</td>
-            <td>{{ $order->sequin_price }}</td>
+            <td>{{ $order->customer_name }}</td>
+            <td>{{ $order->order_date }}</td>
             <td>{{ $order->completion_date ?? 'Belum selesai' }}</td>
+            <td>{{ $order->note }}</td>
+            <td>{{ $order->sequin_price }}</td>
+            <td>{{ $order->sequin_status }}</td>
             <td>
                 <form action="{{ route('update.status', $order->order_id) }}" method="POST" class="status-form">
                     @csrf
@@ -43,11 +26,11 @@
                 </form>
             </td>
         </tr>
-    @empty
+        @empty
         <tr>
             <td colspan="5">No orders found.</td>
         </tr>
-    @endforelse
+        @endforelse
 </tbody>
 
 <script>
