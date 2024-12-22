@@ -31,9 +31,10 @@ class OrderDetailController extends Controller
      */
     public function addDetail(Request $request, $order_id)
 {
-    // Log data mentah yang diterima dari form
+    // Log raw data received from the form
     \Log::info('Data diterima:', $request->all());
 
+    // Validate incoming request
     $validated = $request->validate([
         'order_type' => 'required|string|max:255',
         'customer_cloth' => 'nullable|string|max:255',
@@ -43,14 +44,16 @@ class OrderDetailController extends Controller
         'note' => 'nullable|string',
     ]);
 
-    // Log data setelah validasi
+    // Log validated data
     \Log::info('Data setelah validasi:', $validated);
 
-    // Konversi harga
-    $validated['price'] = $request->input('price', 0); // Tidak perlu konversi tambahan
- $validated['order_id'] = $order_id;
+    // Convert and calculate prices
+    $validated['sequin_price'] = $request->input('sequin_price', 0); // Get the sequin price
+    $validated['seam_price'] = $this->getSeamPriceBasedOnOrderType($validated['order_type']);
+    $validated['price'] = $this->calculateTotalPrice($validated['order_type'], $validated['store_cloth_type'], $validated['store_cloth_length'], $validated['sequin_price']);
+    $validated['order_id'] = $order_id;
 
-    // Simpan data dan log hasilnya
+    // Save data to the database
     try {
         $orderDetail = Order_detail::create($validated);
         \Log::info('Data berhasil disimpan:', $orderDetail->toArray());
@@ -61,6 +64,68 @@ class OrderDetailController extends Controller
 
     return redirect()->route('kasir.data_pesanan')->with('success', 'Detail berhasil ditambahkan.');
 }
+
+private function getSeamPriceBasedOnOrderType($orderType)
+{
+    // Seam price logic based on order type
+    switch ($orderType) {
+        case 'kemeja-lengan-panjang-pria':
+            return 100000;
+        case 'kemeja-lengan-pendek-pria':
+            return 80000;
+        case 'gamis-wanita':
+            return 120000;
+        case 'rok-panjang-wanita':
+            return 90000;
+        case 'rok-pendek-wanita':
+            return 75000;
+        case 'kebaya':
+            return 150000;
+        case 'kemeja-lengan-panjang-anak':
+            return 70000;
+        case 'kemeja-lengan-pendek-anak':
+            return 60000;
+        case 'gamis-anak':
+            return 100000;
+        case 'jas':
+            return 200000;
+        case 'custom':
+            return 0;
+        default:
+            return 0;
+    }
+}
+
+private function calculateTotalPrice($orderType, $storeClothType, $storeClothLength, $sequinPrice)
+{
+    $prices = [
+        "kemeja-lengan-panjang-pria" => 100000,
+        "kemeja-lengan-pendek-pria" => 80000,
+        "gamis-wanita" => 120000,
+        "rok-panjang-wanita" => 90000,
+        "rok-pendek-wanita" => 75000,
+        "kebaya" => 150000,
+        "kemeja-lengan-panjang-anak" => 70000,
+        "kemeja-lengan-pendek-anak" => 60000,
+        "gamis-anak" => 100000,
+        "jas" => 200000,
+        "custom" => 0
+    ];
+
+    $fabricPrices = [
+        "katun" => 50000,
+        "sutra" => 100000,
+        "wolfis" => 75000
+    ];
+
+    $basePrice = $prices[$orderType] ?? 0;
+    $fabricPricePerMeter = $fabricPrices[$storeClothType] ?? 0;
+    $storeClothLength = $storeClothLength ?? 0;
+
+    // Calculate total price
+    return $basePrice + ($fabricPricePerMeter * $storeClothLength) + $sequinPrice;
+}
+
 
 
 
