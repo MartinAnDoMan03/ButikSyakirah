@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 //changed
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,14 +18,12 @@ return new class extends Migration
             $table->string('order_type');
             $table->string('customer_cloth')->nullable();
             $table->string('store_cloth_type')->nullable();
-            $table->integer('store_cloth_length')->nullable();
+            $table->float('store_cloth_length')->nullable();
             $table->enum('sequin', ['yes', 'no']);
-            $table->integer('sequin_price');
-            $table->integer('seam_price');
-            $table->integer('price')->nullable();
+            $table->decimal('price', 10, 2)->nullable();
             $table->text('note')->nullable();
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP')); 
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')); 
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->foreign('order_id')->references('order_id')->on('orders')->onDelete('restrict');
         });
     }

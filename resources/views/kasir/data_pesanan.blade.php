@@ -43,12 +43,15 @@
                                 <i class="fa fa-edit"></i>
                             </a>
 
-
-                            <!-- Tombol Add Detail Pesanan -->
-                            <a href="javascript:void(0)" class="btn btn-add-detail" title="Add Detail Pesanan"
-                                onclick="openDetailModal()">
+                            <a href="{{ route('order.detail', $order->order_id) }}" class="btn btn-detail" title="detail">
                                 <i class="fa fa-file-alt"></i>
                             </a>
+
+                            <!-- Tombol Add Detail Pesanan -->
+                            {{-- <a href="javascript:void(0)" class="btn btn-add-detail" title="Add Detail Pesanan"
+                                onclick="openDetailModal()">
+                                <i class="fa fa-file-alt"></i>
+                            </a> --}}
 
                             <!-- Tombol Detail Ukuran -->
                             <a href="javascript:void(0)" class="btn btn-detail-ukuran" title="Detail Ukuran"
@@ -72,11 +75,90 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeDetailModal()">&times;</span>
 
-            <h2>Detail Pesanan</h2>
-            <form class="detail-form" action="{{ url('kasir.addDetail') }}" method="POST">
+            <h1 class="add-order-detail-title">Tambah Detail Pesanan</h1>
+
+        <!-- Add Detail Form -->
+        <form action="{{ route('order.addDetail', ['order_id' => $order->order_id]) }}" method="POST">
+            @csrf
+
+            <!-- Order ID -->
+            <input type="hidden" name="order_id" value="{{ $order->order_id }}">
+
+            <!-- Order Type -->
+            <div>
+                <label for="order_type">Jenis Baju:</label>
+                <select id="order_type" name="order_type" required>
+                    <option value="" disabled selected>Pilih Jenis Baju</option>
+                    <option value="kemeja-lengan-panjang-pria">Kemeja Lengan Panjang Pria</option>
+                    <option value="kemeja-lengan-pendek-pria">Kemeja Lengan Pendek Pria</option>
+                    <option value="gamis-wanita">Gamis Wanita</option>
+                    <option value="rok-panjang-wanita">Rok Panjang Wanita</option>
+                    <option value="rok-pendek-wanita">Rok Pendek Wanita</option>
+                    <option value="kebaya">Kebaya</option>
+                    <option value="kemeja-lengan-panjang-anak">Kemeja Lengan Panjang Anak</option>
+                    <option value="kemeja-lengan-pendek-anak">Kemeja Lengan Pendek Anak</option>
+                    <option value="gamis-anak">Gamis Anak</option>
+                    <option value="jas">Jas</option>
+                    <option value="custom">Custom</option>
+                </select>
+            </div>
+
+            <!-- Customer Cloth -->
+            <div>
+                <label for="customer_cloth">Tambahan Kain Customer :</label>
+                <input type="text" id="customer_cloth" name="customer_cloth">
+            </div>
+
+            <!-- Store Cloth Type -->
+            <div>
+                <label for="store_cloth_type">Kain Toko:</label>
+                <select id="store_cloth_type" name="store_cloth_type">
+                    <option value="" disabled selected>Pilih Kain Toko</option>
+                    <option value="katun">Katun </option>
+                    <option value="sutra">Sutra </option>
+                    <option value="wolfis">Wolfis</option>
+                </select>
+            </div>
+
+            <!-- Store Cloth Length -->
+            <div>
+                <label for="store_cloth_length">Ukuran Kain (meter):</label>
+                <input type="number" id="store_cloth_length" name="store_cloth_length" min="0" step="0.1" />
+            </div>
+
+            <!-- Sequin -->
+            <div>
+                <label for="sequin">Payet:</label>
+                <select id="sequin" name="sequin">
+                    <option value="no">Tidak</option>
+                    <option value="yes">Tambah payet</option>
+                </select>
+            </div>
+
+            <!-- Price -->
+            <div>
+                <label for="price">Total Harga:</label>
+                <input type="text" id="price" name="price" />
+            </div>
+
+            <!-- Note -->
+            <div>
+                <label for="note">Catatan Tambahan:</label>
+                <textarea name="note" id="note" cols="30" rows="10" placeholder="Tambah catatan pesanan"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit" class="form-button">Tambah Detail</button>
+            </div>
+        </form>
+
+            {{-- <h2>Detail Pesanan</h2>
+            <form class="detail-form" action="{{ route ('kasir.addDetail') }}" method="POST">
                 @csrf
 
-                <!-- Jenis Baju -->
+                <input type="hidden" id="order_id" name="order_id">
+                <input type="hidden" name="order_id" value="{{ $order->order_id }}">
                 <div>
                     <label for="order_type">Jenis Baju:</label>
                     <select id="order_type" name="order_type" onchange="updatePrice()">
@@ -95,14 +177,12 @@
                     </select>
                 </div>
 
-                <!-- Harga Baju -->
                 <div style="margin-top: 20px;">
                     <label for="priceInput">Harga:</label>
                     <input type="text" id="priceInput" name="priceInput" placeholder="Harga akan tampil di sini"
                         readonly>
                 </div>
 
-                <!-- Pilih Kain Toko -->
                 <div>
                     <label for="customer_cloth">Tambahan Kain Customer :</label>
                     <input type="text" id="customer_cloth" name="customer_cloth">
@@ -135,7 +215,6 @@
                     <input type="text" id="totalFabricPrice" readonly />
                 </div>
 
-                <!-- Payet -->
                 <div>
                     <label for="sequin">Payet:</label>
                     <select id="sequin" name="sequin" onchange="calculateprice()">
@@ -144,7 +223,6 @@
                     </select>
                 </div>
 
-                {{-- Harga Payet dimasukkan manual --}}
                 <div>
                     <label for="payetPrice">Harga Payet:</label>
                     <input type="text" id="payetPrice" name="payetPrice" placeholder="Masukkan Harga Payet"
@@ -156,7 +234,6 @@
                     <textarea name="notes" id="note" cols="30" rows="10" placeholder="Tambah catatan pesanan"></textarea>
                 </div>
 
-                {{-- Total Harga --}}
                 <div>
                     <label for="price">Total Harga:</label>
                     <input type="text" id="price" name="price" readonly />
@@ -164,7 +241,7 @@
 
                 <div style="margin-top: 20px;">
                     <button class="sv-detail" type="submit">Simpan</button>
-                </div>
+                </div> --}}
             </form>
         </div>
     </div>
