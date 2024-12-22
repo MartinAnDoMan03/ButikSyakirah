@@ -213,9 +213,15 @@ public function searchPesanan(Request $request)
     return view('kasir.data_pesanan', compact('orders'));
 }
 
+    public function showDataPesanan()
+    {
+        // Ambil semua pesanan (misalnya dengan relasi ke customer)
+        $orders = Order::with('customer')->get(); // Menyesuaikan dengan relasi yang ada
 
+        return view('penggunting.data_pesanan', compact('orders'));
+    }
 
-
+    
 
 
 

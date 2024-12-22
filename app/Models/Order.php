@@ -29,4 +29,9 @@ class Order extends Model
     {
         return $this->belongsTo(Supplier::class, 'supplier_id'); // Sesuaikan nama kolom kunci asing
     }
+
+    public function penjahit()
+{
+    return $this->belongsTo(User::class, 'nama_penjahit');
+}
 }

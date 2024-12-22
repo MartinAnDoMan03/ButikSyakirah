@@ -3,7 +3,6 @@
 @section('title', 'Data Pesanan')
 
 @section('content')
-
     <h1>Data Pesanan</h1>
 
     <!-- Tabel Data Customer -->
@@ -20,18 +19,22 @@
                     <th>Nama Customer</th>
                     <th>Detail Ukuran</th>
                     <th>Nama Penjahit</th>
-                    <th>Aksi</th>
                 </tr>
             </thead>
-            <tbody id="customerTableBody">
-                <!-- Baris customer akan ditambahkan di sini -->
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+            <tbody>
+                @forelse ($orders as $order)
+                    <tr>
+                        <td>{{ $order->order_id }}</td>
+                        <td>{{ $order->customer->customer_name ?? 'Tidak Ditemukan' }}</td> <!-- Menampilkan nama customer -->
+                        <td>{{ $order->detail_ukuran ?? 'Tidak Tersedia' }}</td> 
+                        <td>{{ $order->penjahit->name ?? 'Belum Ditemukan' }}</td> 
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4">Tidak ada pesanan.</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
-        
     </div>
 @endsection

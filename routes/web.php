@@ -106,12 +106,12 @@ Route::get('/admin/supplier/search', [SupplierController::class, 'searchAdmin'])
 
 
 
-Route::get('/penggunting/home', function () {
-    return view('penggunting.home'); });
-Route::get('/penggunting/detail_ukuran', function () {
-    return view('penggunting.detail_ukuran'); });
-Route::get('/penggunting/data_pesanan', function () {
-    return view('penggunting.data_pesanan'); });
+Route::get('/penggunting/home', function () {return view('penggunting.home'); });
+Route::get('/penggunting/detail_ukuran', function () {return view('penggunting.detail_ukuran'); });
+Route::get('/penggunting/data_pesanan', function () { return view('penggunting.data_pesanan'); });
+Route::get('penggunting/data_pesanan', [OrderController::class, 'showDataPesanan'])->name('penggunting.data_pesanan');
+
+
 
 Route::post('/kasir/add_pesanan', [CustomerController::class, 'store'])->name('customer.store');
 

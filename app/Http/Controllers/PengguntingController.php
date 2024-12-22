@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Order;
 
 use Illuminate\Http\Request;
 
@@ -18,4 +19,8 @@ class PengguntingController extends Controller
         // Return view dengan data pesanan
         return view('penggunting.data_pesanan', compact('dataPesanan'));
     }
+
+
+
+
 }
