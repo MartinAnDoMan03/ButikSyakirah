@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
  // Fungsi untuk membuka modal
- function openDetailModal() {
+ function openDetailModal(order_id) {
+    document.getElementById('order_id').value = order_id;
     document.getElementById('detailModal').style.display = 'block';
 }
 
