@@ -18,11 +18,12 @@ return new class extends Migration
             $table->integer('order_id');
             $table->string('seam_name');
             $table->string('cloth_type');
-            $table->string('seamer_id')->nullable();
+            $table->integer('seamer_id');
             $table->integer('seam_size');
             $table->integer('seam_price');
             $table->enum('seam_status', ['Belum-Selesai', 'Selesai']);
             $table->foreign('order_id')->references('order_id')->on('orders')->onDelete('restrict');
+            $table->foreign('seamer_id')->references('user_id')->on('users')->onDelete('restrict');
         });
     }
 

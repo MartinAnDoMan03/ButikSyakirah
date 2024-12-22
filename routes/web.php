@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PengguntingController;
-use App\Http\Controllers\PenjahitController;
+use App\Http\Controllers\SeamController;
 use App\Http\Controllers\SequinController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
@@ -33,9 +33,18 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Rute dashboard berdasarkan role
 Route::get('/penggunting/data-pesanan', [PengguntingController::class, 'penggunting'])->name('penggunting.data_pesanan');
-Route::get('/penjahit/data_pesanan', [PenjahitController::class, 'penjahit'])->name('penjahit.data_pesanan');
+Route::get('/penjahit/data_pesanan', [SeamController::class, 'getOrdersWithSeam'])->name('seamer.orders');
 Route::get('/pemayet/data_pesanan', [SequinController::class, 'getOrdersWithSequin'])->name('sequiner.orders');
-Route::put('/update-status/{order}', [SequinController::class, 'updateStatus'])->name('update.status');
+Route::put('/update-status-seam/{order}', [SeamController::class, 'updateStatus'])->name('seam.update_status');
+Route::put('/update-status-sequin/{order}', [SequinController::class, 'updateStatus'])->name('sequin.update_status');
+
+// Route for the form page
+Route::get('/stock/form', [StockController::class, 'getStockData'])->name('stock.form');
+
+// Route for filtering stock names
+Route::post('/stock/names', [StockController::class, 'getStockNames'])->name('stock.names');
+
+
 
 // Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register');

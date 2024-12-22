@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Seam;
 use App\Http\Requests\StoreSeamRequest;
 use App\Http\Requests\UpdateSeamRequest;
+use Illuminate\Support\Facades\Auth;
+
 
 class SeamController extends Controller
 {
@@ -38,6 +40,24 @@ class SeamController extends Controller
             'seam_price' => $request->input('form_name')
         ]);
     }
+
+    public function getOrdersWithSeam()
+{
+    $user = Auth::user();
+
+    // Check if the logged-in user has the role 'pemayet'
+    if ($user->role !== 'penjahit' && $user->role !== 'admin') {
+        abort(403, 'Unauthorized action.');
+    }
+
+    // Query the orders and sequin tables
+    $orders = \DB::table('seamer_view')
+    ->where('seam_status', 'diproses')
+    ->where('seamer_id', $user->id)
+    ->get();
+
+    return view('penjahit.data_pesanan', ['orders' => $orders]);
+}
 
     /**
      * Display the specified resource.

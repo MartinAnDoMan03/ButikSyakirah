@@ -16,7 +16,7 @@
             <td>{{ $order->sequin_price }}</td>
             <td>{{ $order->sequin_status }}</td>
             <td>
-                <form action="{{ route('update.status', $order->order_id) }}" method="POST" class="status-form">
+                <form action="{{ route('sequin.update_status', $order->order_id) }}" method="POST" class="status-form">
                     @csrf
                     @method('PUT')
                     <select name="status" class="status-dropdown">

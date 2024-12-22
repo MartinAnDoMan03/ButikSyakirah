@@ -31,18 +31,6 @@ return new class extends Migration {
             END
         ');
 
-        DB::unprepared('
-            CREATE TRIGGER log_deduction_on_order AFTER INSERT ON order_details FOR EACH ROW 
-            BEGIN
-            IF NEW.store_cloth IS NOT NULL THEN
-                UPDATE stocks SET quantity = quantity - NEW.store_cloth WHERE stock_name = \'Cloth\';
-                INSERT INTO inventory_logs (stock_id, reference_type, order_reference_id, transaction_type, quantity, transaction_date)
-            VALUES ((SELECT stock_id FROM stocks WHERE stock_name = \'Cloth\'), \'Order\', NEW.order_id, \'Deduction\', NEW.store_cloth, CURRENT_DATE);
-            END IF;
-            END
-        ');
-
-
         DB::unprepared("
         CREATE TRIGGER after_order_status_update
         AFTER UPDATE ON orders

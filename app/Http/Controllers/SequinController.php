@@ -69,24 +69,11 @@ public function getOrdersWithSequin()
         abort(403, 'Unauthorized action.');
     }
 
-    // Query the orders and sequin tables
-    $orders = \DB::table('orders')
-        ->join('sequin', 'orders.order_id', '=', 'sequin.order_id')
-        ->join('order_details', 'orders.order_id', '=', 'order_details.order_id')
-        ->join('customers', 'orders.customer_id', '=', 'customers.customer_id')
-        ->where('sequin.sequiner_id', $user->id,)
-        ->where('orders.status', 'diproses',)
-        ->where('order_details.sequin', 'yes',)
-        ->select(
-            'orders.order_id',
-            'customers.customer_name',
-            'orders.order_date',
-            'orders.completion_date',
-            'order_details.note',
-            'sequin.sequin_price',
-            'sequin.sequin_status'
-        )
-        ->get();
+    $orders = \DB::table('sequiner_view')
+    ->where('sequiner_id', $user->id)
+    ->where('status', 'diproses')
+    ->where('sequin_status', 'yes')
+    ->get();
 
     return view('pemayet.data_pesanan', ['orders' => $orders]);
 }
