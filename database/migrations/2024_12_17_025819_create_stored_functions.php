@@ -10,32 +10,35 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::unprepared("DROP FUNCTION IF EXISTS CalculateTotalSales");
+        DB::unprepared("DROP FUNCTION IF EXISTS CalculaTotalIncomeByDate");
         DB::unprepared("
-            CREATE FUNCTION CalculateTotalSales(
-    start_date DATE, 
-    end_date DATE
-) RETURNS DECIMAL(10, 2)
+CREATE FUNCTION CalculateTotalIncomeByDate(start_date DATE, end_date DATE)
+RETURNS DECIMAL(10, 2)
 DETERMINISTIC
-READS SQL DATA
 BEGIN
-    DECLARE total_sales DECIMAL(10, 2);
+    DECLARE total_income DECIMAL(10, 2);
 
-    SELECT 
-        SUM(od.price) 
-    INTO 
-        total_sales
-    FROM 
-        orders o
-    LEFT JOIN 
-        order_details od ON o.order_id = od.order_id
-    WHERE 
-        o.order_date BETWEEN start_date AND end_date
-        AND o.status = 'Selesai';
+    SELECT SUM(price) INTO total_income
+    FROM orders
+    WHERE order_date BETWEEN start_date AND end_date;
 
-    RETURN IFNULL(total_sales, 0);
-END
-        ");
+    RETURN IFNULL(total_income, 0);
+END ");
+
+        DB::unprepared("
+        CREATE FUNCTION calculate_order_price(order_id INT) 
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+    DECLARE total_price DECIMAL(10,2) DEFAULT 0;
+
+    SELECT SUM(price)
+    INTO total_price
+    FROM order_details od
+    WHERE od.order_id = order_id;
+
+    RETURN total_price;
+END");
     }
 
     /**

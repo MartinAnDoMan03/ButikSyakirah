@@ -32,27 +32,17 @@ return new class extends Migration {
             END
         ');
 
-//         DB::unprepared("
-//         CREATE TRIGGER after_order_status_update
-//         AFTER UPDATE ON orders
-//         FOR EACH ROW
-//         BEGIN
-//     -- Check if the status has actually changed
-//     IF OLD.status != NEW.status THEN
-//         -- Insert a log into the order_logs table
-//         INSERT INTO order_logs (order_id, old_status, new_status, created_at, updated_at)
-//         VALUES (NEW.order_id, OLD.status, NEW.status, NOW(), NOW());
-//     END IF;
-// END");
 
-//         DB::unprepared("
-//         CREATE TRIGGER cutter_job
-//         AFTER INSERT ON size_details
-//         FOR EACH ROW
-//         BEGIN
-//         INSERT INTO jobs (user_id, job_type, start_date)
-//     VALUES (3, 'cutting', CURRENT_TIMESTAMP);
-// END");
+        DB::unprepared('
+            CREATE TRIGGER stock_run_out BEFORE UPDATE ON stocks FOR EACH ROW
+            BEGIN
+            IF NEW.quantity < 0 THEN
+               SIGNAL SQLSTATE \'45000\'
+        SET MESSAGE_TEXT = \'Stok tidak mencukupi\';
+    END IF;
+END
+
+        ');
     }
 
 

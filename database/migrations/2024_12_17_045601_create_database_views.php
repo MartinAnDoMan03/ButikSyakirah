@@ -34,14 +34,13 @@ return new class extends Migration {
     orders.completion_date,
     order_details.sequin,
     order_details.note,
-    sequin.sequin_price,
     sequin.sequin_status,
     sequin.sequiner_id,
     orders.status
 FROM 
     orders
-JOIN sequin ON orders.order_id = sequin.order_id
-JOIN order_details ON orders.order_id = order_details.order_id
+    JOIN order_details ON orders.order_id = order_details.order_id
+    JOIN sequin ON order_details.order_detail_id = sequin.order_detail_id
 JOIN customers ON orders.customer_id = customers.customer_id;
 
         ');
@@ -58,7 +57,6 @@ JOIN customers ON orders.customer_id = customers.customer_id;
         order_details.store_cloth_type,
         order_details.store_cloth_length,
         order_details.note,
-        order_details.price,
         size_details.chest_circumference,
         size_details.waist_circumference,
         size_details.arm_circumference,
@@ -70,10 +68,10 @@ JOIN customers ON orders.customer_id = customers.customer_id;
         seams.seamer_id,
         seams.seam_status
         FROM orders
-    JOIN seams ON orders.order_id = seams.order_id
-    JOIN order_details ON orders.order_id = order_details.order_id
+        JOIN order_details ON orders.order_id = order_details.order_id
+        JOIN seams ON order_details.order_detail_id = seams.order_detail_id
     JOIN customers ON orders.customer_id = customers.customer_id
-    JOIN size_details ON orders.order_id = size_details.order_id
+    JOIN size_details ON order_details.order_detail_id = size_details.order_detail_id
 ");
 
     }
