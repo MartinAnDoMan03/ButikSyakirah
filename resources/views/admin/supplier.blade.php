@@ -4,11 +4,11 @@
 
 @section('content')
 
-    <h1>Daftar Stok Barang</h1>
+    <h1>Daftar Supplier</h1>
 
     <!-- Form Input untuk Menambah Stok Barang Baru -->
     <div class="order-form">
-        <h3>Tambah Stok Barang Baru</h3>
+        <h3>Tambah Supplier Baru</h3>
         <form action="{{ route('admin.supplier') }}" method="POST">
             @csrf
 
@@ -21,7 +21,7 @@
             <label for="address">Alamat:</label>
             <input type="text" id="address" name="address" required>
 
-            <button type="submit">Tambahkan Stok</button>
+            <button type="submit">Tambahkan Supplier</button>
         </form>
     </div>
 

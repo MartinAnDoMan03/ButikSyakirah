@@ -35,8 +35,14 @@ class KasirController extends Controller
     public function showStockBarang()
     {
 
-        $stocks = Stock::all();
-        return view('kasir.stok_barang', ['stocks' => $stocks]);
+        $stocks = DB::table('stocks')
+        ->join('stock_suppliers', 'stocks.stock_id', '=', 'stock_suppliers.stock_id')
+        ->join('suppliers', 'stock_suppliers.supplier_id', '=', 'suppliers.supplier_id')
+        ->select('stocks.*', 'suppliers.supplier_name')
+        ->get();
+
+        $suppliers = DB::table('suppliers')->select('supplier_id', 'supplier_name')->get();    
+        return view('kasir.stok_barang', ['stocks' => $stocks, 'suppliers' => $suppliers]);
     }
 
     public function addPesanan()

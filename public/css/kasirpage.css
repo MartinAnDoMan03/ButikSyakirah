@@ -1079,6 +1079,60 @@ h2 {
     margin-top: 20px;
 }
 
+/* Styling for the form-report container */
+.form-report {
+    background-color: white;
+    padding: 35px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 55%;
+}
+
+/* Form field labels */
+.form-report label {
+    font-size: 14px;
+        /* margin-right: 10px; */
+    display: inline-block;
+    width: 100px;
+    margin-bottom: 40px;
+    /* text-align: right; */
+}
+
+/* Input fields */
+.form-report input[type="date"] {
+    padding: 8px;
+    font-size: 14px;
+    width: 150px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Submit button */
+.form-report button {
+    background-color: #2b4053;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.form-report button:hover {
+    background-color: #3b5975;
+}
+
+/* Styling for the 'No sales found' message */
+.no-sales-messege {
+    text-align: center;
+    font-size: 16px;
+    color: #e74c3c;
+    margin-top: 20px;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     .form-container-order-report {
@@ -1099,6 +1153,15 @@ h2 {
         width: 100%;
     }
 
+    .form-report label {
+        width: 100px;
+        margin-bottom: 20px;
+    } 
+
+    .form-report input[type="date"] {
+        width: 100%;
+
+    }
 
 
-
+}

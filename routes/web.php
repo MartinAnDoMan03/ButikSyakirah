@@ -58,6 +58,8 @@ Route::put('/admin/pengguna', [AdminController::class, 'updateUser'])->name('use
 Route::get('/admin/riwayatPesanan', [AdminController::class, 'riwayatPesanan'])->name('admin.riwayatPesanan');
 Route::get('/admin/stokBarang', [AdminController::class, 'stokBarang'])->name('admin.stokBarang');
 Route::post('/admin/stokBarang', [AdminController::class, 'store'])->name('admin.store');
+Route::get('/admin/stok_barang/create', [StockController::class, 'create'])->name('stock.create');
+Route::put('/admin/update_stock', [StockController::class, 'updateStocks'])->name('stocks.update');
 Route::post('/admin/supplier', [AdminController::class, 'addSupplier'])->name('admin.supplier');
 Route::get('/admin/supplier', [AdminController::class, 'showSupplier'])->name('admin.data');
 Route::get('/admin/customer', [AdminController::class, 'customer'])->name('admin.customer');
@@ -69,7 +71,7 @@ Route::get('/admin/order_log', [AdminController::class, 'order_log'])->name('adm
 Route::get('/kasir/data_customer', [KasirController::class, 'showCustomer'])->name('kasir.data_customer');
 Route::get('/kasir/data_pesanan', [KasirController::class, 'showDataPesanan'])->name('kasir.data_pesanan');
 Route::post('/kasir/data_pesanan', [KasirController::class, 'addDetail'])->name('kasir.addDetail');
-Route::get('/kasir/stok_barang', [StockController::class, 'getStocks'])->name('kasir.stok_barang');
+Route::get('/kasir/stok_barang', [KasirController::class, 'showStockBarang'])->name('kasir.stok_barang');
 Route::get('/kasir/add_pesanan', [KasirController::class, 'addPesanan'])->name('kasir.add_pesanan');
 Route::post('/kasir/add_pesanan', [KasirController::class, 'store'])->name('kasir.store');
 Route::get('/kasir/riwayat_pesanan', [KasirController::class, 'showRiwayat'])->name('kasir.riwayat_pesanan');

@@ -12,34 +12,77 @@
         <button id="showFormButton">Tambah Barang Baru</button>
     </div>
 
-    <!-- Form Input untuk Menambah Stok Barang Baru -->
-    <div class="order-form" id="addStockForm" style="display: none;">
-        <h3>Tambah Stok Barang Baru</h3>
-        <form action="{{ route('admin.store') }}" method="POST">
-            @csrf
-            <label for="supplier_id">Supplier:</label>
-                <select id="supplier_id" name="supplier_id" >
+    <div class="order-form" id="addStockForm" style="display: none;">   
+        <h3>Tambah Stok Barang</h3>
+
+        <select id="stockType" onchange="toggleStockForms(this.value)">
+            <option value="select">Pilih Stock</option>
+            <option value="new">Stock Baru</option>
+            <option value="old">Stock Lama</option>
+        </select>
+
+        <!-- Form Input untuk Menambah Stok Barang Baru -->
+        <div class="newer-form" id="newStockForm" style="display: none;">
+            <h3>Tambah Stok Barang Baru</h3>
+            <form action="{{ route('admin.store') }}" method="POST">
+                @csrf
+                <label for="supplier_id">Supplier:</label>
+                    <select id="supplier_id" name="supplier_id" >
+                        <option value="" selected disabled>Pilih Supplier</option>
+                        @foreach ($suppliers as $supplier)
+                            <option value="{{ $supplier->supplier_id }}">{{ $supplier->supplier_name }}</option>
+                        @endforeach
+                    </select>
+        
+                    <label for="stock_type">Jenis Barang:</label>
+                    <select id="stock_type" name="stock_type" required>
+                        <option value="" selected disabled>Pilih jenis barang</option>
+                        <option value="cloth">Kain</option>
+                        <option value="thread">Benang</option>
+                    </select>
+        
+                    <label for="stock_name">Nama Barang:</label>
+                    <input type="text" id="stock_name" name="stock_name" required>
+        
+                    <label for="quantity">Jumlah Stok:</label>
+                    <input type="number" id="quantity" name="quantity" step="1" required>
+        
+                    <button type="submit">Tambahkan stok</button>
+            </form>                
+        </div>
+        {{-- Form untuk menambah stok ke barang lama  --}}
+        <div id="oldStockForm" style="display:none;">
+            <h3>Tambah Stok ke Barang Lama</h3>
+            <form action="{{ route('stocks.update') }}" method="POST">
+                @csrf
+                @method('PUT') 
+    
+                <!-- Dropdown untuk memilih stok barang -->
+                <label for="existing_stock_id">Pilih Barang:</label>
+                <select id="existing_stock_id" name="stock_id" required>
+                    <option value="" selected disabled>Pilih Barang</option>
+                    @foreach ($stocks as $stock)
+                        <option value="{{ $stock->stock_id }}">{{ $stock->stock_name }}</option>
+                    @endforeach
+                </select>
+
+                {{-- Dropdown untuk Supplier --}}
+                <label for="supplier_id">Pilih Supplier:</label>
+                <select id="supplier_id" name="supplier_id" class="select2-supplier" required>
                     <option value="" selected disabled>Pilih Supplier</option>
                     @foreach ($suppliers as $supplier)
                         <option value="{{ $supplier->supplier_id }}">{{ $supplier->supplier_name }}</option>
                     @endforeach
                 </select>
-    
-                <label for="stock_type">Jenis Barang:</label>
-                <select id="stock_type" name="stock_type" required>
-                    <option value="" selected disabled>Pilih jenis barang</option>
-                    <option value="cloth">Kain</option>
-                    <option value="thread">Benang</option>
-                </select>
-    
-                <label for="stock_name">Nama Barang:</label>
-                <input type="text" id="stock_name" name="stock_name" required>
-    
-                <label for="quantity">Jumlah Stok:</label>
-                <input type="number" id="quantity" name="quantity" step="1" required>
-    
-                <button type="submit">Tambahkan stok</button>
-        </form>                
+                
+                <!-- Input untuk jumlah tambahan stok -->
+                <label for="additional_quantity">Jumlah Tambahan:</label>
+                <input type="number" id="additional_quantity" name="additional_quantity" step="1" required>
+        
+                <!-- Tombol untuk menambahkan stok -->
+                <button type="submit">Tambahkan Stok</button>
+            </form>
+        </div>
     </div>
 
     <!-- Tabel Stok Barang -->
@@ -58,6 +101,7 @@
                     <th>Nama Barang</th>
                     <th>Jumlah Stok</th>
                     <th>Tanggal Masuk Terakhir</th>
+                    <th>Supplier</th>
                 </tr>
             </thead>
             <tbody id="stockTableBody">
@@ -68,6 +112,7 @@
                 <td>{{$stock->stock_name}}</td>
                 <td>{{$stock->quantity}}</td>
                 <td>{{$stock->last_updated}}</td>
+                <td>{{$stock->supplier_name}}</td>
             </tr>
                 @endforeach
             </tbody>
@@ -75,5 +120,24 @@
     </div>
 
 </div>
+<script>       
+        $(document).ready(function() {
+            $('#existing_stock_id').select2({
+                placeholder: 'Cari Barang',
+                width: '100%',
+                theme: 'default',
+                allowClear: true
+            });
+        });
 
+        $(document).ready(function() {
+        $('.select2-supplier').select2({
+            placeholder: "Pilih Supplier",
+            width: '100%',
+            theme: 'default',
+            allowClear: true
+        });
+    });
+
+</script>
 @endsection

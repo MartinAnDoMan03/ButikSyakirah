@@ -59,6 +59,7 @@
                 <!-- Dropdown untuk memilih stok barang -->
                 <label for="existing_stock_id">Pilih Barang:</label>
                 <select id="existing_stock_id" name="stock_id" required>
+                    <option value="" selected disabled>Pilih Barang</option>
                     @foreach ($stocks as $stock)
                         <option value="{{ $stock->stock_id }}">{{ $stock->stock_name }}</option>
                     @endforeach
@@ -100,6 +101,7 @@
                     <th>Nama Barang</th>
                     <th>Jumlah Stok</th>
                     <th>Tanggal Masuk Terakhir</th>
+                    <th>Supplier</th>
                 </tr>
             </thead>
             <tbody id="stockTableBody">
@@ -110,6 +112,7 @@
                 <td>{{$stock->stock_name}}</td>
                 <td>{{$stock->quantity}}</td>
                 <td>{{$stock->last_updated}}</td>
+                <td>{{$stock->supplier_name}}</td>
             </tr>
                 @endforeach
             </tbody>

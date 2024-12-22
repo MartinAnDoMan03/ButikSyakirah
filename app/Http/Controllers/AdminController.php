@@ -32,11 +32,16 @@ class AdminController extends Controller
     // Menampilkan halaman Stok Barang
     public function stokBarang()
 {
-    $stocks = Stock::all();
-    $suppliers = Supplier::all(); // Tambahkan query untuk mendapatkan data supplier
-    return view('admin.stokBarang', [
+    $stocks = DB::table('stocks')
+    ->join('stock_suppliers', 'stocks.stock_id', '=', 'stock_suppliers.stock_id')
+    ->join('suppliers', 'stock_suppliers.supplier_id', '=', 'suppliers.supplier_id')
+    ->select('stocks.*', 'suppliers.supplier_name')
+    ->get();
+
+    $suppliers = DB::table('suppliers')->select('supplier_id', 'supplier_name')->get();
+    return view('admin.stokBarang',[
         'stocks' => $stocks,
-        'suppliers' => $suppliers, // Kirim data supplier ke view
+        'suppliers' => $suppliers,
     ]);
 }
 

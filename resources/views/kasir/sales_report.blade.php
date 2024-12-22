@@ -6,6 +6,7 @@
     <h1>Sales Report</h1>
 
     <!-- Form for Selecting Date Range -->
+     <div class="form-report">
     <form action="{{ url('generate-sales-report') }}" method="GET">
         @csrf
         <div>
@@ -18,6 +19,7 @@
         </div>
         <button type="submit">Generate Report</button>
     </form>
+    </div>
 
     <!-- Display Report -->
     @if(isset($orders) && count($orders) > 0)
@@ -53,6 +55,6 @@
             <button type="submit">Print to PDF</button>
         </form>
     @else
-        <p>No sales found in the specified date range.</p>
+        <p class="no-sales-messege">No sales found in the specified date range.</p>
     @endif
 @endsection
