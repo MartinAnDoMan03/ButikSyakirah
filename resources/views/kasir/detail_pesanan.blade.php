@@ -65,6 +65,12 @@
                 </select>
             </div>
 
+            <div class="edit-order-group">
+                <label for="sequin_price" class="edit-order-label">Harga Payer : </label>
+                <input type="number" id="sequin_price" class="edit-order-input" name="sequin_price"
+                    min="0" step="500" />
+            </div>
+
             <!-- Price -->
             <div class="edit-order-group">
                 <label for="price" class="edit-order-label">Total Harga:</label>
@@ -90,60 +96,64 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Element references
-            const orderTypeSelect = document.getElementById('order_type');
-            const storeClothTypeSelect = document.getElementById('store_cloth_type');
-            const storeClothLengthInput = document.getElementById('store_cloth_length');
-            const priceInput = document.getElementById('price');
-            const hiddenPriceInput = document.getElementById('hidden_price');
+    // Element references
+    const orderTypeSelect = document.getElementById('order_type');
+    const storeClothTypeSelect = document.getElementById('store_cloth_type');
+    const storeClothLengthInput = document.getElementById('store_cloth_length');
+    const priceInput = document.getElementById('price');
+    const hiddenPriceInput = document.getElementById('hidden_price');
+    const sequinPriceInput = document.getElementById('sequin_price');
 
-            // Prices
-            const prices = {
-                "kemeja-lengan-panjang-pria": 100000,
-                "kemeja-lengan-pendek-pria": 80000,
-                "gamis-wanita": 120000,
-                "rok-panjang-wanita": 90000,
-                "rok-pendek-wanita": 75000,
-                "kebaya": 150000,
-                "kemeja-lengan-panjang-anak": 70000,
-                "kemeja-lengan-pendek-anak": 60000,
-                "gamis-anak": 100000,
-                "jas": 200000,
-                "custom": 0
-            };
+    // Prices
+    const prices = {
+        "kemeja-lengan-panjang-pria": 100000,
+        "kemeja-lengan-pendek-pria": 80000,
+        "gamis-wanita": 120000,
+        "rok-panjang-wanita": 90000,
+        "rok-pendek-wanita": 75000,
+        "kebaya": 150000,
+        "kemeja-lengan-panjang-anak": 70000,
+        "kemeja-lengan-pendek-anak": 60000,
+        "gamis-anak": 100000,
+        "jas": 200000,
+        "custom": 0
+    };
 
-            const fabricPrices = {
-                "katun": 50000,
-                "sutra": 100000,
-                "wolfis": 75000
-            };
+    const fabricPrices = {
+        "katun": 50000,
+        "sutra": 100000,
+        "wolfis": 75000
+    };
 
-            // Update price calculation
-            function calculatePrice() {
-                const orderType = orderTypeSelect.value;
-                const storeClothType = storeClothTypeSelect.value;
-                const storeClothLength = parseFloat(storeClothLengthInput.value) || 0;
+    // Update price calculation
+    function calculatePrice() {
+        const orderType = orderTypeSelect.value;
+        const storeClothType = storeClothTypeSelect.value;
+        const storeClothLength = parseFloat(storeClothLengthInput.value) || 0;
+        const sequinPrice = parseFloat(sequinPriceInput.value) || 0;
 
-                const basePrice = prices[orderType] || 0;
-                const fabricPricePerMeter = fabricPrices[storeClothType] || 0;
+        const basePrice = prices[orderType] || 0;
+        const fabricPricePerMeter = fabricPrices[storeClothType] || 0;
 
-                const totalPrice = (basePrice + (fabricPricePerMeter * storeClothLength));
+        // Calculate total price using the updated formula
+        const totalPrice = (basePrice + (fabricPricePerMeter * storeClothLength) + sequinPrice);
 
-                // Tampilkan harga dengan format mata uang (tidak dibagi)
-                priceInput.value = totalPrice.toLocaleString('id-ID', {
-                    style: 'currency',
-                    currency: 'IDR'
-                });
-
-                // Kirim harga yang dibagi 1000 ke hiddenPriceInput
-                hiddenPriceInput.value = (totalPrice / 1).toFixed(
-                2); // Membagi dengan 1000 dan memastikan 2 angka desimal
-            }
-
-            // Add event listeners
-            orderTypeSelect.addEventListener('change', calculatePrice);
-            storeClothTypeSelect.addEventListener('change', calculatePrice);
-            storeClothLengthInput.addEventListener('input', calculatePrice);
+        // Display price with currency format
+        priceInput.value = totalPrice.toLocaleString('id-ID', {
+            style: 'currency',
+            currency: 'IDR'
         });
+
+        // Send price value to hidden input for storage
+        hiddenPriceInput.value = (totalPrice).toFixed(2); // Ensure two decimal places
+    }
+
+    // Add event listeners for changes
+    orderTypeSelect.addEventListener('change', calculatePrice);
+    storeClothTypeSelect.addEventListener('change', calculatePrice);
+    storeClothLengthInput.addEventListener('input', calculatePrice);
+    sequinPriceInput.addEventListener('input', calculatePrice);
+});
+
     </script>
 @endsection
