@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Customer;
 use App\Models\Size_detail;
+use App\Models\Order_detail;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreOrderRequest;
 use Illuminate\Support\Facades\DB;
@@ -147,7 +148,7 @@ class OrderController extends Controller
 
     public function getSizeDetails($order_id)
     {
-        $sizeDetails = Size_Detail::where('order_id', $order_id)->first();
+        $sizeDetails = Size_detail::where('order_id', $order_id)->first();
     
         if (!$sizeDetails) {
             return response()->json(['error' => 'Size details not found for this order.']);
@@ -221,7 +222,37 @@ public function searchPesanan(Request $request)
         return view('penggunting.data_pesanan', compact('orders'));
     }
 
-    
+    public function editPesanan($order_id)
+    {
+        // Cari pesanan berdasarkan order_id
+        $order = Order::findOrFail($order_id); // Jika tidak ditemukan, akan mengembalikan 404
+
+        // Ambil data penjahit (users dengan role penjahit)
+        $penjahits = \App\Models\User::where('role', 'penjahit')->get();
+
+        // Kirim data pesanan dan penjahit ke view untuk di-edit
+        return view('penggunting.edit_pesanan', compact('order', 'penjahits'));
+    }
+
+
+public function updatePesanan(Request $request, $order_id)
+{
+    // Gunakan 'order_id' untuk mencari pesanan
+    $order = Order::where('order_id', $order_id)->first();
+
+    if (!$order) {
+        return redirect()->route('penggunting.data_pesanan')->with('error', 'Pesanan tidak ditemukan.');
+    }
+
+    // Update pesanan berdasarkan input dari form
+    $order->update([
+        'penjahit_id' => $request->input('penjahit_id'),
+        // Field lain yang ingin diupdate
+    ]);
+
+    return redirect()->route('penggunting.data_pesanan')->with('success', 'Pesanan berhasil diperbarui.');
+}
+
 
 
 

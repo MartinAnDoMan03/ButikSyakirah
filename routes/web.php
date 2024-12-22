@@ -111,6 +111,17 @@ Route::get('/penggunting/home', function () {return view('penggunting.home'); })
 Route::get('/penggunting/detail_ukuran', function () {return view('penggunting.detail_ukuran'); });
 Route::get('/penggunting/data_pesanan', function () { return view('penggunting.data_pesanan'); });
 Route::get('penggunting/data_pesanan', [OrderController::class, 'showDataPesanan'])->name('penggunting.data_pesanan');
+Route::get('penggunting/edit_pesanan/{order_id}', [OrderController::class, 'editPesanan'])->name('penggunting.edit_pesanan');
+Route::get('/penggunting/detail_ukuran/{order_id}', [OrderDetailController::class, 'showDetailUkuran'])->name('show.detail.ukuran');
+
+
+
+
+
+
+
+Route::put('penggunting/update_pesanan/{order_id}', [OrderController::class, 'updatePesanan'])->name('penggunting.update_pesanan');
+
 
 
 

@@ -99,4 +99,17 @@ class OrderDetailController extends Controller
     {
         //
     }
+
+    public function showDetailUkuran($order_id)
+    {
+        // Cari data berdasarkan foreign key order_id
+        $order_details = Order_detail::where('order_id', $order_id)->first();
+
+        if (!$order_details) {
+            return redirect()->back()->with('error', 'Pesanan tidak ditemukan.');
+        }
+
+        // Kirimkan data ke view
+        return view('penggunting.detail_ukuran', compact('$order_details'));
+    }
 }

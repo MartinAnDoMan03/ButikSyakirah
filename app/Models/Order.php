@@ -31,7 +31,20 @@ class Order extends Model
     }
 
     public function penjahit()
-{
-    return $this->belongsTo(User::class, 'nama_penjahit');
-}
+    {
+        return $this->belongsTo(User::class, 'penjahit_id');
+    }
+
+    // Menambahkan fungsi untuk mengambil penjahit berdasarkan role
+    public function getPenjahit()
+    {
+        // Mengambil penjahit berdasarkan role 'penjahit' di tabel users
+        return User::where('role', 'penjahit')->first();
+    }
+
+    public function sizeDetails()
+    {
+        return $this->hasMany(Size_detail::class, 'order_id');
+    }
+
 }

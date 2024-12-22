@@ -21,20 +21,22 @@
                     <th>Nama Penjahit</th>
                 </tr>
             </thead>
-            <tbody>
-                @forelse ($orders as $order)
-                    <tr>
-                        <td>{{ $order->order_id }}</td>
-                        <td>{{ $order->customer->customer_name ?? 'Tidak Ditemukan' }}</td> <!-- Menampilkan nama customer -->
-                        <td>{{ $order->detail_ukuran ?? 'Tidak Tersedia' }}</td> 
-                        <td>{{ $order->penjahit->name ?? 'Belum Ditemukan' }}</td> 
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="4">Tidak ada pesanan.</td>
-                    </tr>
-                @endforelse
-            </tbody>
+            @foreach($orders as $order)
+            <tr>
+                <td>{{ $order->customer_id }}</td>
+                <td>{{ $order->customer->customer_name }}</td>
+                <td>{{ $order->detail_ukuran }}</td>
+                <td>
+                    <!-- Menampilkan nama penjahit yang diambil dari tabel users dengan role 'penjahit' -->
+                    {{ $order->getPenjahit()->name ?? 'Belum Ditemukan' }}
+                </td>
+                <td>
+                    <!-- Link ke halaman edit pesanan -->
+                    <a href="{{ route('penggunting.edit_pesanan', $order->order_id) }}" class="btn btn-sm btn-warning">Edit</a>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
         </table>
     </div>
 @endsection
