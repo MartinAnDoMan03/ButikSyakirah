@@ -53,6 +53,7 @@ JOIN customers ON orders.customer_id = customers.customer_id;
         customers.customer_name,
         orders.order_date,
         orders.completion_date,
+        order_details.order_type,
         order_details.store_cloth_type,
         order_details.store_cloth_length,
         order_details.note,
