@@ -21,7 +21,7 @@ function closeDetailModal() {
 
 // Fungsi untuk memperbarui harga baju sesuai pilihan
 function updatePrice() {
-    var clothingType = document.getElementById('clothingType').value;
+    var order_type = document.getElementById('order_type').value;
     var priceInput = document.getElementById('priceInput');
 
     // Harga berdasarkan jenis baju yang dipilih
@@ -40,8 +40,8 @@ function updatePrice() {
     };
 
     // Set harga pada input harga
-    if (clothingType && prices[clothingType]) {
-        priceInput.value = prices[clothingType].toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+    if (order_type && prices[order_type]) {
+        priceInput.value = prices[order_type].toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
     } else {
         priceInput.value = "";
     }
@@ -49,7 +49,7 @@ function updatePrice() {
 
 // Fungsi untuk memperbarui harga kain berdasarkan pilihan
 function updateFabricPrice() {
-    var fabricType = document.getElementById('storeFabric').value;
+    var fabricType = document.getElementById('store_cloth_type').value;
     var fabricPriceInput = document.getElementById('fabricPrice');
 
     // Harga kain per meter
@@ -70,33 +70,33 @@ function updateFabricPrice() {
 // Fungsi untuk menghitung biaya kain
 function calculateFabricCost() {
     var fabricPrice = parseFloat(document.getElementById('fabricPrice').value.replace(/[^0-9.-]+/g,""));
-    var fabricLength = parseFloat(document.getElementById('fabricLength').value);
+    var store_cloth_length = parseFloat(document.getElementById('store_cloth_length').value);
     var totalFabricPrice = document.getElementById('totalFabricPrice');
 
     // Jika harga kain dan panjang kain valid, hitung total harga kain
-    if (!isNaN(fabricPrice) && !isNaN(fabricLength)) {
-        totalFabricPrice.value = (fabricPrice * fabricLength).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+    if (!isNaN(fabricPrice) && !isNaN(store_cloth_length)) {
+        totalFabricPrice.value = (fabricPrice * store_cloth_length).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
     } else {
         totalFabricPrice.value = "Harga Tidak Valid";
     }
 
-    calculateTotalPrice();
+    calculateprice();
 }
 
 // fungsi untuk menghitung total harga berdasarkan kain dan payet
-function calculateTotalPrice() {
+function calculateprice() {
     var fabricCost = parseFloat(document.getElementById('totalFabricPrice').value.replace(/[^0-9.-]+/g,""));
     var payetPrice = parseFloat(document.getElementById('payetPrice').value.replace(/[^0-9.-]+/g,""));
-    var payetCode = document.getElementById('payetCode').value;
-    var totalPrice = document.getElementById('totalPrice');
+    var sequin = document.getElementById('sequin').value;
+    var price = document.getElementById('price');
 
     var total = fabricCost;
 
-    if (payetCode === "yes" && !isNaN(payetPrice)) {
+    if (sequin === "yes" && !isNaN(payetPrice)) {
         total += payetPrice;
     }
 
-    totalPrice.value = total.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+    price.value = total.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
 }
 // fungsi untuk menampilkan form detail pesanan
 function showDetailForm() {
