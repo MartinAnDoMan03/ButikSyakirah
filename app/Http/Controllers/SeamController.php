@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Seam;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreSeamRequest;
 use App\Http\Requests\UpdateSeamRequest;
 use Illuminate\Support\Facades\Auth;
@@ -42,23 +43,41 @@ class SeamController extends Controller
     }
 
     public function getOrdersWithSeam()
-{
-    $user = Auth::user();
+    {
+        $user = Auth::user();
 
-    // Check if the logged-in user has the role 'pemayet'
-    if ($user->role !== 'penjahit' && $user->role !== 'admin') {
-        abort(403, 'Unauthorized action.');
+        // Check if the logged-in user has the role 'pemayet'
+        if ($user->role !== 'penjahit' && $user->role !== 'admin') {
+            abort(403, 'Unauthorized action.');
+        }
+
+        // Query the orders and sequin tables
+        $orders = \DB::table('seamer_view')
+            ->where('seam_status', 'diproses')
+            ->where('seamer_id', $user->user_id)
+            ->get();
+
+        return view('penjahit.data_pesanan', ['orders' => $orders]);
     }
+    public function updateStatus(Request $request, $orderId)
+    {
+        // Validate the request
+        $request->validate([
+            'seam_status' => 'required|in:Selesai',
+        ]);
 
-    // Query the orders and sequin tables
-    $orders = \DB::table('seamer_view')
-    ->where('seam_status', 'diproses')
-    ->where('seamer_id', $user->user_id)
-    ->get();
+        $order = Seam::findOrFail($orderId);
+        $order->status = $request->status;
+        $order->save();
 
-    return view('penjahit.data_pesanan', ['orders' => $orders]);
-}
+        \DB::statement('CALL InsertJob(?, ?, ?)', [
+            $user_id,
+            $validatedData['job_type'],
+            $validatedData['start_date']
+        ]);
 
+        return redirect()->back()->with('success', 'Order status updated successfully!');
+    }
     /**
      * Display the specified resource.
      */

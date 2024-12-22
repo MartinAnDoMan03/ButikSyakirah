@@ -32,6 +32,7 @@ return new class extends Migration {
     customers.customer_name,
     orders.order_date,
     orders.completion_date,
+    order_details.sequin,
     order_details.note,
     sequin.sequin_price,
     sequin.sequin_status,

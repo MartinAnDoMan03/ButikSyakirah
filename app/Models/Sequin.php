@@ -11,6 +11,7 @@ class Sequin extends Model
     protected $primaryKey = 'sequin_id';
 
     protected $keyType = 'int';
+    public $timestamps = false;
 
     protected $fillable = ['order_id', 'sequin_name', 'sequin_price', 'sequin_status']; // Sesuaikan dengan kolom di tabel
 }

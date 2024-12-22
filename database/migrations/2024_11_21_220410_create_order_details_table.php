@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('store_cloth_type')->nullable();
             $table->integer('store_cloth_length')->nullable();
             $table->enum('sequin', ['yes', 'no']);
+            $table->integer('sequin_price');
+            $table->integer('seam_price');
             $table->integer('price')->nullable();
             $table->text('note')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP')); 

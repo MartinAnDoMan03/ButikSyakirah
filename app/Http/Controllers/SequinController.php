@@ -71,8 +71,9 @@ public function getOrdersWithSequin()
 
     $orders = \DB::table('sequiner_view')
     ->where('sequiner_id', $user->user_id)
-    // ->where('status', 'diproses')
-    // ->where('sequin_status', 'yes')
+    ->where('status', 'diproses')
+    ->where('sequin', 'yes')
+    ->where('sequin_status', 'Belum Selesai')
     ->get();
 
     return view('pemayet.data_pesanan', ['orders' => $orders]);
@@ -86,17 +87,30 @@ public function getOrdersWithSequin()
     {
         //
     }
-    public function updateStatus(Request $request, $orderId)
-    {
-        // Validate the request
-        $request->validate([
-            'status' => 'required|in:Selesai',
-        ]);
+    public function updateStatus(Request $request, $order_id)
+{
+    // Validate the request
+    $request->validate([
+        'sequin_status' => 'required|in:Selesai',
+    ]);
 
-        $order = Sequin::findOrFail($orderId);
-        $order->status = $request->status;
-        $order->save();
+    // Update the order status
+    $order = Sequin::findOrFail($order_id);
+    $order->sequin_status = $request->sequin_status;
+    $order->save();
 
-        return redirect()->back()->with('success', 'Order status updated successfully!');
-    }
+    // Call the stored procedure after update
+    $userId = auth()->user()->user_id; 
+    $jobType = 'sequining'; 
+    $startDate = now()->toDateString(); // 
+
+    \DB::statement('CALL InsertJob(?, ?, ?)', [
+        $userId,
+        $jobType,
+        $startDate
+    ]);
+
+    return redirect()->back()->with('success', 'Order status updated and job recorded successfully!');
+}
+
 }
