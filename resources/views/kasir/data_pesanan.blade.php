@@ -78,8 +78,8 @@
 
                 <!-- Jenis Baju -->
                 <div>
-                    <label for="clothingType">Jenis Baju:</label>
-                    <select id="clothingType" name="clothingType" onchange="updatePrice()">
+                    <label for="order_type">Jenis Baju:</label>
+                    <select id="order_type" name="order_type" onchange="updatePrice()">
                         <option value="" disabled selected>Pilih Jenis Baju</option>
                         <option value="kemeja-lengan-panjang-pria">Kemeja Lengan Panjang Pria</option>
                         <option value="kemeja-lengan-pendek-pria">Kemeja Lengan Pendek Pria</option>
@@ -104,8 +104,13 @@
 
                 <!-- Pilih Kain Toko -->
                 <div>
-                    <label for="storeFabric">Kain Toko:</label>
-                    <select id="storeFabric" name="storeFabric" onchange="updateFabricPrice()">
+                    <label for="customer_cloth">Tambahan Kain Customer :</label>
+                    <input type="text" id="customer_cloth" name="customer_cloth">
+                </div>
+
+                <div>
+                    <label for="store_cloth_type">Kain Toko:</label>
+                    <select id="store_cloth_type" name="store_cloth_type" onchange="updateFabricPrice()">
                         <option value="" disabled selected>Pilih Kain Toko</option>
                         <option value="katun">Katun </option>
                         <option value="sutra">Sutra </option>
@@ -114,30 +119,26 @@
                 </div>
 
                 <div>
+                    <label for="store_cloth_length">Ukuran Kain (meter):</label>
+                    <input type="number" id="store_cloth_length" name="store_cloth_length" min="0" step="0.1"
+                        onchange="calculateFabricCost()" />
+                </div>
+
+                <div>
                     <label for="fabricPrice">Harga Kain (per meter):</label>
                     <input type="text" id="fabricPrice" readonly />
                 </div>
 
-                <div>
-                    <label for="fabricLength">Ukuran Kain (meter):</label>
-                    <input type="number" id="fabricLength" min="0" step="0.1"
-                        onchange="calculateFabricCost()" />
-                </div>
 
                 <div>
                     <label for="totalFabricPrice">Total Harga Kain:</label>
                     <input type="text" id="totalFabricPrice" readonly />
                 </div>
 
-                <div>
-                    <label for="FabricCustomer">Tambahan Kain Customer :</label>
-                    <input type="text" id="FabricCustomer">
-                </div>
-
                 <!-- Payet -->
                 <div>
-                    <label for="payetCode">Payet:</label>
-                    <select id="payetCode" name="payetCode" onchange="calculateTotalPrice()">
+                    <label for="sequin">Payet:</label>
+                    <select id="sequin" name="sequin" onchange="calculateprice()">
                         <option value="no">Tidak</option>
                         <option value="yes">Tambah payet</option>
                     </select>
@@ -147,18 +148,18 @@
                 <div>
                     <label for="payetPrice">Harga Payet:</label>
                     <input type="text" id="payetPrice" name="payetPrice" placeholder="Masukkan Harga Payet"
-                        onchange="calculateTotalPrice()" />
+                        onchange="calculateprice()" />
                 </div>
 
                 <div>
-                    <label for="notesCustom">Catatan Tambahan:</label>
-                    <textarea name="notes" id="notesCustomer" cols="30" rows="10" placeholder="Tambah catatan pesanan"></textarea>
+                    <label for="note">Catatan Tambahan:</label>
+                    <textarea name="notes" id="note" cols="30" rows="10" placeholder="Tambah catatan pesanan"></textarea>
                 </div>
 
                 {{-- Total Harga --}}
                 <div>
-                    <label for="totalPrice">Total Harga:</label>
-                    <input type="text" id="totalPrice" name="totalPrice" readonly />
+                    <label for="price">Total Harga:</label>
+                    <input type="text" id="price" name="price" readonly />
                 </div>
 
                 <div style="margin-top: 20px;">
