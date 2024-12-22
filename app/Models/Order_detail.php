@@ -12,7 +12,7 @@ class Order_detail extends Model
 
     protected $keyType = 'int';
 
-    protected $fillable = ['order_id', 'order_type', 'customer_cloth', 'store_cloth_type', 'store_cloth_length', 'sequin', 'price', 'note',];
+    protected $fillable = ['order_id', 'order_type', 'customer_cloth', 'store_cloth_type', 'store_cloth_length','seam_price', 'sequin','sequin_price', 'price', 'note',];
 
     public $timestamps = false;
 }

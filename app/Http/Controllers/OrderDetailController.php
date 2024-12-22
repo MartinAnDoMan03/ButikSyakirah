@@ -47,6 +47,8 @@ class OrderDetailController extends Controller
     \Log::info('Data setelah validasi:', $validated);
 
     // Konversi harga
+    $validated['seam_price'] = $request->input('seam_price', 0);
+    $validated['sequin_price'] = $request->input('sequin_price', 0);
     $validated['price'] = $request->input('price', 0); // Tidak perlu konversi tambahan
  $validated['order_id'] = $order_id;
 
