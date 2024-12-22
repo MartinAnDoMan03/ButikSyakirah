@@ -43,6 +43,18 @@ return new class extends Migration {
                 END IF;
             END
         ');
+
+        DB::unprepared('
+            CREATE TRIGGER after_order_status_update
+            AFTER UPDATE ON orders
+            FOR EACH ROW
+            BEGIN
+                IF NEW.status != OLD.status THEN
+                    INSERT INTO order_logs (order_id, old_status, new_status, created_at, updated_at)
+                    VALUES (NEW.order_id, OLD.status, NEW.status, NOW(), NOW());
+                END IF;
+            END
+        ');
     }
 
     /**

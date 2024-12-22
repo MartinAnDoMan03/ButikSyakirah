@@ -1,39 +1,42 @@
-@extends('layouts.layout')
+@extends('layouts.layoutadmin')
 
-@section('title', 'Pembayaran')
+@section('title', 'Tambah Pembayaran')
 
 @section('content')
+    <h1>Tambah Pembayaran</h1>
 
-    <h1>Pembayaran</h1>
-
-    <!-- Tombol Toggle -->
-   
-
-    <!-- Form Input untuk Menambah Stok Barang Baru -->
-    <div class="order-form" id="addStockForm">
-        <h3>Form Pembayaran</h3>
-        <form action="{{ route('payment.store') }}" method="POST">
+    <div class="form-container">
+        <form action="{{ route('payment_logs.store') }}" method="POST">
             @csrf
-            <label for="order_id">Order:</label>
-            <select id="order_id" name="order_id" required>
-                <option value="" selected disabled>Pilih ID pesanan</option>
-                @foreach ($orders as $order)
-                    <option value="{{ $order->order_id }}">{{ $order->order_id }}</option>
-                @endforeach
-            </select>
 
-            <label for="payment_amount">Jumlah dibayar :</label>
-            <input type="number" id="payment_amount" name="payment_amount" step="5000" required>
+            <!-- Order ID -->
+            <div class="form-group">
+                <label for="order_id">ID Pesanan</label>
+                <select name="order_id" id="order_id" required>
+                    <option value="" disabled selected>Pilih ID Pesanan</option>
+                    @foreach ($orders as $order)
+                        <option value="{{ $order->order_id }}">{{ $order->order_id }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-            <label for="payment_method">Metode pembayaran :</label>
-            <select id="payment_method" name="payment_method" required>
-                <option value="" selected disabled>Pilih metode pembayaran</option>
-                <option value="Cash">Cash</option>
-                <option value="Bank Transfer">Bank Transfer</option>
-            </select>
+            <!-- Payment Method -->
+            <div class="form-group">
+                <label for="payment_method">Metode Pembayaran</label>
+                <select name="payment_method" id="payment_method" required>
+                    <option value="" disabled selected>Pilih Metode Pembayaran</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                </select>
+            </div>
 
-            <button type="submit">Bayar</button>
+            <!-- Payment Amount -->
+            <div class="form-group">
+                <label for="payment_amount">Jumlah Pembayaran</label>
+                <input type="number" name="payment_amount" id="payment_amount" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Tambah Pembayaran</button>
         </form>
     </div>
-
 @endsection

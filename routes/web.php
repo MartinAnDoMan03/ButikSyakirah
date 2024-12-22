@@ -141,3 +141,8 @@ Route::get('/generate-sales-report', [OrderController::class, 'generateSalesRepo
 
 Route::get('/detail_pesanan/{order_id}', [OrderDetailController::class, 'edit'])->name('order.detail');
 Route::post('/detail_pesanan/{order_id}', [OrderDetailController::class, 'addDetail'])->name('order.addDetail');
+
+
+
+Route::get('/payment_logs/create', [PaymentLogController::class, 'create'])->name('payment_logs.create');
+Route::post('/payment_logs/store', [PaymentLogController::class, 'store'])->name('payment_logs.store');
