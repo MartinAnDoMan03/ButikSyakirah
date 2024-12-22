@@ -73,7 +73,7 @@
             <span class="close-btn" onclick="closeDetailModal()">&times;</span>
 
             <h2>Detail Pesanan</h2>
-            <form class="detail-form" action="{{ url('add-detail-pesanan') }}" method="POST">
+            <form class="detail-form" action="{{ url('kasir.addDetail') }}" method="POST">
                 @csrf
 
                 <!-- Jenis Baju -->

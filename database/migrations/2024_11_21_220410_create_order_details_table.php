@@ -17,8 +17,9 @@ return new class extends Migration
             $table->integer('order_detail_id')->primary()->autoIncrement();
             $table->integer('order_id');
             $table->string('order_type');
-            $table->integer('customer_cloth')->nullable();
-            $table->integer('store_cloth')->nullable();
+            $table->string('customer_cloth')->nullable();
+            $table->string('store_cloth_type')->nullable();
+            $table->integer('store_cloth_length')->nullable();
             $table->enum('sequin', ['yes', 'no']);
             $table->integer('price')->nullable();
             $table->text('note')->nullable();

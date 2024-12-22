@@ -59,6 +59,7 @@ Route::get('/admin/order_log', [AdminController::class, 'order_log'])->name('adm
 
 Route::get('/kasir/data_customer', [KasirController::class, 'showCustomer'])->name('kasir.data_customer');
 Route::get('/kasir/data_pesanan', [KasirController::class, 'showDataPesanan'])->name('kasir.data_pesanan');
+Route::post('/kasir/data_pesanan', [KasirController::class, 'addDetail'])->name('kasir.addDetail');
 Route::get('/kasir/stok_barang', [StockController::class, 'getStocks'])->name('kasir.stok_barang');
 Route::get('/kasir/add_pesanan', [KasirController::class, 'addPesanan'])->name('kasir.add_pesanan');
 Route::post('/kasir/add_pesanan', [KasirController::class, 'store'])->name('kasir.store');

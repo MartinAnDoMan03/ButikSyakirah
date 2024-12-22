@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\Order_detail;
 use App\Models\Stock;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\pdf;
@@ -55,6 +56,31 @@ class KasirController extends Controller
         return view('kasir.riwayat_pesanan', ['orders'=> $orders]);
     }
 
+    public function addDetail(Request $request)
+    {
+        $validated = $request->validate([
+            'order_id' => 'required|exists:orders,order_id',
+            'order_type' => 'required|string|max:255',
+            'customer_cloth' => 'nullable|string|max:255',
+            'store_cloth_type' => 'nullable|string|max:255',
+            'store_cloth_length' => 'nullable|int',
+            'sequin' => 'required|string|max:255',
+            'price' => 'nullable|int',
+            'note' => 'nullable|string',
+        ]);
 
+        Order_detail::create([
+            'order_id' => $validated['order_id'],
+            'order_type' => $validated['order_type'],
+            'customer_cloth' => $validated['customer_cloth'],
+            'store_cloth_type' => $validated['store_cloth_type'],
+            'store_cloth_length' => $validated['store_cloth_length'],
+            'sequin' => $validated['sequin'],
+            'price' => $validated['price'],
+            'note' => $validated['note'],
+        ]);
+
+        return redirect()->route('kasir.data_pesanan')->with('success', 'Detail berhasil ditambahkan.');
+    }
 
 }
