@@ -64,34 +64,18 @@ return new class extends Migration {
             END
         ");
 
-         DB::unprepared('DROP PROCEDURE IF EXISTS seamer_job');
-        DB::unprepared('
-            CREATE PROCEDURE seamer_job()
-            BEGIN
-                INSERT INTO jobs (user_id, job_type, start_date)
-                SELECT 
-                    seamer_id AS user_id,
-                    "seaming" AS job_type,
-                    NOW() AS start_date
-                FROM seams
-                WHERE seam_status = "Belum-Selesai" AND seamer_id IS NOT NULL;
-            END
-        ');
+        DB::unprepared('DROP PROCEDURE IF EXISTS InsertJob');
         
-        DB::unprepared('DROP PROCEDURE IF EXISTS sequiner_job');
-
         DB::unprepared('
-            CREATE PROCEDURE sequiner_job()
+            CREATE PROCEDURE InsertJob(
+                IN userId INT,
+                IN jobType ENUM("seaming", "cutting", "sequining"),
+                IN startDate DATE
+            )
             BEGIN
-                -- Insert data into jobs table based on sequin table
                 INSERT INTO jobs (user_id, job_type, start_date)
-                SELECT 
-                    sequiner_id AS user_id,
-                    "sequining" AS job_type,
-                    NOW() AS start_date
-                FROM sequin
-                WHERE sequiner_id IS NOT NULL;
-            END
+                VALUES (userId, jobType, startDate);
+            END 
         ');
     }
 
