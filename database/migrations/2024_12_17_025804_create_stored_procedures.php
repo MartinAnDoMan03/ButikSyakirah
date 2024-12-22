@@ -23,13 +23,11 @@ return new class extends Migration {
                     o.order_date AS `Order Date`,
                     o.completion_date AS `Completion Date`,
                     o.status AS `Order Status`,
-                    od.price AS `Total Price`
+                    o.price AS `Total Price`
                 FROM 
                     orders o
                 LEFT JOIN 
                     customers c ON o.customer_id = c.customer_id
-                LEFT JOIN 
-                    order_details od ON o.order_id = od.order_id
                 WHERE 
                     o.order_date BETWEEN start_date AND end_date
                 ORDER BY 
@@ -48,19 +46,17 @@ return new class extends Migration {
                 SELECT 
                     o.order_id AS OrderID,
                     c.customer_name AS CustomerName,
-                    od.price AS Price
+                    o.price AS Price
                 FROM 
                     orders o
                 LEFT JOIN 
                     customers c ON o.customer_id = c.customer_id
-                LEFT JOIN 
-                    order_details od ON o.order_id = od.order_id
                 WHERE 
                     o.order_date BETWEEN start_date AND end_date
                     AND o.status = 'Selesai'; -- Only include completed orders
 
                 SELECT 
-                    CalculateTotalSales(start_date, end_date) AS TotalSales;
+                   CalculateTotalIncomeByDate(start_date, end_date) AS TotalSales;
             END
         ");
 

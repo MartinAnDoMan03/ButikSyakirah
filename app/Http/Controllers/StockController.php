@@ -78,7 +78,7 @@ class StockController extends Controller
         $stocks = Stock::all();
         $suppliers = Supplier::all();
         return view('kasir.stok_barang', ['stocks' => $stocks], ['suppliers' => $suppliers]);
-        return view('admin.stok_barang', ['stocks' => $stocks], ['suppliers' =>$suppliers]);
+        // return view('admin.stok_barang', ['stocks' => $stocks], ['suppliers' =>$suppliers]);
     }
 
     public function updateStocks(Request $request)
@@ -177,4 +177,3 @@ class StockController extends Controller
     }
 
 }
-

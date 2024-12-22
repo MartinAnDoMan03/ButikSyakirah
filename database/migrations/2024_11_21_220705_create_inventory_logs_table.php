@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->date('transaction_date');
             $table->foreign('stock_id')->references('stock_id')->on('stocks')->onDelete('restrict');
-            $table->foreign('order_reference_id')->references('order_id')->on('orders')->onDelete('restrict');
+            $table->foreign('order_reference_id')->references('order_detail_id')->on('order_details')->onDelete('restrict');
             $table->foreign('supplier_reference_id')->references('supplier_id')->on('suppliers')->onDelete('restrict');
         });
 

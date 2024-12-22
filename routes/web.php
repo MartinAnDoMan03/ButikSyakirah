@@ -9,6 +9,7 @@ use App\Http\Controllers\SeamController;
 use App\Http\Controllers\SequinController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\PaymentLogController;
@@ -136,3 +137,7 @@ Route::get('/kasir/sales_report', function () {
     return view('kasir.sales_report');
 })->name('sales.report');
 Route::get('/generate-sales-report', [OrderController::class, 'generateSalesReport'])->name('sales.report.generate');
+
+
+Route::get('/detail_pesanan/{order_id}', [OrderDetailController::class, 'edit'])->name('order.detail');
+Route::post('/detail_pesanan/{order_id}', [OrderDetailController::class, 'addDetail'])->name('order.addDetail');
