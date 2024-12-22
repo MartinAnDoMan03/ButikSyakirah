@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Stock;
 use App\Models\Supplier;
+use App\Models\Order;
 use App\Http\Requests\StoreStockRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UpdateStockRequest;
@@ -17,8 +18,13 @@ class StockController extends Controller
      */
     public function index()
     {
-        //
-    }
+       // Ambil data supplier dan stok barang
+       $suppliers = Supplier::all();
+       $stocks = Stock::all();
+
+       // Kirim data ke view stok_barang.blade.php
+       return view('kasir.stok_barang', compact('suppliers', 'stocks'));
+   }
 
     /**
      * Show the form for creating a new resource.
@@ -143,4 +149,41 @@ class StockController extends Controller
     }
 
 
+    public function searchStockAdmin(Request $request)
+{
+    $query = $request->query('query'); // Ambil parameter pencarian dari URL
+
+    // Filter data jika ada input pencarian berdasarkan nama barang
+    if ($query) {
+        $stocks = Stock::where('stock_name', 'LIKE', '%' . $query . '%')->get();
+    } else {
+        $stocks = Stock::all(); // Tampilkan semua data jika tidak ada input
+    }
+
+    // Ambil data supplier untuk dropdown
+    $suppliers = Supplier::all();
+
+    // Return tampilan untuk admin
+    return view('admin.stokBarang', compact('stocks', 'suppliers'));
 }
+
+public function searchStockKasir(Request $request)
+{
+    $query = $request->query('query'); // Ambil parameter pencarian dari URL
+
+    // Filter data jika ada input pencarian berdasarkan nama barang
+    if ($query) {
+        $stocks = Stock::where('stock_name', 'LIKE', '%' . $query . '%')->get();
+    } else {
+        $stocks = Stock::all(); // Tampilkan semua data jika tidak ada input
+    }
+
+    // Ambil data supplier untuk dropdown
+    $suppliers = Supplier::all();
+
+    // Return tampilan untuk kasir
+    return view('kasir.stok_barang', compact('stocks', 'suppliers'));
+}
+
+}
+

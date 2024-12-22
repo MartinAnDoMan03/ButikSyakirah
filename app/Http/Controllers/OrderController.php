@@ -18,7 +18,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        // $orders = Order::all();
+        $orders = Order::with('customer')->get(); // Memuat relasi customer bersama dengan data order
+
         return view('orders.data_pesanan', compact('orders'));
     }
 
@@ -189,6 +191,30 @@ class OrderController extends Controller
     // Return the view with the report data
     return view('kasir.sales_report', compact('orders', 'start_date', 'end_date', 'total_sales'));
 }
+
+
+// search data pesanan
+public function searchPesanan(Request $request)
+{
+    $query = $request->input('query'); // Ambil input pencarian
+
+    // Filter data pesanan berdasarkan nama customer
+    if ($query) {
+        $orders = Order::whereHas('customer', function ($q) use ($query) {
+            $q->where('customer_name', 'LIKE', '%' . $query . '%');
+        })
+        ->with('customer') // Muat relasi customer
+        ->get();
+    } else {
+        $orders = Order::with('customer')->get(); // Jika tidak ada query, muat semua orders beserta customer-nya
+    }
+
+    // Kirim data ke view
+    return view('kasir.data_pesanan', compact('orders'));
+}
+
+
+
 
 
 

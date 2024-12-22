@@ -77,6 +77,31 @@ class CustomerController extends Controller
         //
     }
 
+    public function searchCustomer(Request $request, $role)
+    {
+        $query = $request->query('query'); // Ambil parameter pencarian dari URL
+    
+        // Filter data jika ada input pencarian
+        if ($query) {
+            $customers = Customer::where('customer_name', 'LIKE', '%' . $query . '%')->get();
+        } else {
+            $customers = Customer::all(); // Tampilkan semua data jika tidak ada input
+        }
+    
+        // Tentukan tampilan berdasarkan role
+        if ($role === 'kasir') {
+            return view('kasir.data_customer', compact('customers'));
+        } elseif ($role === 'admin') {
+            return view('admin.customer', compact('customers'));
+        } else {
+            abort(404, 'Role tidak dikenali.');
+        }
+    }
+    
+    
+
+
+
     /**
      * Remove the specified resource from storage.
      */

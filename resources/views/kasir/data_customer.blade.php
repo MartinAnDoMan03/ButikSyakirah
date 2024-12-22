@@ -5,12 +5,21 @@
 @section('content')
     <h1>Data Customer</h1>
 
-    <!-- Tabel Data Customer -->
+    <!-- Form Pencarian -->
     <div class="search-container">
-        <input type="text" placeholder="Search..." class="search-input">
-        <button class="search-icon"><i class="zmdi zmdi-search"></i></button>
+        <form action="{{ route('kasir.search.customer') }}" method="GET">
+            <input 
+                type="text" 
+                name="query" 
+                placeholder="Cari Customer..." 
+                class="search-input" 
+                value="{{ request()->query('query') }}"> <!-- Menampilkan query sebelumnya -->
+            <button type="submit" class="search-icon"><i class="zmdi zmdi-search"></i></button>
+        </form>
+        
     </div>                     
 
+    <!-- Tabel Data Customer -->
     <div class="table-container">
         <table>
             <thead>
@@ -23,7 +32,7 @@
                 </tr>
             </thead>
             <tbody id="customerTableBody">
-                @foreach ($customers as $customer)
+                @forelse ($customers as $customer)
                     <tr>
                         <td>{{ $customer->customer_id }}</td>
                         <td>{{ $customer->customer_name }}</td>
@@ -31,7 +40,11 @@
                         <td>{{ $customer->phone }}</td>
                         <td>{{ $customer->email }}</td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="5">Tidak ada data ditemukan.</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

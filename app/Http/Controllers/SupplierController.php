@@ -85,4 +85,42 @@ class SupplierController extends Controller
     {
         //
     }
+
+
+    // untuk kasir
+    public function search(Request $request)
+    {
+        $query = $request->input('query'); // Ambil input pencarian dari form
+    
+        if ($query) {
+            // Pencarian berdasarkan nama supplier
+            $suppliers = Supplier::where('supplier_name', 'LIKE', '%' . $query . '%')->get();
+        } else {
+            // Jika tidak ada input, tampilkan semua data
+            $suppliers = Supplier::all();
+        }
+    
+        // Kembali ke halaman supplier dengan hasil pencarian
+        return view('kasir.supplier', compact('suppliers'));
+    }
+
+    public function searchAdmin(Request $request)
+    {
+    $query = $request->input('query'); // Ambil input pencarian dari form
+    
+    if ($query) {
+        // Pencarian berdasarkan nama supplier
+        $suppliers = Supplier::where('supplier_name', 'LIKE', '%' . $query . '%')->get();
+    } else {
+        // Jika tidak ada input, tampilkan semua data
+        $suppliers = Supplier::all();
+    }
+    
+    // Kembali ke halaman admin dengan hasil pencarian
+    return view('admin.supplier', compact('suppliers'));
+    }
+
+    
+    
+    
 }

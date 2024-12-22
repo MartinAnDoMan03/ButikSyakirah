@@ -85,9 +85,11 @@
     
 
    {{-- stock barang --}}
-    <div class="search-container">
-        <input type="text" placeholder="Search..." class="search-input">
-        <button class="search-icon"><i class="zmdi zmdi-search"></i></button>
+   <div class="search-container">
+    <form method="GET" action="{{ route('search.stok.kasir') }}">
+        <input type="text" name="query" placeholder="Search Stok Barang..." class="search-input" value="{{ request('query') }}">
+        <button type="submit" class="search-icon"><i class="zmdi zmdi-search"></i></button>
+    </form>
     </div>
     <div class="table-container">
         <table>

@@ -6,9 +6,15 @@
     <h1>Data Customer</h1>
 
     <!-- Tabel Data Customer -->
-    <div class="search-container">
-        <input type="text" placeholder="Search..." class="search-input">
-        <button class="search-icon"><i class="zmdi zmdi-search"></i></button>
+    <div class="search-container"><form action="{{ route('admin.search.customer') }}" method="GET">
+        <input 
+            type="text" 
+            name="query" 
+            placeholder="Cari Customer..." 
+            class="search-input" 
+            value="{{ request()->query('query') }}"> <!-- Menampilkan query sebelumnya -->
+        <button type="submit" class="search-icon"><i class="zmdi zmdi-search"></i></button>
+    
     </div>
 
     <div class="table-container">

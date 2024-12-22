@@ -16,6 +16,7 @@ class Stock extends Model
         'stock_name',
         'quantity',
         'last_updated',
+        'supplier_id',
     ];
 
     public $timestamps = false;

@@ -9,10 +9,13 @@
     <!-- Tabel Pesanan -->
     <div class="search-faktur-container">
         <div class="search-input-wrapper">
-            <input type="text" placeholder="Search..." class="search-input2">
-            <button class="search-icon2"><i class="zmdi zmdi-search"></i></button>
+            <form action="{{ route('search.pesanan') }}" method="GET">
+                <input type="text" name="query" placeholder="" class="search-input2" value="{{ request('query') }}">
+                <button type="submit" class="search-icon2"><i class="zmdi zmdi-search"></i></button>
+            </form>
         </div>
-    </div>
+    </div>    
+    
     <div class="table-container">
         <table>
             <thead>
@@ -30,7 +33,7 @@
                 @forelse ($orders as $order)
                     <tr>
                         <td>{{ $order->order_id }}</td>
-                        <td>{{ $order->customer_name }}</td>
+                        <td>{{ $order->customer_name}}</td>
                         <td>{{ $order->order_date }}</td>
                         <td>{{ $order->completion_date }}</td>
                         <td>{{ number_format($order->price, 0, ',', '.') }}</td>
@@ -55,7 +58,10 @@
                         </td>
                         <td>{{ $order->status }}</td>
                     </tr>
-                @empty
+                    @empty
+                    <tr>
+                        <td colspan="5">Tidak ada data ditemukan.</td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>

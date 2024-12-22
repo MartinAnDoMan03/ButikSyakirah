@@ -27,9 +27,17 @@
 
     <!-- Tabel Stok Barang -->
     <div class="search-container">
-        <input type="text" placeholder="Search..." class="search-input">
-        <button class="search-icon"><i class="zmdi zmdi-search"></i></button>
+        <form action="{{ route('search.supplier') }}" method="GET">
+            <input 
+                type="text" 
+                name="query" 
+                placeholder="Search..." 
+                class="search-input" 
+                value="{{ request('query') }}">
+            <button type="submit" class="search-icon"><i class="zmdi zmdi-search"></i></button>
+        </form>
     </div>
+    
     <div class="table-container">
         <table>
             <thead>

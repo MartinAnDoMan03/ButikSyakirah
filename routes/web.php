@@ -72,6 +72,28 @@ Route::post('/kasir/payment', [PaymentLogController::class, 'store'])->name('pay
 Route::get('/kasir/payment', [PaymentLogController::class, 'create'])->name('payment.create');
 Route::post('/kasir/size_detail', [SizeDetailController::class, 'store'])->name('size_detail.store');
 
+// Untuk kasir
+Route::get('/kasir/search-customer', [CustomerController::class, 'searchCustomer'])->name('kasir.search.customer')->defaults('role', 'kasir');
+Route::get('/search-pesanan', [OrderController::class, 'searchPesanan'])->name('search.pesanan');
+Route::get('/search/supplier', [SupplierController::class, 'search'])->name('search.supplier');
+Route::get('/kasir/stok/search', [StockController::class, 'searchStockKasir'])->name('search.stok.kasir');
+
+
+
+// Untuk admin
+Route::get('/admin/search-customer', [CustomerController::class, 'searchCustomer'])->name('admin.search.customer')->defaults('role', 'admin');
+Route::get('/stok/search', [StockController::class, 'search'])->name('stok.search');
+Route::get('/admin/stok/search', [StockController::class, 'searchStockAdmin'])->name('search.stok.admin');
+Route::get('/admin/supplier/search', [SupplierController::class, 'searchAdmin'])->name('search.supplier.admin');
+
+
+
+
+
+
+
+
+
 Route::get('/penggunting/home', function () {
     return view('penggunting.home'); });
 Route::get('/penggunting/detail_ukuran', function () {
