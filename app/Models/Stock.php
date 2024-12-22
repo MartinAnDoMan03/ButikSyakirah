@@ -36,23 +36,23 @@ class Stock extends Model
         });
 
         // Log quantity updates (additions or deductions)
-        static::updating(function ($stock) {
-            if ($stock->isDirty('quantity')) {
-                $oldQuantity = $stock->getOriginal('quantity');
-                $newQuantity = $stock->quantity;
+        // static::updating(function ($stock) {
+        //     if ($stock->isDirty('quantity')) {
+        //         $oldQuantity = $stock->getOriginal('quantity');
+        //         $newQuantity = $stock->quantity;
 
-                $transactionType = $newQuantity > $oldQuantity ? 'Addition' : 'Deduction';
-                $quantityChange = abs($newQuantity - $oldQuantity);
+        //         $transactionType = $newQuantity > $oldQuantity ? 'Addition' : 'Deduction';
+        //         $quantityChange = abs($newQuantity - $oldQuantity);
 
-                Inventory_Log::create([
-                    'stock_id' => $stock->stock_id,
-                    'reference_type' => 'Order',
-                    'order_reference_id' => null,
-                    'transaction_type' => $transactionType,
-                    'quantity' => $quantityChange,
-                    'transaction_date' => now(),
-                ]);
-            }
-        });
+        //         Inventory_Log::create([
+        //             'stock_id' => $stock->stock_id,
+        //             'reference_type' => 'Order',
+        //             'order_reference_id' => null,
+        //             'transaction_type' => $transactionType,
+        //             'quantity' => $quantityChange,
+        //             'transaction_date' => now(),
+        //         ]);
+        //     }
+        // });
     }
 }

@@ -59,8 +59,9 @@
                 <!-- Dropdown untuk memilih stok barang -->
                 <label for="existing_stock_id">Pilih Barang:</label>
                 <select id="existing_stock_id" name="stock_id" required>
-                    <option value="" selected disabled>Pilih Barang</option>
-                        <option value=""></option>
+                    @foreach ($stocks as $stock)
+                        <option value="{{ $stock->stock_id }}">{{ $stock->stock_name }}</option>
+                    @endforeach
                 </select>
 
                 {{-- Dropdown untuk Supplier --}}
@@ -68,7 +69,7 @@
                 <select id="supplier_id" name="supplier_id" class="select2-supplier" required>
                     <option value="" selected disabled>Pilih Supplier</option>
                     @foreach ($suppliers as $supplier)
-                        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                        <option value="{{ $supplier->supplier_id }}">{{ $supplier->supplier_name }}</option>
                     @endforeach
                 </select>
                 

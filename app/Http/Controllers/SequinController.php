@@ -70,9 +70,9 @@ public function getOrdersWithSequin()
     }
 
     $orders = \DB::table('sequiner_view')
-    ->where('sequiner_id', $user->id)
-    ->where('status', 'diproses')
-    ->where('sequin_status', 'yes')
+    ->where('sequiner_id', $user->user_id)
+    // ->where('status', 'diproses')
+    // ->where('sequin_status', 'yes')
     ->get();
 
     return view('pemayet.data_pesanan', ['orders' => $orders]);

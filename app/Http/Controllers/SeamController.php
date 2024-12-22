@@ -53,7 +53,7 @@ class SeamController extends Controller
     // Query the orders and sequin tables
     $orders = \DB::table('seamer_view')
     ->where('seam_status', 'diproses')
-    ->where('seamer_id', $user->id)
+    ->where('seamer_id', $user->user_id)
     ->get();
 
     return view('penjahit.data_pesanan', ['orders' => $orders]);

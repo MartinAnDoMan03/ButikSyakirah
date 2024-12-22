@@ -80,31 +80,6 @@ class StockController extends Controller
         return view('kasir.stok_barang', ['stocks' => $stocks], ['suppliers' => $suppliers]);
     }
 
-
-
-    public function deductStock(Request $request, $stockId)
-    {
-        $stock = Stock::find($stockId);
-
-        // Deduct 10 units
-        $stock->update([
-            'quantity' => $stock->quantity - 10,
-        ]);
-
-        return response()->json(['message' => 'Stock deducted successfully!', 'stock' => $stock]);
-    }
-
-    public function addStock(Request $request)
-    {
-        $stock = Stock::create([
-            'stock_type' => 'cloth',
-            'stock_name' => 'Cotton Fabric',
-            'quantity' => 50,
-        ]);
-
-        return response()->json(['message' => 'Stock added successfully!', 'stock' => $stock]);
-    }
-
     public function updateStocks(Request $request)
     {
         $validatedData = $request->validate([
