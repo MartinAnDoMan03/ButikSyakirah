@@ -19,7 +19,9 @@ return new class extends Migration {
             $table->string('customer_cloth')->nullable();
             $table->string('store_cloth_type')->nullable();
             $table->float('store_cloth_length')->nullable();
+            $table->decimal('seam_price', 10, 2)->nullable();
             $table->enum('sequin', ['yes', 'no']);
+            $table->decimal('sequin_price', 10, 2)->nullable();
             $table->decimal('price', 10, 2)->nullable();
             $table->text('note')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
