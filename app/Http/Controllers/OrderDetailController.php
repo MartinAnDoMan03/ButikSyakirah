@@ -62,6 +62,29 @@ class OrderDetailController extends Controller
         return back()->withErrors('Terjadi kesalahan saat menyimpan data: ' . $e->getMessage());
     }
 
+<<<<<<< HEAD
+=======
+    
+    // $userId = auth()->user()->user_id; 
+    // $jobType = 'cutting'; 
+    // $startDate = now()->toDateString(); // 
+
+    // \DB::statement('CALL InsertJob(?, ?, ?)', [
+    //     $userId,
+    //     $jobType,
+    //     $startDate
+    // ]);
+
+    // $userId = auth()->user()->id; // Assuming the user is authenticated
+    //     $jobType = 'seaming'; // Example job type
+    //     $startDate = now()->toDateString(); // Current date
+
+    //     \DB::statement('CALL InsertJob(?, ?, ?)', [
+    //         $userId,
+    //         $jobType,
+    //         $startDate
+    //     ]);
+>>>>>>> 41d796dc5b3511fd52e77f012c1e4968c5fc46c5
 
     return redirect()->route('kasir.data_pesanan')->with('success', 'Detail berhasil ditambahkan.');
 }
