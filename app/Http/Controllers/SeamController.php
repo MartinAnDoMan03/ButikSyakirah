@@ -72,7 +72,7 @@ class SeamController extends Controller
         $order->save();
 
         // Call the stored procedure after update
-        $userId = auth()->user()->id; // Assuming the user is authenticated
+        $userId = auth()->user()->user_id; // Assuming the user is authenticated
         $jobType = 'seaming'; // Example job type
         $startDate = now()->toDateString(); // Current date
 

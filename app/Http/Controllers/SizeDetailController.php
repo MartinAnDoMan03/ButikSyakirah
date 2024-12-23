@@ -58,7 +58,21 @@ class SizeDetailController extends Controller
             'hip' => $validatedData['hip'],
             'wrist_circumference' => $validatedData['wrist_circumference'],
             'clothes_length' => $validatedData['clothes_length'],
+            
         ]);
+
+    // Call the stored procedure after update
+    $userId = auth()->user()->user_id; 
+    $jobType = 'cutting'; 
+    $startDate = now()->toDateString(); // 
+
+    \DB::statement('CALL InsertJob(?, ?, ?)', [
+        $userId,
+        $jobType,
+        $startDate
+    ]);
+
+        
 
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Size details added successfully!');

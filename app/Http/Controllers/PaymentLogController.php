@@ -24,7 +24,6 @@ class PaymentLogController extends Controller
      */
     public function create()
     {
-        $orders = Order::all();
         $orders = Order_detail::all();
         return view('kasir.payment', compact('orders'));
     }
@@ -41,30 +40,16 @@ class PaymentLogController extends Controller
         ]);
     
         try {
-            // Fetch the total order price using the database function
-            $totalPrice = \DB::selectOne('SELECT calculate_order_price(?) AS total_price', [$validatedData['order_id']])->total_price;
-    
-            // Calculate the total payments made so far
-            $totalPayments = Payment_Log::where('order_id', $validatedData['order_id'])->sum('payment_amount');
-    
-            // Calculate the remaining balance
-            $remainingBalance = $totalPrice - $totalPayments;
-    
-            // Check if the payment amount exceeds the remaining balance
-            if ($validatedData['payment_amount'] > $remainingBalance) {
-                return redirect()->back()->withErrors(['payment_amount' => 'Payment exceeds remaining balance.']);
-            }
-    
-            // Create the payment log
+            // Directly log the payment
             Payment_Log::create([
                 'order_id' => $validatedData['order_id'],
                 'payment_amount' => $validatedData['payment_amount'],
-                'remaining_payment' => $remainingBalance - $validatedData['payment_amount'],
-                'payment_date' => Carbon::now(),
+                'remaining_payment' => 0, 
+                'payment_date' => now(),
                 'payment_method' => $validatedData['payment_method'],
             ]);
     
-            return redirect()->route('payment_logs.index')->with('success', 'Payment added successfully!');
+            return redirect()->route('kasir.payment')->with('success', 'Payment added successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'Failed to add payment. ' . $e->getMessage()]);
         }

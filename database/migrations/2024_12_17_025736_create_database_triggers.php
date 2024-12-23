@@ -25,7 +25,7 @@ return new class extends Migration {
             CREATE TRIGGER log_stock_update AFTER UPDATE ON stocks
             FOR EACH ROW
             BEGIN
-                IF NEW.quantity != OLD.quantity THEN
+                IF NEW.quantity != OLD.quantity AND NEW.quantity > OLD.quantity THEN
                     INSERT INTO inventory_logs (stock_id, reference_type, supplier_reference_id, transaction_type, quantity, transaction_date)
                     SELECT NEW.stock_id, \'Supplier\', ss.supplier_id, \'Addition\', NEW.quantity - OLD.quantity, CURRENT_DATE
                     FROM stock_suppliers ss WHERE ss.stock_id = NEW.stock_id;

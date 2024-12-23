@@ -167,3 +167,5 @@ Route::get('pemayet/stock/update', [StockController::class, 'updateStock'])->nam
 Route::get('penjahit/stock/update', [StockController::class, 'updateStockPenjahit'])->name('penjahit.stock_update');
 Route::get('kasir/detail_pesanan', [KasirController::class, 'ger'])->name('penjahit.stock_update');
 Route::get('/kasir/show_detail_ukuran', [KasirController::class, 'showOrderDetails'])->name('order.lihatDetail');
+Route::get('/payment_logs/create', [PaymentLogController::class, 'create'])->name('payment_logs.create');
+Route::post('/payment_logs/store', [PaymentLogController::class, 'store'])->name('payment_logs.store');
