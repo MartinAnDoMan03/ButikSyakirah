@@ -19,7 +19,7 @@ return new class extends Migration
                 DECLARE total_income DECIMAL(10, 2);
 
                 SELECT SUM(price) INTO total_income
-                FROM orders
+                FROM order_details
                 WHERE order_date BETWEEN start_date AND end_date;
 
                 RETURN IFNULL(total_income, 0);

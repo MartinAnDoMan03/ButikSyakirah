@@ -205,7 +205,7 @@ public function addUkuran(Request $request)
         $orders = DB::select('CALL GenerateSalesReport(?, ?)', [$start_date, $end_date]);
 
         // Get the total sales using the stored function
-        $total_sales = DB::selectOne('SELECT CalculateTotalSales(?, ?) AS TotalSales', [$start_date, $end_date])->TotalSales;
+        $total_sales = DB::selectOne('SELECT CalculateTotalIncomeByDate(?, ?) AS TotalSales', [$start_date, $end_date])->TotalSales;
 
         // Handle PDF generation if requested
         if ($request->has('print_pdf')) {
