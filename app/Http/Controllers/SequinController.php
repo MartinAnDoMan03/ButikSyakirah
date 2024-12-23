@@ -71,6 +71,7 @@ public function getOrdersWithSequin()
 
     $orders = \DB::table('sequiner_view')
     ->where('status', 'diproses')
+    ->where('sequin', 'yes')
     ->where('sequin_status', 'Belum Selesai')
     ->get();
 
