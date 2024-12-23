@@ -75,7 +75,7 @@ Route::post('/kasir/data_pesanan', [KasirController::class, 'addDetail'])->name(
 Route::get('/kasir/stok_barang', [KasirController::class, 'showStockBarang'])->name('kasir.stok_barang');
 Route::get('/kasir/add_pesanan', [KasirController::class, 'addPesanan'])->name('kasir.add_pesanan');
 Route::post('/kasir/add_pesanan', [KasirController::class, 'store'])->name('kasir.store');
-Route::get('/kasir/riwayat_pesanan', [KasirController::class, 'showRiwayat'])->name('kasir.riwayat_pesanan');
+Route::get('/kasir/riwayat_pesanan', [KasirController::class, 'showPesanan'])->name('kasir.riwayat_pesanan');
 Route::post('/kasir/stok_barang', [StockController::class, 'store'])->name('stock.store');
 Route::put('/kasir/update_stock', [StockController::class, 'updateStocks'])->name('stocks.update');
 Route::get('/kasir/stok_barang/create', [StockController::class, 'create'])->name('stock.create');
@@ -102,6 +102,7 @@ Route::get('/penggunting/detail_ukuran', [SizeDetailController::class, 'showSize
 
 
 Route::get('/kasir/detail_ukuran', [KasirController::class, 'showSizeDetails'])->name('order.size');
+Route::get('/kasir/show_detail_pesanan', [KasirController::class, 'showOrderDetails'])->name('order.lihatDetail');
 
 
 

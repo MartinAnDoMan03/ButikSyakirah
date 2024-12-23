@@ -63,25 +63,25 @@ class OrderDetailController extends Controller
     }
 
     
-    $userId = auth()->user()->user_id; 
-    $jobType = 'cutting'; 
-    $startDate = now()->toDateString(); // 
+    // $userId = auth()->user()->user_id; 
+    // $jobType = 'cutting'; 
+    // $startDate = now()->toDateString(); // 
 
-    \DB::statement('CALL InsertJob(?, ?, ?)', [
-        $userId,
-        $jobType,
-        $startDate
-    ]);
+    // \DB::statement('CALL InsertJob(?, ?, ?)', [
+    //     $userId,
+    //     $jobType,
+    //     $startDate
+    // ]);
 
-    $userId = auth()->user()->id; // Assuming the user is authenticated
-        $jobType = 'seaming'; // Example job type
-        $startDate = now()->toDateString(); // Current date
+    // $userId = auth()->user()->id; // Assuming the user is authenticated
+    //     $jobType = 'seaming'; // Example job type
+    //     $startDate = now()->toDateString(); // Current date
 
-        \DB::statement('CALL InsertJob(?, ?, ?)', [
-            $userId,
-            $jobType,
-            $startDate
-        ]);
+    //     \DB::statement('CALL InsertJob(?, ?, ?)', [
+    //         $userId,
+    //         $jobType,
+    //         $startDate
+    //     ]);
 
     return redirect()->route('kasir.data_pesanan')->with('success', 'Detail berhasil ditambahkan.');
 }

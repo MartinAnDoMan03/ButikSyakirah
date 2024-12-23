@@ -76,7 +76,7 @@ class KasirController extends Controller
         return view('kasir.show_detail_pesanan', ['order_details' => $order_details]);
     }
 
-    public function showRiwayatt()
+    public function showRiwayat()
     {
         // Logika untuk menampilkan riwayat pesanan
         
