@@ -12,5 +12,7 @@ class Seam extends Model
 
     protected $keyType = 'int';
 
-    protected $fillable = ['order_id', 'seam_name', 'cloth_type', 'seam_size', 'seam_price']; // Sesuaikan dengan kolom di tabel
+    protected $fillable = ['order_detail_id', 'seam_name', 'cloth_type', 'seamer_id', 'seam_size','seam_status'];
+    
+    public $timestamps = false;// Sesuaikan dengan kolom di tabel
 }

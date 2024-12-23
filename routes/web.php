@@ -116,6 +116,7 @@ Route::get('/penggunting/data_pesanan', function () { return view('penggunting.d
 Route::get('penggunting/data_pesanan', [OrderController::class, 'showDataPesanan'])->name('penggunting.data_pesanan');
 Route::get('penggunting/edit_pesanan/{order_id}', [OrderController::class, 'editPesanan'])->name('penggunting.edit_pesanan');
 Route::get('/penggunting/detail_ukuran/{order_id}', [OrderDetailController::class, 'showDetailUkuran'])->name('show.detail.ukuran');
+Route::post('/penggunting/edit_pesanan', [SeamController::class, 'store'])->name('seam.store');
 
 
 

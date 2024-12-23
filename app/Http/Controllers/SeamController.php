@@ -30,17 +30,40 @@ class SeamController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSeamRequest $request)
+    public function store(Request $request)
     {
-        Seam::create([
-            'order_id' => $request->input('form_name'),
-            'seam_name' => $request->input('form_name'),
-            'cloth_type' => $request->input('form_name'),
-            'seamer_name' => $request->input('form_name'),
-            'seam_size' => $request->input('form_name'),
-            'seam_price' => $request->input('form_name')
+        $validated = $request->validate([
+            'order_detail_id' => 'required|exists:order_details,order_detail_id',
+
+            'seam_name' => 'required|string|max:255',
+            'cloth_type' => 'required|string|max:255',
+            'seamer_id' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    $penjahit = \App\Models\User::where('user_id', $value)->where('role', 'penjahit')->exists();
+                    if (!$penjahit) {
+                        $fail('Penjahit tidak valid atau tidak ditemukan.');
+                    }
+                },
+            ],
+            'seam_size' => 'required|integer',
+            'seam_status' => 'required|in:Belum-Selesai,Selesai',
+
         ]);
+
+        // Simpan data ke database
+        Seam::create([
+            'order_detail_id' => $validated['order_detail_id'],
+            'seam_name' => $validated['seam_name'],
+            'cloth_type' => $validated['cloth_type'],
+            'seamer_id' => $validated['seamer_id'],
+            'seam_size' => $validated['seam_size'],
+            'seam_status' => $validated['seam_status'],
+        ]);
+
+        return redirect()->route('penggunting.data_pesanan')->with('success', 'Pesanan berhasil ditambahkan.');
     }
+
 
     public function getOrdersWithSeam()
     {

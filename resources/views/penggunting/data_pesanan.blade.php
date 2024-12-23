@@ -19,6 +19,7 @@
                     <th>Nama Customer</th>
                     <th>Detail Ukuran</th>
                     <th>Nama Penjahit</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             @foreach ($orders as $order)

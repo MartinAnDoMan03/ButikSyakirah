@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\User;
 use App\Models\Customer;
 use App\Models\Size_detail;
 use App\Models\Order_detail;
@@ -247,16 +248,23 @@ public function addUkuran(Request $request)
     }
 
     public function editPesanan($order_id)
-    {
-        // Cari pesanan berdasarkan order_id
-        $order = Order::findOrFail($order_id); // Jika tidak ditemukan, akan mengembalikan 404
+{
+    // Cari pesanan berdasarkan order_id
+    $orders = Order::findOrFail($order_id); // Akan mengembalikan 404 jika tidak ditemukan
 
-        // Ambil data penjahit (users dengan role penjahit)
-        $penjahits = \App\Models\User::where('role', 'penjahit')->get();
+    // Ambil semua detail pesanan terkait
+    $order_details = Order_detail::all();
+    // Ambil data penjahit (users dengan role 'penjahit')
+    $penjahits = User::where('role', 'penjahit')->get();
 
-        // Kirim data pesanan dan penjahit ke view untuk di-edit
-        return view('penggunting.edit_pesanan', compact('order', 'penjahits'));
-    }
+    // Kirim data ke view
+    return view('penggunting.edit_pesanan', [
+        'orders' => $orders,
+        'order_details' => $order_details,
+        'penjahits' => $penjahits,
+    ]);
+}
+
 
 
     public function updatePesanan(Request $request, $order_id)
