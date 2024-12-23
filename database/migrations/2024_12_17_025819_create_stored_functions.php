@@ -13,17 +13,22 @@ return new class extends Migration
         DB::unprepared("DROP FUNCTION IF EXISTS CalculateTotalIncomeByDate");
         DB::unprepared("
             CREATE FUNCTION CalculateTotalIncomeByDate(start_date DATE, end_date DATE)
-            RETURNS DECIMAL(10, 2)
-            DETERMINISTIC
-            BEGIN
-                DECLARE total_income DECIMAL(10, 2);
+RETURNS DECIMAL(10, 2)
+DETERMINISTIC
+BEGIN
+    DECLARE total_income DECIMAL(10, 2);
 
-                SELECT SUM(price) INTO total_income
-                FROM order_details
-                WHERE order_date BETWEEN start_date AND end_date;
+    SELECT 
+        SUM(od.price) INTO total_income
+    FROM 
+        order_details od
+    JOIN 
+        orders o ON od.order_id = o.order_id
+    WHERE 
+        o.order_date BETWEEN start_date AND end_date;
 
-                RETURN IFNULL(total_income, 0);
-            END
+    RETURN IFNULL(total_income, 0);
+END
         ");
 
         DB::unprepared("DROP FUNCTION IF EXISTS calculate_order_price");
