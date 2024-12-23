@@ -44,21 +44,17 @@
                             </a>
 
                             <a href="{{ route('order.detail', $order->order_id) }}" class="btn btn-detail" title="detail">
-                                <i class="fa fa-file-alt"></i>
+                                <i class="fa fa-plus-circle"></i>
                             </a>
 
                             <a href="{{ route('order.size', $order->order_id) }}" class="btn btn-detail" title="detail">
-                                <i class="fa fa-file-alt"></i>
+                                <i class="fa fa-ruler-combined"></i>
                             </a>
 
                             <a href="{{ route('order.lihatDetail', $order->order_id) }}" class="btn btn-detail" title="detail">
                                 <i class="fa fa-file-alt"></i>
                             </a>
-                            <!-- Tombol Detail Ukuran -->
-                            {{-- <a href="javascript:void(0)" class="btn btn-detail-ukuran" title="Detail Ukuran"
-                                onclick="openDetailUkuranModal({{ $order->order_id }})">
-                                <i class="fa fa-eye"></i>
-                            </a> --}}
+
                         </td>
                         <td>{{ $order->status }}</td>
                     </tr>
@@ -69,56 +65,6 @@
                 @endforelse
             </tbody>
         </table>
-    </div>
-
-    <div class="modal-detail-ukuran" id="detailUkuranModal" style="display: none;">
-        <div class="modal-content-detail-ukuran">
-            <span class="close-btn-detail-ukuran" onclick="closeDetailUkuranModal()">&times;</span>
-
-            <h2>Detail Ukuran</h2>
-            <table class="detail-ukuran-table">
-                <thead>
-                    <tr>
-                        <th>Detail Ukuran</th>
-                        <th>Nilai (cm)</th>
-                    </tr>
-                </thead>
-                <tbody id="sizeDetailsTable">
-                    <tr>
-                        <td><strong>Lingkar Dada</strong></td>
-                        <td id="lingkarDada">-</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Lingkar Pinggang</strong></td>
-                        <td id="lingkarPinggang">-</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Lingkar Lengan</strong></td>
-                        <td id="lingkarLengan">-</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Panjang Tangan</strong></td>
-                        <td id="panjangTangan">-</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Lebar Bahu</strong></td>
-                        <td id="lebarBahu">-</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Pinggul</strong></td>
-                        <td id="pinggul">-</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Lingkar Pergelangan</strong></td>
-                        <td id="lingkarPergelangan">-</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Panjang Baju</strong></td>
-                        <td id="panjangBaju">-</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
     </div>
     
     <script>
