@@ -83,7 +83,7 @@ Route::post('/kasir/supplier', [SupplierController::class, 'store'])->name('supp
 Route::get('/kasir/supplier', [SupplierController::class, 'showSupplier'])->name('supplier.data');
 Route::post('/kasir/payment', [PaymentLogController::class, 'store'])->name('payment.store');
 Route::get('/kasir/payment', [PaymentLogController::class, 'create'])->name('payment.create');
-Route::post('/kasir/size_detail', [SizeDetailController::class, 'store'])->name('size_detail.store');
+Route::post('/kasir/size_detail', [SizeDetailController::class, 'store'])->name('store.size.detail');
 
 // Untuk kasir
 Route::get('/kasir/search-customer', [CustomerController::class, 'searchCustomer'])->name('kasir.search.customer')->defaults('role', 'kasir');
@@ -98,6 +98,7 @@ Route::get('/admin/search-customer', [CustomerController::class, 'searchCustomer
 Route::get('/stok/search', [StockController::class, 'search'])->name('stok.search');
 Route::get('/admin/stok/search', [StockController::class, 'searchStockAdmin'])->name('search.stok.admin');
 Route::get('/admin/supplier/search', [SupplierController::class, 'searchAdmin'])->name('search.supplier.admin');
+Route::get('/penggunting/detail_ukuran', [SizeDetailController::class, 'showSizeDetails'])->name('penggunting.detail_ukuran');
 
 
 
@@ -157,3 +158,4 @@ Route::post('/detail_pesanan/{order_id}', [OrderDetailController::class, 'addDet
 
 Route::get('/payment_logs/create', [PaymentLogController::class, 'create'])->name('payment_logs.create');
 Route::post('/payment_logs/store', [PaymentLogController::class, 'store'])->name('payment_logs.store');
+

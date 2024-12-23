@@ -25,9 +25,9 @@ class SizeDetailController extends Controller
     {
         // Fetch all order details to populate the dropdown
         $order_details = Order_Detail::all();
-
         return view('penggunting.detail_ukuran', compact('order_details'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -113,4 +113,15 @@ class SizeDetailController extends Controller
 
         return redirect()->route('size_details.index')->with('success', 'Size details deleted successfully!');
     }
+
+    public function showSizeDetails()
+    {
+        // Fetch all order details
+        $order_details = Order_Detail::all(); // Ensure this model is imported and working correctly
+    
+        // Pass it to the view
+        return view('penggunting.detail_ukuran', compact('order_details'));
+    }
+    
+
 }

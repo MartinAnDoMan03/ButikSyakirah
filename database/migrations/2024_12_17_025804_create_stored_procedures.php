@@ -22,8 +22,7 @@ return new class extends Migration {
                     c.customer_name AS `Customer Name`,
                     o.order_date AS `Order Date`,
                     o.completion_date AS `Completion Date`,
-                    o.status AS `Order Status`,
-                    o.price AS `Total Price`
+                    o.status AS `Order Status`
                 FROM 
                     orders o
                 LEFT JOIN 
@@ -38,27 +37,31 @@ return new class extends Migration {
         // Drop and create the GenerateSalesReport procedure
         DB::unprepared('DROP PROCEDURE IF EXISTS GenerateSalesReport');
         DB::unprepared("
-            CREATE PROCEDURE GenerateSalesReport(
-                IN start_date DATE, 
-                IN end_date DATE
-            )
-            BEGIN
-                SELECT 
-                    o.order_id AS OrderID,
-                    c.customer_name AS CustomerName,
-                    o.price AS Price
-                FROM 
-                    orders o
-                LEFT JOIN 
-                    customers c ON o.customer_id = c.customer_id
-                WHERE 
-                    o.order_date BETWEEN start_date AND end_date
-                    AND o.status = 'Selesai'; -- Only include completed orders
+    CREATE PROCEDURE GenerateSalesReport(
+        IN start_date DATE, 
+        IN end_date DATE
+    )
+    BEGIN
+        -- Query to fetch order details
+        SELECT 
+            o.order_id AS OrderID,
+            c.customer_name AS CustomerName,
+            od.price AS Price
+        FROM 
+            orders o
+        LEFT JOIN 
+            customers c ON o.customer_id = c.customer_id
+        LEFT JOIN
+            order_details od ON o.order_id = od.order_id
+        WHERE 
+            o.order_date BETWEEN start_date AND end_date
+            AND o.status = 'Selesai'; -- Only include completed orders
 
-                SELECT 
-                   CalculateTotalIncomeByDate(start_date, end_date) AS TotalSales;
-            END
-        ");
+        -- Query to calculate total income
+        SELECT 
+            CalculateTotalIncomeByDate(start_date, end_date) AS TotalSales;
+    END;
+");
 
         DB::unprepared('DROP PROCEDURE IF EXISTS InsertJob');
         

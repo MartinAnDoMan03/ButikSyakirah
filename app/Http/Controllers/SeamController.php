@@ -59,25 +59,32 @@ class SeamController extends Controller
 
         return view('penjahit.data_pesanan', ['orders' => $orders]);
     }
-    public function updateStatus(Request $request, $orderId)
+    public function updateStatus(Request $request, $order_detail_id)
     {
         // Validate the request
         $request->validate([
             'seam_status' => 'required|in:Selesai',
         ]);
 
-        $order = Seam::findOrFail($orderId);
-        $order->status = $request->status;
+        // Update the order status
+        $order = Seam::findOrFail($order_detail_id);
+        $order->seam_status = $request->seam_status;
         $order->save();
 
+        // Call the stored procedure after update
+        $userId = auth()->user()->id; // Assuming the user is authenticated
+        $jobType = 'seaming'; // Example job type
+        $startDate = now()->toDateString(); // Current date
+
         \DB::statement('CALL InsertJob(?, ?, ?)', [
-            $user_id,
-            $validatedData['job_type'],
-            $validatedData['start_date']
+            $userId,
+            $jobType,
+            $startDate
         ]);
 
-        return redirect()->back()->with('success', 'Order status updated successfully!');
+        return redirect()->back()->with('success', 'Order status updated and job recorded successfully!');
     }
+
     /**
      * Display the specified resource.
      */

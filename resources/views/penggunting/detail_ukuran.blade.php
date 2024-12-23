@@ -6,16 +6,16 @@
 @section('content')
 <div class="container2">
   <h1>Detail Ukuran</h1>
-  <form method="POST" action="{{ route('store.size.detail', ['order_detail_id' => $order_details->order_detail_id]) }}">
+  <form method="POST" action="{{ route('store.size.detail') }}">
     @csrf
     <div class="form-group">
       <label for="order_detail_id">Select Order Detail</label>
       <select id="order_detail_id" name="order_detail_id" class="form-control">
-          @foreach ($order_details as $order_detail)
-              <option value="{{ $order_detail->order_detail_id }}">
-                  {{ $order_detail->order_detail_id }} - {{ $order_detail->note }} - {{ $order_detail->order_date }}
-              </option>
-          @endforeach
+        @foreach ($order_details as $order_detail)
+        <option value="{{ $order_detail->order_detail_id }}">
+            {{ $order_detail->order_detail_id }} - {{ $order_detail->note }} - {{ $order_detail->order_date }}
+        </option>
+    @endforeach
       </select>
   </div>
 
