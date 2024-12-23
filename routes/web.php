@@ -103,6 +103,7 @@ Route::get('/penggunting/detail_ukuran', [SizeDetailController::class, 'showSize
 
 Route::get('/kasir/detail_ukuran', [KasirController::class, 'showSizeDetails'])->name('order.size');
 
+Route::get('/kasir/show_detail_ukuran', [KasirController::class, 'showOrderDetails'])->name('order.lihatDetail');
 
 
 

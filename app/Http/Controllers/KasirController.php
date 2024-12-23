@@ -70,6 +70,12 @@ class KasirController extends Controller
         return view('kasir.detail_ukuran', ['size_details' => $size_details]);
     }
 
+    public function showOrderDetails()
+    {
+        $order_details = Order_detail::all();
+        return view('kasir.show_detail_pesanan', ['order_details' => $order_details]);
+    }
+
     public function showRiwayatt()
     {
         // Logika untuk menampilkan riwayat pesanan

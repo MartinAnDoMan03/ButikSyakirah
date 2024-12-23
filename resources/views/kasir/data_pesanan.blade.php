@@ -51,11 +51,14 @@
                                 <i class="fa fa-file-alt"></i>
                             </a>
 
+                            <a href="{{ route('order.lihatDetail', $order->order_id) }}" class="btn btn-detail" title="detail">
+                                <i class="fa fa-file-alt"></i>
+                            </a>
                             <!-- Tombol Detail Ukuran -->
-                            <a href="javascript:void(0)" class="btn btn-detail-ukuran" title="Detail Ukuran"
+                            {{-- <a href="javascript:void(0)" class="btn btn-detail-ukuran" title="Detail Ukuran"
                                 onclick="openDetailUkuranModal({{ $order->order_id }})">
                                 <i class="fa fa-eye"></i>
-                            </a>
+                            </a> --}}
                         </td>
                         <td>{{ $order->status }}</td>
                     </tr>
