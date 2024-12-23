@@ -26,7 +26,7 @@ class PaymentLogController extends Controller
     {
         $orders = Order::all();
         $orders = Order_detail::all();
-        return view('kasir.payment_create', compact('orders'));
+        return view('kasir.payment', compact('orders'));
     }
 
     /**

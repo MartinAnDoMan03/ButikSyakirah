@@ -1,16 +1,16 @@
-@extends('layouts.layoutadmin')
+@extends('layouts.layout')
 
 @section('title', 'Tambah Pembayaran')
 
 @section('content')
-    <h1>Tambah Pembayaran</h1>
+    <h1 class="title-payment">Tambah Pembayaran</h1>
 
-    <div class="form-container">
+    <div class="form-container-payment">
         <form action="{{ route('payment_logs.store') }}" method="POST">
             @csrf
 
             <!-- Order ID -->
-            <div class="form-group">
+            <div class="form-group-payment">
                 <label for="order_id">ID Pesanan</label>
                 <select name="order_id" id="order_id" required>
                     <option value="" disabled selected>Pilih ID Pesanan</option>
@@ -19,9 +19,9 @@
                     @endforeach
                 </select>
             </div>
-
+            <br></br>
             <!-- Payment Method -->
-            <div class="form-group">
+            <div class="form-group-payment">
                 <label for="payment_method">Metode Pembayaran</label>
                 <select name="payment_method" id="payment_method" required>
                     <option value="" disabled selected>Pilih Metode Pembayaran</option>
@@ -29,14 +29,14 @@
                     <option value="Bank Transfer">Bank Transfer</option>
                 </select>
             </div>
-
+            <br></br>
             <!-- Payment Amount -->
-            <div class="form-group">
+            <div class="form-group-payment">
                 <label for="payment_amount">Jumlah Pembayaran</label>
                 <input type="number" name="payment_amount" id="payment_amount" required>
             </div>
-
-            <button type="submit" class="btn btn-primary">Tambah Pembayaran</button>
+            <br></br>
+            <button type="submit" class="btn-payment">Tambah Pembayaran</button>
         </form>
     </div>
 @endsection

@@ -1165,3 +1165,76 @@ h2 {
 
 
 }
+
+
+/* payment
+ */
+/* Title */
+.title-payment {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+/* Form Container */
+.form-container-payment {
+    width: 50%;
+    margin: 80px auto; /* Memberi jarak dari navbar */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Jarak antar elemen */
+}
+
+/* Form Group */
+.form-group-payment {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group-payment label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group-payment input[type="number"],
+.form-group-payment select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group-payment input[type="number"]:focus,
+.form-group-payment select:focus {
+    border-color: #2b4053;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Submit Button */
+.btn-payment {
+    background-color: #2b4053;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: center; /* Pusatkan tombol */
+    transition: background-color 0.3s;
+}
+
+.btn-payment:hover {
+    background-color: #3b5975;
+}
