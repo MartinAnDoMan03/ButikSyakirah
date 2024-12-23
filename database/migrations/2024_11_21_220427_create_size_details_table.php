@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('shoulder_width');
             $table->integer('hip');
             $table->integer('wrist_circumference');
-            $table->integer('shoulder_length');
+            $table->integer('clothes_length');
             $table->foreign('order_detail_id')->references('order_detail_id')->on('order_details')->onDelete('restrict');
         });
     }

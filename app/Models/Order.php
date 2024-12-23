@@ -32,7 +32,7 @@ class Order extends Model
 
     public function penjahit()
     {
-        return $this->belongsTo(User::class, 'penjahit_id');
+        return $this->belongsTo(User::class, 'seamer_id');
     }
 
     // Menambahkan fungsi untuk mengambil penjahit berdasarkan role
