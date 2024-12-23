@@ -32,7 +32,6 @@
                     <th>Order Date</th>
                     <th>Completion Date</th>
                     <th>Status</th>
-                    <th>Total Price</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,7 +42,6 @@
                         <td>{{ $order->{'Order Date'} }}</td>
                         <td>{{ $order->{'Completion Date'} }}</td>
                         <td>{{ $order->{'Order Status'} }}</td>
-                        <td>{{ number_format($order->{'Total Price'}, 0, ',', '.') }}</td>
                     </tr>
                 @endforeach
             </tbody>
