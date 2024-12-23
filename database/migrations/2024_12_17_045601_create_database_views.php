@@ -65,7 +65,7 @@ return new class extends Migration {
                 size_details.shoulder_width,
                 size_details.hip,
                 size_details.wrist_circumference,
-                size_details.clothes_length,
+                size_details.shoulder_length,
                 seams.seamer_id,
                 seams.seam_status
             FROM 

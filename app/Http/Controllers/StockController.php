@@ -176,4 +176,50 @@ class StockController extends Controller
         return view('kasir.stok_barang', compact('stocks', 'suppliers'));
     }
 
+    public function deductStock(Request $request)
+{
+    $validatedData = $request->validate([
+        'order_id' => 'required|integer|exists:orders,order_id',
+        'stock_id' => 'required|integer|exists:stocks,stock_id',
+        'quantity' => 'required|integer|min:1',
+    ]);
+
+    $stock = Stock::findOrFail($validatedData['stock_id']);
+
+    // Check if there's enough stock to deduct
+    if ($stock->quantity < $validatedData['quantity']) {
+        return redirect()->back()->withErrors(['error' => 'Jumlah stok tidak mencukupi.']);
+    }
+
+    // Deduct stock
+    $stock->quantity -= $validatedData['quantity'];
+    $stock->last_updated = now();
+    $stock->save();
+
+    // Insert into inventory_logs
+    DB::table('inventory_logs')->insert([
+        'stock_id' => $validatedData['stock_id'],
+        'reference_type' => 'Order',
+        'order_reference_id' => $validatedData['order_id'],
+        'transaction_type' => 'Deduction',
+        'quantity' => $validatedData['quantity'],
+        'transaction_date' => now(),
+    ]);
+
+    return redirect()->back()->with('success', 'Stock berhasil dikurangi dan log dimasukkan.');
+}
+
+public function updateStock()
+{
+    // Return the view for the stock update page.
+    return view('pemayet.stock_update');
+}
+
+public function updateStockPenjahit()
+{
+    // Return the view for the stock update page.
+    return view('penjahit.stock_update');
+}
+
+
 }

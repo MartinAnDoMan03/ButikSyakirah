@@ -5,6 +5,11 @@
 @section('content')
     <h1>Data Orders</h1>
 
+    <!-- Button to redirect to stock update -->
+    <div class="button-container" style="margin-bottom: 20px;">
+        <a href="{{ route('pemayet.stock_update') }}" class="btn btn-success">Update Stock</a>
+    </div>
+
     <div class="table-container">
         <table>
             <thead>

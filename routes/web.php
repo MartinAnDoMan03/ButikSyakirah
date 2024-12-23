@@ -103,7 +103,6 @@ Route::get('/penggunting/detail_ukuran', [SizeDetailController::class, 'showSize
 
 Route::get('/kasir/detail_ukuran', [KasirController::class, 'showSizeDetails'])->name('order.size');
 
-Route::get('/kasir/show_detail_ukuran', [KasirController::class, 'showOrderDetails'])->name('order.lihatDetail');
 
 
 
@@ -162,3 +161,6 @@ Route::post('/detail_pesanan/{order_id}', [OrderDetailController::class, 'addDet
 Route::get('/payment_logs/create', [PaymentLogController::class, 'create'])->name('payment_logs.create');
 Route::post('/payment_logs/store', [PaymentLogController::class, 'store'])->name('payment_logs.store');
 
+Route::post('/stock/deduct', [StockController::class, 'deductStock'])->name('stock.deduct');
+Route::get('pemayet/stock/update', [StockController::class, 'updateStock'])->name('pemayet.stock_update');
+Route::get('penjahit/stock/update', [StockController::class, 'updateStockPenjahit'])->name('penjahit.stock_update');

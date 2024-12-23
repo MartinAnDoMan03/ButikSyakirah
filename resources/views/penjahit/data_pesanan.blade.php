@@ -5,6 +5,10 @@
 @section('content')
     <h1>Data Orders</h1>
 
+    <div class="button-container" style="margin-bottom: 20px;">
+        <a href="{{ route('penjahit.stock_update') }}" class="btn btn-success">Update Stock</a>
+    </div>
+
     <div class="table-container">
         <table>
             <thead>
