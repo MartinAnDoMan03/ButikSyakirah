@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Order_detail;
+use App\Models\Size_detail;
 use App\Models\Stock;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\pdf;
@@ -61,6 +62,12 @@ class KasirController extends Controller
         $orders = Order::all();
         $order_details = Order_detail::all();
         return view('kasir.riwayat_pesanan', ['orders'=> $orders], ['order_details' => $order_details]);
+    }
+
+    public function showSizeDetails()
+    {
+        $size_details = Size_detail::all();
+        return view('kasir.detail_ukuran', ['size_details' => $size_details]);
     }
 
     public function showRiwayatt()

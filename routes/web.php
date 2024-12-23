@@ -101,6 +101,7 @@ Route::get('/admin/supplier/search', [SupplierController::class, 'searchAdmin'])
 Route::get('/penggunting/detail_ukuran', [SizeDetailController::class, 'showSizeDetails'])->name('penggunting.detail_ukuran');
 
 
+Route::get('/kasir/detail_ukuran', [KasirController::class, 'showSizeDetails'])->name('order.size');
 
 
 

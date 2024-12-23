@@ -47,6 +47,10 @@
                                 <i class="fa fa-file-alt"></i>
                             </a>
 
+                            <a href="{{ route('order.size', $order->order_id) }}" class="btn btn-detail" title="detail">
+                                <i class="fa fa-file-alt"></i>
+                            </a>
+
                             <!-- Tombol Detail Ukuran -->
                             <a href="javascript:void(0)" class="btn btn-detail-ukuran" title="Detail Ukuran"
                                 onclick="openDetailUkuranModal({{ $order->order_id }})">
