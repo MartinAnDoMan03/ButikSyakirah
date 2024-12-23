@@ -43,6 +43,30 @@ class OrderController extends Controller
     }
 
 
+    public function showPesanan(Request $request)
+{
+    $order_details = Order_detail::all();
+    return view('penggunting.detail_ukuran', compact('order_details'));
+}
+
+public function addUkuran(Request $request)
+{
+    $validated = $request->validate([
+        'order_detail_id' => 'required|exists:order_details,order_detail_id',
+        'chest_circumference' => 'required|numeric',
+        'waist_circumference' => 'required|numeric',
+        'arm_circumference' => 'required|numeric',
+        'arm_length' => 'required|numeric',
+        'shoulder_width' => 'required|numeric',
+        'hip' => 'required|numeric',
+        'wrist_circumference' => 'required|numeric',
+        'shoulder_length' => 'required|numeric',
+    ]);
+
+    Size_detail::create($validated);
+
+    return redirect()->route('penggunting.show')->with('success', 'Pesanan berhasil ditambahkan.');
+}
     /**
      * Store a newly created resource in storage.
      */
@@ -131,10 +155,10 @@ class OrderController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
         ]);
-        
+
         $start_date = $request->input('start_date');
         $end_date = $request->input('end_date');
-        
+
         $orders = DB::select('CALL GenerateOrderReport(?, ?)', [$start_date, $end_date]);
 
         if ($request->has('print_pdf')) {
@@ -149,11 +173,11 @@ class OrderController extends Controller
     public function getSizeDetails($order_id)
     {
         $sizeDetails = Size_detail::where('order_id', $order_id)->first();
-    
+
         if (!$sizeDetails) {
             return response()->json(['error' => 'Size details not found for this order.']);
         }
-    
+
         return response()->json([
             'lingkar_dada' => $sizeDetails->chest_circumference,
             'lingkar_pinggang' => $sizeDetails->waist_circumference,
@@ -165,54 +189,54 @@ class OrderController extends Controller
             'panjang_baju' => $sizeDetails->shoulder_length,
         ]);
     }
-    
+
 
     public function generateSalesReport(Request $request)
-{
-    $request->validate([
-        'start_date' => 'required|date',
-        'end_date' => 'required|date|after_or_equal:start_date',
-    ]);
+    {
+        $request->validate([
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+        ]);
 
-    $start_date = $request->input('start_date');
-    $end_date = $request->input('end_date');
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
 
-    // Call the procedure to get the report
-    $orders = DB::select('CALL GenerateSalesReport(?, ?)', [$start_date, $end_date]);
+        // Call the procedure to get the report
+        $orders = DB::select('CALL GenerateSalesReport(?, ?)', [$start_date, $end_date]);
 
-    // Get the total sales using the stored function
-    $total_sales = DB::selectOne('SELECT CalculateTotalSales(?, ?) AS TotalSales', [$start_date, $end_date])->TotalSales;
+        // Get the total sales using the stored function
+        $total_sales = DB::selectOne('SELECT CalculateTotalSales(?, ?) AS TotalSales', [$start_date, $end_date])->TotalSales;
 
-    // Handle PDF generation if requested
-    if ($request->has('print_pdf')) {
-        $pdf = Pdf::loadView('kasir.sales_report_pdf', compact('orders', 'start_date', 'end_date', 'total_sales'));
-        return $pdf->download('Sales_Report_' . now()->format('Ymd') . '.pdf');
+        // Handle PDF generation if requested
+        if ($request->has('print_pdf')) {
+            $pdf = Pdf::loadView('kasir.sales_report_pdf', compact('orders', 'start_date', 'end_date', 'total_sales'));
+            return $pdf->download('Sales_Report_' . now()->format('Ymd') . '.pdf');
+        }
+
+        // Return the view with the report data
+        return view('kasir.sales_report', compact('orders', 'start_date', 'end_date', 'total_sales'));
     }
 
-    // Return the view with the report data
-    return view('kasir.sales_report', compact('orders', 'start_date', 'end_date', 'total_sales'));
-}
 
+    // search data pesanan
+    public function searchPesanan(Request $request)
+    {
+        $query = $request->input('query'); // Ambil input pencarian
 
-// search data pesanan
-public function searchPesanan(Request $request)
-{
-    $query = $request->input('query'); // Ambil input pencarian
+        // Filter data pesanan berdasarkan nama customer
+        if ($query) {
+            $orders = Order::whereHas('customer', function ($q) use ($query) {
+                $q->where('customer_name', 'LIKE', '%' . $query . '%');
+            })
+                ->with('customer') // Muat relasi customer
+                ->get();
+        } else {
+            $orders = Order::with('customer')->get(); // Jika tidak ada query, muat semua orders beserta customer-nya
+        }
 
-    // Filter data pesanan berdasarkan nama customer
-    if ($query) {
-        $orders = Order::whereHas('customer', function ($q) use ($query) {
-            $q->where('customer_name', 'LIKE', '%' . $query . '%');
-        })
-        ->with('customer') // Muat relasi customer
-        ->get();
-    } else {
-        $orders = Order::with('customer')->get(); // Jika tidak ada query, muat semua orders beserta customer-nya
+        // Kirim data ke view
+        return view('kasir.data_pesanan', compact('orders'));
     }
-
-    // Kirim data ke view
-    return view('kasir.data_pesanan', compact('orders'));
-}
 
     public function showDataPesanan()
     {
@@ -235,23 +259,23 @@ public function searchPesanan(Request $request)
     }
 
 
-public function updatePesanan(Request $request, $order_id)
-{
-    // Gunakan 'order_id' untuk mencari pesanan
-    $order = Order::where('order_id', $order_id)->first();
+    public function updatePesanan(Request $request, $order_id)
+    {
+        // Gunakan 'order_id' untuk mencari pesanan
+        $order = Order::where('order_id', $order_id)->first();
 
-    if (!$order) {
-        return redirect()->route('penggunting.data_pesanan')->with('error', 'Pesanan tidak ditemukan.');
+        if (!$order) {
+            return redirect()->route('penggunting.data_pesanan')->with('error', 'Pesanan tidak ditemukan.');
+        }
+
+        // Update pesanan berdasarkan input dari form
+        $order->update([
+            'penjahit_id' => $request->input('penjahit_id'),
+            // Field lain yang ingin diupdate
+        ]);
+
+        return redirect()->route('penggunting.data_pesanan')->with('success', 'Pesanan berhasil diperbarui.');
     }
-
-    // Update pesanan berdasarkan input dari form
-    $order->update([
-        'penjahit_id' => $request->input('penjahit_id'),
-        // Field lain yang ingin diupdate
-    ]);
-
-    return redirect()->route('penggunting.data_pesanan')->with('success', 'Pesanan berhasil diperbarui.');
-}
 
 
 

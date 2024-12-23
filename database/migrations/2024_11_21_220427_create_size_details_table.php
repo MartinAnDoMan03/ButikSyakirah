@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('size_details', function (Blueprint $table) {
             $table->integer('size_detail_id')->primary()->autoIncrement();
             $table->integer('order_detail_id');
-            $table->integer('chest_circumference');
-            $table->integer('waist_circumference');
-            $table->integer('arm_circumference');
-            $table->integer('arm_length');
-            $table->integer('shoulder_width');
-            $table->integer('hip');
-            $table->integer('wrist_circumference');
-            $table->integer('clothes_length');
+            $table->decimal('chest_circumference', 10, 2);
+            $table->decimal('waist_circumference', 10, 2);
+            $table->decimal('arm_circumference', 10, 2);
+            $table->decimal('arm_length', 10, 2);
+            $table->decimal('shoulder_width', 10, 2);
+            $table->decimal('hip',10, 2);
+            $table->decimal('wrist_circumference',10, 2);
+            $table->decimal('shoulder_length',10 ,2);
             $table->foreign('order_detail_id')->references('order_detail_id')->on('order_details')->onDelete('restrict');
         });
     }

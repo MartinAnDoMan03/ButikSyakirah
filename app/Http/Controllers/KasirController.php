@@ -55,11 +55,18 @@ class KasirController extends Controller
     }
 
 
-    public function showRiwayat()
+    public function showPesanan()
     {
         // Logika untuk menampilkan riwayat pesanan
         $orders = Order::all();
-        return view('kasir.riwayat_pesanan', ['orders'=> $orders]);
+        $order_details = Order_detail::all();
+        return view('kasir.riwayat_pesanan', ['orders'=> $orders], ['order_details' => $order_details]);
+    }
+
+    public function showRiwayatt()
+    {
+        // Logika untuk menampilkan riwayat pesanan
+        
     }
 
         public function addDetail(Request $request)
